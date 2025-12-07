@@ -1,0 +1,32 @@
+# Binaries
+*.out
+*.exe
+cub3D
+
+# Object files
+*.o
+obj/
+*.d
+
+# Libraries
+*.a
+
+# Temporary files
+*~
+*.swp
+*.swo
+
+
+# IDE files
+.vscode/
+
+# Logs
+*.log
+
+#Minilibx 
+minilibx-linux
+# Minilibx generated files
+minilibx-linux/libmlx.a
+minilibx-linux/libmlx_Linux.a
+minilibx-linux/obj/
+minilibx-linux/test/mlx-test
