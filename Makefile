@@ -2,7 +2,12 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -I./minilibx-linux -I./libft -MMD -MP
 LDFLAGS = -L./minilibx-linux -lmlx -L./libft -lft -lXext -lX11 -lm
 
-SRCS = srcs/main.c 
+SRCS = srcs/main.c \
+	   srcs/parsing/parsing.c \
+	   srcs/parsing/read_file.c \
+	   srcs/parsing/parse_textures.c \
+	   srcs/parsing/parse_colors.c \
+	   srcs/parsing/parse_map.c \
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
@@ -23,6 +28,7 @@ $(NAME): $(OBJ_DIR) $(OBJS) $(LIBFT) $(MLX)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)/srcs/
+	mkdir -p $(OBJ_DIR)/srcs/parsing/
 
 $(LIBFT): force
 	$(MAKE) -C $(LIBFT_DIR) bonus
