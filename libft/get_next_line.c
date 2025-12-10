@@ -6,21 +6,11 @@
 /*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 22:44:22 by hadia             #+#    #+#             */
-/*   Updated: 2025/12/10 12:42:34 by hadia            ###   ########.fr       */
+/*   Updated: 2025/12/10 13:11:56 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
 
 char	*add_stock_buffer(char *buffer, ssize_t bytes_read, char *stock_buf)
 {
