@@ -96,5 +96,3 @@ Après parsing réussi, `t_file_data` est utilisé pour le rendu 3D. En cas d'er
 - `make` : Compiler le projet.
 - `./cub3D maps/map.cub` : Lancer le jeu avec une map valide.
 
-## Auteurs
-- [Votre nom] - Parsing et validation.
