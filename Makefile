@@ -8,6 +8,7 @@ SRCS = srcs/main.c \
 	   srcs/parsing/parse_textures.c \
 	   srcs/parsing/parse_colors.c \
 	   srcs/parsing/parse_map.c \
+	   srcs/textures.c \
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)

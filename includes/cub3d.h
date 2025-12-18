@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/15 17:07:30 by hadia             #+#    #+#             */
+/*   Updated: 2025/12/15 17:07:52 by hadia            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
  # define CUB3D_H
 
@@ -13,6 +25,7 @@
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
 # include "../includes/parsing.h"
+# include "../includes/textures.h"
 
 
 typedef struct s_file_data
@@ -39,6 +52,21 @@ typedef struct s_file_data
     t_list *map_lines; // Liste temporaire pour les lignes de map
 } t_file_data;
 
+typedef struct s_game
+{
+    void *mlx;
+    void *win;
+    t_file_data *data;
+    t_textures textures;
+    double player_x;
+    double player_y;
+    double player_dir_x;
+    double player_dir_y;
+    double plane_x;
+    double plane_y;
+    int keys[65536]; // État des touches (0 = relâchée, 1 = pressée)
+} t_game;
+
 int parsing_args(t_file_data *data, char **argv);
-int ft_open_window();
+int ft_open_window(t_file_data *data);
 #endif  /* CUB3D_H */
