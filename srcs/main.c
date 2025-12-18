@@ -201,7 +201,7 @@ int render(t_game *game)
         }
     }
     
-    // Ici viendra le code de raycasting pour dessiner la vue 3D
+    // raycasting 3D
     
     return (0);
 }
