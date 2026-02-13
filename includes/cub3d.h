@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:07:30 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/13 16:54:49 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/13 18:03:10 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_game
 	double		plane_y;
 	int keys[65536]; // État des touches (0 = relâchée, 1 = pressée)
 }				t_game;
+
 
 int				parsing_args(t_file_data *data, char **argv);
 int				ft_open_window(t_file_data *data);
