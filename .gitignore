@@ -22,11 +22,3 @@ obj/
 
 # Logs
 *.log
-
-#Minilibx 
-minilibx-linux
-# Minilibx generated files
-minilibx-linux/libmlx.a
-minilibx-linux/libmlx_Linux.a
-minilibx-linux/obj/
-minilibx-linux/test/mlx-test
