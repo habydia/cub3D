@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:07:30 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/13 15:20:24 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/13 16:54:49 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../includes/textures.h"
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
+#include "raycasting.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
@@ -56,6 +57,10 @@ typedef struct s_game
 	void		*win;
 	t_file_data	*data;
 	t_textures	textures;
+	void *mlx_img;         // L’image pour le rendu
+	char *img_data;        // Pointeur vers les pixels
+	int bit_per_pixel;     // Bits par pixel
+	int line_len_in_octet; // Taille d’une ligne en octets
 	double		player_x;
 	double		player_y;
 	double		player_dir_x;

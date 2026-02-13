@@ -1,16 +1,16 @@
 #include "../includes/cub3d.h"
 
+// Initialisation du jeu avec position et direction
 void init_game(t_game *game, t_file_data *data)
 {
+    memset(game, 0, sizeof(t_game)); // Initialise tout à zéro
     game->data = data;
-    game->mlx = NULL;
-    game->win = NULL;
-    
-    // Initialiser la position du joueur (conversion int vers double + 0.5 pour centrer)
+
+    // Position du joueur (centré)
     game->player_x = data->player_x + 0.5;
     game->player_y = data->player_y + 0.5;
-    
-    // Initialiser la direction selon player_dir
+
+    // Direction selon player_dir
     if (data->player_dir == 'N')
     {
         game->player_dir_x = 0;
@@ -39,9 +39,8 @@ void init_game(t_game *game, t_file_data *data)
         game->plane_x = 0;
         game->plane_y = -0.66;
     }
-    
-    // Initialiser l'état des touches
-    memset(game->keys, 0, sizeof(game->keys));
+
+    memset(game->keys, 0, sizeof(game->keys)); // touches à zéro
 }
 
 int key_press(int keycode, t_game *game)
@@ -166,81 +165,154 @@ void update_player(t_game *game)
     }
 }
 
-int render(t_game *game)
+
+// Dessine la mini-map en haut à gauche
+void draw_minimap(t_game *game) // ADDED BY LEO
 {
-    // Mettre à jour la position du joueur selon les touches pressées
-    update_player(game);
-    
-    // Dessiner la carte 2D (minimap)
-    int map_scale = 20; // 20 pixels par cellule
-    int y, x;
-    for (y = 0; y < game->data->map_height; y++)
+    int x, y, px, py;
+    int map_scale = 20;
+
+    if (!game || !game->img_data || !game->data)
+        return;
+
+    y = 0;
+    while (y < game->data->map_height)
     {
-        for (x = 0; x < game->data->map_width; x++)
+        x = 0;
+        while (x < game->data->map_width)
         {
-            int color = (game->data->map[y][x] == '1') ? 0xFFFFFF : 0x000000; // Blanc pour murs, noir pour vide
-            int py, px;
-            for (py = 0; py < map_scale; py++)
+            int color = (game->data->map[y][x] == '1') ? 0xFFFFFF : 0x000000;
+
+            py = 0;
+            while (py < map_scale)
             {
-                for (px = 0; px < map_scale; px++)
+                px = 0;
+                while (px < map_scale)
                 {
-                    mlx_pixel_put(game->mlx, game->win, x * map_scale + px, y * map_scale + py, color);
+                    put_pixel(game, x * map_scale + px, y * map_scale + py, color);
+                    px++;
                 }
+                py++;
             }
+            x++;
         }
+        y++;
     }
-    
-    // Dessiner le joueur (carré rouge)
+
+    // Dessiner le joueur sur la mini-map (en rouge)
     int player_px = (int)(game->player_x * map_scale);
     int player_py = (int)(game->player_y * map_scale);
-    for (int i = -3; i <= 3; i++)
+
+    y = -3;
+    while (y <= 3)
     {
-        for (int j = -3; j <= 3; j++)
+        x = -3;
+        while (x <= 3)
         {
-            mlx_pixel_put(game->mlx, game->win, player_px + i, player_py + j, 0xFF0000);
+            put_pixel(game, player_px + x, player_py + y, 0xFF0000);
+            x++;
         }
+        y++;
     }
-    
-    // raycasting 3D
-    
-    return (0);
 }
+
+
+int render(t_game *game)
+{
+    int x, y;
+    int ceiling_color, floor_color;
+
+    if (!game || !game->img_data)
+        return 1;
+
+    update_player(game);
+
+    ceiling_color = rgb_to_int(game->data->ceiling_color[0],
+                               game->data->ceiling_color[1],
+                               game->data->ceiling_color[2]);
+    floor_color = rgb_to_int(game->data->floor_color[0],
+                             game->data->floor_color[1],
+                             game->data->floor_color[2]);
+
+    y = 0;
+    while (y < 600)
+    {
+        x = 0;
+        while (x < 800)
+        {
+            put_pixel(game, x, y, (y < 300) ? ceiling_color : floor_color);
+            x++;
+        }
+        y++;
+    }
+
+    // Mini-map et joueur (inchangé)
+    draw_minimap(game);
+
+    mlx_put_image_to_window(game->mlx, game->win, game->mlx_img, 0, 0);
+    return 0;
+}
+
 
 int ft_open_window(t_file_data *data)
 {
-    t_game game;
-    
-    init_game(&game, data);
-    
-    game.mlx = mlx_init();
-    if (!game.mlx)
+    t_game *game;
+    int endian;
+
+    game = malloc(sizeof(t_game));
+    if (!game)
+        return 1;
+    memset(game, 0, sizeof(t_game));
+
+    init_game(game, data);
+
+    game->mlx = mlx_init();
+    if (!game->mlx)
     {
-        printf("Failed to initialize MLX\n");
-        return (1);
+        free(game);
+        return 1;
     }
-    game.win = mlx_new_window(game.mlx, 800, 600, "Cub3D");
-    if (!game.win)
+
+    game->win = mlx_new_window(game->mlx, 800, 600, "Cub3D");
+    if (!game->win)
     {
-        printf("Failed to create window\n");
-        return (1);
+        free(game);
+        return 1;
     }
-    
-    // Charger les textures
-    load_textures(&game, data);
-    
-    // Configurer les hooks pour les événements
-    mlx_hook(game.win, 2, 1L<<0, key_press, &game);      // Touche pressée
-    mlx_hook(game.win, 3, 1L<<1, key_release, &game);    // Touche relâchée
-    mlx_hook(game.win, 17, 0L, close_window, &game);     // Fermeture fenêtre (croix)
-    mlx_hook(game.win, 15, 1L<<16, minimize_window, NULL); // Réduction
-    mlx_hook(game.win, 22, 1L<<18, maximize_window, NULL); // Redimensionnement
-    
-    // Configurer la boucle de rendu
-    mlx_loop_hook(game.mlx, (int (*)(void *))render, &game);
-    
-    mlx_loop(game.mlx);
-    return (0);
+
+    game->mlx_img = mlx_new_image(game->mlx, 800, 600);
+    if (!game->mlx_img)
+    {
+        mlx_destroy_window(game->mlx, game->win);
+        free(game);
+        return 1;
+    }
+
+    game->img_data = mlx_get_data_addr(game->mlx_img,
+                                       &game->bit_per_pixel,
+                                       &game->line_len_in_octet,
+                                       &endian);
+    if (!game->img_data)
+    {
+        mlx_destroy_image(game->mlx, game->mlx_img);
+        mlx_destroy_window(game->mlx, game->win);
+        free(game);
+        return 1;
+    }
+
+    load_textures(game, data);
+
+    mlx_hook(game->win, 2, 1L<<0, key_press, game);
+    mlx_hook(game->win, 3, 1L<<1, key_release, game);
+    mlx_hook(game->win, 17, 0L, close_window, game);
+
+    mlx_loop_hook(game->mlx, render, game);
+    mlx_loop(game->mlx);
+
+    return 0;
 }
+
+
 
 int main(int argc, char **argv)
 {
