@@ -179,47 +179,47 @@ void	update_player(t_game *game) // MODIFIED BY LEO FOR UPDATE AND CORRECT ROTAT
 		}
 	}
 }
-int	rgb_to_int(int r, int g, int b) // ADDED BY LEO
-{
-	return (r << 16 | g << 8 | b);
-}
+// int	rgb_to_int(int r, int g, int b) // ADDED BY LEO
+// {
+// 	return (r << 16 | g << 8 | b);
+// }
 
-void	put_pixel(t_game *game, int x, int y, int color) // ADDED BY LEO
-{
-	char	*dst;
+// void	put_pixel(t_game *game, int x, int y, int color) // ADDED BY LEO
+// {
+// 	char	*dst;
 
-	if (x < 0 || x >= 800 || y < 0 || y >= 600)
-		return ;
-	dst = game->img_data + (y * game->line_len + x * (game->bpp / 8));
-	*(unsigned int *)dst = color;
-}
+// 	if (x < 0 || x >= 800 || y < 0 || y >= 600)
+// 		return ;
+// 	dst = game->img_data + (y * game->line_len + x * (game->bpp / 8));
+// 	*(unsigned int *)dst = color;
+// }
 
-void	draw_floor_and_ceiling(t_game *game) // ADDED BY LEO
-{
-	int	y;
-	int	x;
-	int	ceiling_color;
-	int	floor_color;
+// void	draw_floor_and_ceiling(t_game *game) // ADDED BY LEO
+// {
+// 	int	y;
+// 	int	x;
+// 	int	ceiling_color;
+// 	int	floor_color;
 
-	ceiling_color = rgb_to_int(game->data->ceiling_color[0],
-			game->data->ceiling_color[1], game->data->ceiling_color[2]);
-	floor_color = rgb_to_int(game->data->floor_color[0],
-			game->data->floor_color[1], game->data->floor_color[2]);
-	y = 0;
-	while (y < 600)
-	{
-		x = 0;
-		while (x < 800)
-		{
-			if (y < 300)
-				put_pixel(game, x, y, ceiling_color);
-			else
-				put_pixel(game, x, y, floor_color);
-			x++;
-		}
-		y++;
-	}
-}
+// 	ceiling_color = rgb_to_int(game->data->ceiling_color[0],
+// 			game->data->ceiling_color[1], game->data->ceiling_color[2]);
+// 	floor_color = rgb_to_int(game->data->floor_color[0],
+// 			game->data->floor_color[1], game->data->floor_color[2]);
+// 	y = 0;
+// 	while (y < 600)
+// 	{
+// 		x = 0;
+// 		while (x < 800)
+// 		{
+// 			if (y < 300)
+// 				put_pixel(game, x, y, ceiling_color);
+// 			else
+// 				put_pixel(game, x, y, floor_color);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
 
 int	render(t_game *game) // MIDIFIED  BY LEO
 {

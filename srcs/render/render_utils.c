@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 14:47:47 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/13 17:24:39 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/13 19:31:53 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,20 @@ int	rgb_to_int(int r, int g, int b)
 	return ((r << 16) | (g << 8) | b);
 }
 
-void put_pixel(t_game *game, int x, int y, int color)
+void	put_pixel(t_game *game, int x, int y, int color)
 {
-    char *dst;
+	char	*dst;
 
-    if (!game || !game->img_data)
-    {
-        fprintf(stderr, "Erreur : img_data non initialisé !\n");
-        return;
-    }
-
-    if (x < 0 || x >= 800 || y < 0 || y >= 600)
-        return;
-
-    dst = game->img_data + (y * game->line_len_in_octet + x * (game->bit_per_pixel / 8));
-    *(unsigned int *)dst = color;
+	if (!game || !game->img_data)
+	{
+		fprintf(stderr, "Erreur : img_data non initialisé !\n");
+		return ;
+	}
+	if (x < 0 || x >= 800 || y < 0 || y >= 600)
+		return ;
+	dst = game->img_data + (y * game->line_len + x * (game->bpp / 8));
+	*(unsigned int *)dst = color;
 }
-
 
 void	draw_floor_and_ceiling(t_game *game) // dessine le sol et le plafond
 {
