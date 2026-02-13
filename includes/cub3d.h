@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:07:30 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/13 18:03:10 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/13 19:09:10 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define CUB3D_H
 
 # include "../includes/parsing.h"
+# include "../includes/raycasting.h"
 # include "../includes/textures.h"
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
-#include "raycasting.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
@@ -55,12 +55,16 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	/*image*/
+	void		*img;
+	void		*img_data;
+	int			bpp;
+	int			line_len;
+	int			endian;
+
 	t_file_data	*data;
 	t_textures	textures;
-	void *mlx_img;         // L’image pour le rendu
-	char *img_data;        // Pointeur vers les pixels
-	int bit_per_pixel;     // Bits par pixel
-	int line_len_in_octet; // Taille d’une ligne en octets
+
 	double		player_x;
 	double		player_y;
 	double		player_dir_x;
@@ -70,7 +74,8 @@ typedef struct s_game
 	int keys[65536]; // État des touches (0 = relâchée, 1 = pressée)
 }				t_game;
 
-
 int				parsing_args(t_file_data *data, char **argv);
 int				ft_open_window(t_file_data *data);
+void			draw_minimap(t_game *game);
+void			put_pixel(t_game *game, int x, int y, int color);
 #endif /* CUB3D_H */

@@ -1,6 +1,10 @@
 #ifndef RAYCASTING_H
 #define RAYCASTING_H
+
 #include "cub3d.h"
+
+
+typedef struct s_game t_game;
 typedef struct s_ray
 {
     double	camera_x;
@@ -9,7 +13,7 @@ typedef struct s_ray
     
 	int		map_x;
 	int		map_y;
-
+	
 	double	side_dist_x;
 	double	side_dist_y;
     
@@ -24,6 +28,7 @@ typedef struct s_ray
 	int side; // 0 = x, 1 = y
 }			t_ray;
 
+void raycasting(t_game *game);
 int			rgb_to_int(int r, int g, int b);
 void		put_pixel(struct s_game *game, int x, int y, int color);
 #endif
