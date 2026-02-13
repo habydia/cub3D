@@ -3,12 +3,14 @@ CFLAGS = -Wall -Wextra -Werror -I./minilibx-linux -I./libft -MMD -MP
 LDFLAGS = -L./minilibx-linux -lmlx -L./libft -lft -lXext -lX11 -lm
 
 SRCS = srcs/main.c \
-	   srcs/parsing/parsing.c \
-	   srcs/parsing/read_file.c \
-	   srcs/parsing/parse_textures.c \
-	   srcs/parsing/parse_colors.c \
-	   srcs/parsing/parse_map.c \
-	   srcs/textures.c \
+	srcs/parsing/parsing.c \
+	srcs/parsing/read_file.c \
+	srcs/parsing/parse_textures.c \
+	srcs/parsing/parse_colors.c \
+	srcs/parsing/parse_map.c \
+	srcs/textures.c \
+	srcs/render/render.c \
+	srcs/render/render_utils.c \
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
