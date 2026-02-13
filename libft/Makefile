@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hadia <hadia@student.42lyon.fr>            +#+  +:+       +#+         #
+#    By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 19:30:04 by hadia             #+#    #+#              #
-#    Updated: 2025/11/19 00:26:36 by hadia            ###   ########.fr        #
+#    Updated: 2025/12/10 12:48:09 by hadia            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,8 @@ FILES = ft_bzero.c \
 		ft_strmapi.c \
 		ft_striteri.c \
 		ft_split.c \
+		get_next_line.c \
+		get_next_line_utils.c \
 
 BONUS =	ft_lstnew_bonus.c \
 		ft_lstadd_front_bonus.c \
