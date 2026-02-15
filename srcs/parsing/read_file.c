@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:46:24 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/13 19:23:59 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/15 14:48:55 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,16 @@ int process_line(char *line, t_file_data *data)
     int ret;
     char *trimmed;
 
-    if (!line || *line == '\0' || *line == '\n')
+    if (!line)
         return 0;
     trimmed = ft_strtrim(line, " \t");
     if (!trimmed || *trimmed == '\0')
     {
+        if (data->has_map_started)
+        {
+            printf("error\nline must be notempty\nparsing fail\n");
+            return -1;
+        }
         free(trimmed);
         return 0;
     }
@@ -87,7 +92,7 @@ int process_line(char *line, t_file_data *data)
         return ret;
     }
     // Sinon, map
-    ret = process_map(trimmed, data);
+    ret = process_map(line, data);
     free(trimmed);
     if (ret == 0)
         data->has_map_started = 1;

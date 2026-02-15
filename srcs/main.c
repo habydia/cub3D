@@ -345,7 +345,7 @@ int	main(int argc, char **argv)
 	{
 		if (parsing_args(&data, argv) == -1)
 		{
-			printf("Error\nParsing failed\n");
+			printf("error\nparsing failed\n");
 			return (1);
 		}
 		else

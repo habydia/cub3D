@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 12:18:02 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/13 19:22:31 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/15 15:42:55 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,33 +39,56 @@ int process_colors(char *line, t_file_data *data)
 // Fonction pour parser RGB
 int parse_rgb(char *str, int color[3])
 {
-    char **tokens = ft_split(str, ',');
+    int i = 0;
+    int comma_count = 0;
+    int start = 0;
+    int j = 0;
 
-    if (!tokens || !tokens[0]
-        || !tokens[1] || !tokens[2])
+    // Compter les virgules et vérifier qu'il n'y en a pas de consécutives ou en début/fin
+    while (str[i])
     {
-        printf("Error\nInvalid RGB format\n");
-        return -1;
+        if (str[i] == ',')
+        {
+            comma_count++;
+            if (i == 0 || str[i + 1] == ',' || str[i + 1] == '\0' || (i > 0 && str[i - 1] == ','))
+                return -1;  // Virgule en début, fin, ou consécutive
+        }
+        i++;
+    }
+    if (comma_count != 2)
+        return -1;  // Pas exactement 2 virgules
+
+    // Maintenant parser les valeurs
+    i = 0;
+    j = 0;
+    while (str[i] && j < 3)
+    {
+        if (str[i] == ',')
+        {
+            // Extraire la valeur de start à i-1
+            char *num_str = ft_substr(str, start, i - start);
+            if (!num_str)
+                return -1;
+            color[j] = ft_atoi(num_str);
+            free(num_str);
+            if (color[j] < 0 || color[j] > 255)
+                return -1;
+            start = i + 1;
+            j++;
+        }
+        i++;
+    }
+    // Dernière valeur
+    if (j < 3)
+    {
+        char *num_str = ft_substr(str, start, i - start);
+        if (!num_str)
+            return -1;
+        color[j] = ft_atoi(num_str);
+        free(num_str);
+        if (color[j] < 0 || color[j] > 255)
+            return -1;
     }
 
-    color[0] = ft_atoi(tokens[0]);
-    color[1] = ft_atoi(tokens[1]);
-    color[2] = ft_atoi(tokens[2]);
-
-    if (color[0] < 0 || color[0] > 255 || color[1] < 0 
-        || color[1] > 255 || color[2] < 0 || color[2] > 255)
-    {
-        printf("Error\nRGB values must be between 0 and 255\n");
-        free(tokens[0]);
-        free(tokens[1]);
-        free(tokens[2]);
-        free(tokens);
-        return -1;
-    }
-
-    free(tokens[0]);
-    free(tokens[1]);
-    free(tokens[2]);
-    free(tokens);
     return 0;
 }

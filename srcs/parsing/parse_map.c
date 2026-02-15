@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 12:24:14 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/13 19:22:50 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/15 14:48:55 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@ int process_map(char *line, t_file_data *data)
     // Si la ligne est vide, ignorer
     if (!line || *line == '\0' || *line == '\n')
         return 0;
+
+    // Vérifier qu'il n'y a pas d'espaces ou de tabulations
+    int i = 0;
+    while (line[i])
+    {
+        if (line[i] == ' ' || line[i] == '\t')
+        {
+            printf("Error\nMap lines cannot contain spaces or tabs\n");
+            return -1;
+        }
+        i++;
+    }
 
     // Ajouter la ligne à la liste
     t_list *temp_map = ft_lstnew(ft_strdup(line));
@@ -71,7 +83,7 @@ int lstmap_to_charmap(t_file_data *data)
     return 0;
 }
 
-// Validation des caractères de la map (doivent être 0, 1, N, S, E, W ou espaces)
+// Validation des caractères de la map (doivent être 0, 1, N, S, E, W)
 int validate_characters(t_file_data *data)
 {
     int y = 0;
@@ -82,7 +94,7 @@ int validate_characters(t_file_data *data)
         while (x < len)
         {
             char c = data->map[y][x];
-            if (c != '0' && c != '1' && c != 'N' && c != 'S' && c != 'E' && c != 'W' && c != ' ')
+            if (c != '0' && c != '1' && c != 'N' && c != 'S' && c != 'E' && c != 'W')
             {
                 printf("Error\nInvalid character in map: '%c' (ASCII: %d) at y=%d x=%d\n", c, (int)c, y, x);
                 return -1;
