@@ -11,6 +11,7 @@ SRCS = srcs/main.c \
 	srcs/textures.c \
 	srcs/render/render.c \
 	srcs/render/render_utils.c \
+	srcs/render/init_data.c
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)

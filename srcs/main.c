@@ -1,48 +1,48 @@
 #include "../includes/cub3d.h"
 
-void	init_game(t_game *game, t_file_data *data)
-{
-	game->data = data;
-	game->mlx = NULL;
-	game->win = NULL;
-	game->img = NULL;
-	game->img_data = NULL;
-	/* Initialiser la position du joueur (conversion int vers double
-		+ 0.5 pour centrer) */
-	game->player_x = data->player_x + 0.5;
-	game->player_y = data->player_y + 0.5;
-	// Initialiser la direction selon player_dir
-	if (data->player_dir == 'N')
-	{
-		game->player_dir_x = 0;
-		game->player_dir_y = -1;
-		game->plane_x = 0.66;
-		game->plane_y = 0;
-	}
-	else if (data->player_dir == 'S')
-	{
-		game->player_dir_x = 0;
-		game->player_dir_y = 1;
-		game->plane_x = -0.66;
-		game->plane_y = 0;
-	}
-	else if (data->player_dir == 'E')
-	{
-		game->player_dir_x = 1;
-		game->player_dir_y = 0;
-		game->plane_x = 0;
-		game->plane_y = 0.66;
-	}
-	else if (data->player_dir == 'W')
-	{
-		game->player_dir_x = -1;
-		game->player_dir_y = 0;
-		game->plane_x = 0;
-		game->plane_y = -0.66;
-	}
-	// Initialiser l'etat des touches
-	memset(game->keys, 0, sizeof(game->keys));
-}
+// void	init_game(t_game *game, t_file_data *data)
+// {
+// 	game->data = data;
+// 	game->mlx = NULL;
+// 	game->win = NULL;
+// 	game->img = NULL;
+// 	game->img_data = NULL;
+// 	/* Initialiser la position du joueur (conversion int vers double
+// 		+ 0.5 pour centrer) */
+// 	game->player_x = data->player_x + 0.5;
+// 	game->player_y = data->player_y + 0.5;
+// 	// Initialiser la direction selon player_dir
+// 	if (data->player_dir == 'N')
+// 	{
+// 		game->player_dir_x = 0;
+// 		game->player_dir_y = -1;
+// 		game->plane_x = 0.66;
+// 		game->plane_y = 0;
+// 	}
+// 	else if (data->player_dir == 'S')
+// 	{
+// 		game->player_dir_x = 0;
+// 		game->player_dir_y = 1;
+// 		game->plane_x = -0.66;
+// 		game->plane_y = 0;
+// 	}
+// 	else if (data->player_dir == 'E')
+// 	{
+// 		game->player_dir_x = 1;
+// 		game->player_dir_y = 0;
+// 		game->plane_x = 0;
+// 		game->plane_y = 0.66;
+// 	}
+// 	else if (data->player_dir == 'W')
+// 	{
+// 		game->player_dir_x = -1;
+// 		game->player_dir_y = 0;
+// 		game->plane_x = 0;
+// 		game->plane_y = -0.66;
+// 	}
+// 	// Initialiser l'etat des touches
+// 	memset(game->keys, 0, sizeof(game->keys));
+// }
 
 int	key_press(int keycode, t_game *game)
 {
@@ -179,47 +179,6 @@ void	update_player(t_game *game) // MODIFIED BY LEO FOR UPDATE AND CORRECT ROTAT
 		}
 	}
 }
-// int	rgb_to_int(int r, int g, int b) // ADDED BY LEO
-// {
-// 	return (r << 16 | g << 8 | b);
-// }
-
-// void	put_pixel(t_game *game, int x, int y, int color) // ADDED BY LEO
-// {
-// 	char	*dst;
-
-// 	if (x < 0 || x >= 800 || y < 0 || y >= 600)
-// 		return ;
-// 	dst = game->img_data + (y * game->line_len + x * (game->bpp / 8));
-// 	*(unsigned int *)dst = color;
-// }
-
-// void	draw_floor_and_ceiling(t_game *game) // ADDED BY LEO
-// {
-// 	int	y;
-// 	int	x;
-// 	int	ceiling_color;
-// 	int	floor_color;
-
-// 	ceiling_color = rgb_to_int(game->data->ceiling_color[0],
-// 			game->data->ceiling_color[1], game->data->ceiling_color[2]);
-// 	floor_color = rgb_to_int(game->data->floor_color[0],
-// 			game->data->floor_color[1], game->data->floor_color[2]);
-// 	y = 0;
-// 	while (y < 600)
-// 	{
-// 		x = 0;
-// 		while (x < 800)
-// 		{
-// 			if (y < 300)
-// 				put_pixel(game, x, y, ceiling_color);
-// 			else
-// 				put_pixel(game, x, y, floor_color);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
 
 int	render(t_game *game) // MIDIFIED  BY LEO
 {
@@ -235,12 +194,12 @@ void	draw_minimap(t_game *game) // ADDED BY LEO
 {
 	int x;
 	int y;
-	int px;
-	int py;
-	int map_scale;
+	int position_x;
+	int position_y;
+	int map_scale_for_pixel;
 	int color;
 
-	map_scale = 10; // taille d’une case en pixels
+	map_scale_for_pixel = 10; // taille d’une case en pixels
 	y = 0;
 
 	while (y < game->data->map_height)
@@ -255,17 +214,17 @@ void	draw_minimap(t_game *game) // ADDED BY LEO
 				color = 0x000000; // vide noir
 
 			// Dessiner la case a la position (x, y) avec scale
-			py = 0;
-			while (py < map_scale)
+			position_y = 0;
+			while (position_y < map_scale_for_pixel)
 			{
-				px = 0;
-				while (px < map_scale)
+				position_x = 0;
+				while (position_x < map_scale_for_pixel)
 				{
-					put_pixel(game, x * map_scale + px, y * map_scale + py,
+					put_pixel(game, x * map_scale_for_pixel + position_x, y * map_scale_for_pixel + position_y,
 						color);
-					px++;
+					position_x++;
 				}
-				py++;
+				position_y++;
 			}
 			x++;
 		}
@@ -273,8 +232,8 @@ void	draw_minimap(t_game *game) // ADDED BY LEO
 	}
 
 	// Dessiner le joueur (rouge)
-	int player_px = (int)(game->player_x * map_scale);
-	int player_py = (int)(game->player_y * map_scale);
+	int player_px = (int)(game->player_x * map_scale_for_pixel);
+	int player_py = (int)(game->player_y * map_scale_for_pixel);
 
 	int i = -2;
 	while (i <= 2)

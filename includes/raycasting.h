@@ -31,4 +31,6 @@ typedef struct s_ray
 void raycasting(t_game *game);
 int			rgb_to_int(int r, int g, int b);
 void		put_pixel(struct s_game *game, int x, int y, int color);
+void	init_game(t_game *game, t_file_data *data);
+
 #endif
