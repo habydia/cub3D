@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:27:06 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/17 15:40:22 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/17 15:47:09 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,15 +192,15 @@
 // 	}
 // }
 
-int	render(t_game *game) // MIDIFIED  BY LEO
-{
-	update_player(game);
-	draw_floor_and_ceiling(game);
-	raycasting(game);
-	draw_minimap(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-	return (0);
-}
+// int	render(t_game *game) // MIDIFIED  BY LEO
+// {
+// 	update_player(game);
+// 	draw_floor_and_ceiling(game);
+// 	raycasting(game);
+// 	draw_minimap(game);
+// 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+// 	return (0);
+// }
 
 void	draw_minimap(t_game *game) // ADDED BY LEO
 {
