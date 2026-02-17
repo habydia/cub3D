@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/17 15:27:06 by lebroue           #+#    #+#             */
+/*   Updated: 2026/02/17 15:40:22 by lebroue          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 // void	init_game(t_game *game, t_file_data *data)
@@ -44,141 +56,141 @@
 // 	memset(game->keys, 0, sizeof(game->keys));
 // }
 
-int	key_press(int keycode, t_game *game)
-{
-	game->keys[keycode] = 1;
-	if (keycode == 119) // W
-		printf("Touche W pressée - Avancer\n");
-	else if (keycode == 97) // A
-		printf("Touche A pressée - Gauche\n");
-	else if (keycode == 115) // S
-		printf("Touche S pressée - Reculer\n");
-	else if (keycode == 100) // D
-		printf("Touche D pressée - Droite\n");
-	else if (keycode == 65361) // Left arrow
-		printf("Flèche gauche pressée - Rotation gauche\n");
-	else if (keycode == 65363) // Right arrow
-		printf("Flèche droite pressée - Rotation droite\n");
-	else if (keycode == 65362) // Up arrow
-		printf("Flèche haut pressée\n");
-	else if (keycode == 65364) // Down arrow
-		printf("Flèche bas pressée\n");
-	else if (keycode == 65480) // F11
-		printf("Touche F11 pressée - Maximisation\n");
-	else
-		printf("Touche pressée: %d\n", keycode);
-	return (0);
-}
+// int	key_press(int keycode, t_game *game)
+// {
+// 	game->keys[keycode] = 1;
+// 	if (keycode == 119) // W
+// 		printf("Touche W pressée - Avancer\n");
+// 	else if (keycode == 97) // A
+// 		printf("Touche A pressée - Gauche\n");
+// 	else if (keycode == 115) // S
+// 		printf("Touche S pressée - Reculer\n");
+// 	else if (keycode == 100) // D
+// 		printf("Touche D pressée - Droite\n");
+// 	else if (keycode == 65361) // Left arrow
+// 		printf("Flèche gauche pressée - Rotation gauche\n");
+// 	else if (keycode == 65363) // Right arrow
+// 		printf("Flèche droite pressée - Rotation droite\n");
+// 	else if (keycode == 65362) // Up arrow
+// 		printf("Flèche haut pressée\n");
+// 	else if (keycode == 65364) // Down arrow
+// 		printf("Flèche bas pressée\n");
+// 	else if (keycode == 65480) // F11
+// 		printf("Touche F11 pressée - Maximisation\n");
+// 	else
+// 		printf("Touche pressée: %d\n", keycode);
+// 	return (0);
+// }
 
-int	key_release(int keycode, t_game *game)
-{
-	game->keys[keycode] = 0;
-	if (keycode == 119) // W
-		printf("Touche W relâchée\n");
-	else if (keycode == 97) // A
-		printf("Touche A relâchée\n");
-	else if (keycode == 115) // S
-		printf("Touche S relâchée\n");
-	else if (keycode == 100) // D
-		printf("Touche D relâchée\n");
-	else if (keycode == 65361) // Left arrow
-		printf("Flèche gauche relâchée\n");
-	else if (keycode == 65363) // Right arrow
-		printf("Flèche droite relâchée\n");
-	else if (keycode == 65362) // Up arrow
-		printf("Flèche haut relâchée\n");
-	else if (keycode == 65364) // Down arrow
-		printf("Flèche bas relâchée\n");
-	return (0);
-}
+// int	key_release(int keycode, t_game *game)
+// {
+// 	game->keys[keycode] = 0;
+// 	if (keycode == 119) // W
+// 		printf("Touche W relâchée\n");
+// 	else if (keycode == 97) // A
+// 		printf("Touche A relâchée\n");
+// 	else if (keycode == 115) // S
+// 		printf("Touche S relâchée\n");
+// 	else if (keycode == 100) // D
+// 		printf("Touche D relâchée\n");
+// 	else if (keycode == 65361) // Left arrow
+// 		printf("Flèche gauche relâchée\n");
+// 	else if (keycode == 65363) // Right arrow
+// 		printf("Flèche droite relâchée\n");
+// 	else if (keycode == 65362) // Up arrow
+// 		printf("Flèche haut relâchée\n");
+// 	else if (keycode == 65364) // Down arrow
+// 		printf("Flèche bas relâchée\n");
+// 	return (0);
+// }
 
-int	close_window(t_game *game)
-{
-	printf("Fermeture de la fenêtre...\n");
-	free_game(game);
-	exit(0);
-	return (0);
-}
+// int	close_window(t_game *game)
+// {
+// 	printf("Fermeture de la fenêtre...\n");
+// 	free_game(game);
+// 	exit(0);
+// 	return (0);
+// }
 
-int	minimize_window(void *param)
-{
-	(void)param;
-	printf("Fenêtre réduite\n");
-	return (0);
-}
+// int	minimize_window(void *param)
+// {
+// 	(void)param;
+// 	printf("Fenêtre réduite\n");
+// 	return (0);
+// }
 
-int	maximize_window(void *param)
-{
-	(void)param;
-	printf("Fenêtre agrandie\n");
-	return (0);
-}
+// int	maximize_window(void *param)
+// {
+// 	(void)param;
+// 	printf("Fenêtre agrandie\n");
+// 	return (0);
+// }
 
-void	update_player(t_game *game) // MODIFIED BY LEO FOR UPDATE AND CORRECT ROTATION 
-{
-	double	move_speed;
-	double	rot_speed;
-	double	old_dir_x;
-	double	old_plane_x;
-	double	new_x;
-	double	new_y;
+// void	update_player(t_game *game) // MODIFIED BY LEO FOR UPDATE AND CORRECT ROTATION 
+// {
+// 	double	move_speed;
+// 	double	rot_speed;
+// 	double	old_dir_x;
+// 	double	old_plane_x;
+// 	double	new_x;
+// 	double	new_y;
 
-	(void)move_speed;
-	(void)new_x;
-	(void)new_y;
-	move_speed = 0.008;
-	rot_speed = 0.008;
-	// Rotation gauche (fleche gauche ou A)
-	if (game->keys[65361] || game->keys[97])
-	{
-		old_dir_x = game->player_dir_x;
-		game->player_dir_x = game->player_dir_x * cos(-rot_speed)
-			- game->player_dir_y * sin(-rot_speed);
-		game->player_dir_y = old_dir_x * sin(-rot_speed) + game->player_dir_y
-			* cos(-rot_speed);
-		old_plane_x = game->plane_x;
-		game->plane_x = game->plane_x * cos(-rot_speed) - game->plane_y
-			* sin(-rot_speed);
-		game->plane_y = old_plane_x * sin(-rot_speed) + game->plane_y
-			* cos(-rot_speed);
-	}
-	// Rotation droite (flèche droite ou D)
-	if (game->keys[65363] || game->keys[100])
-	{
-		old_dir_x = game->player_dir_x;
-		game->player_dir_x = game->player_dir_x * cos(rot_speed)
-			- game->player_dir_y * sin(rot_speed);
-		game->player_dir_y = old_dir_x * sin(rot_speed) + game->player_dir_y
-			* cos(rot_speed);
-		old_plane_x = game->plane_x;
-		game->plane_x = game->plane_x * cos(rot_speed) - game->plane_y
-			* sin(rot_speed);
-		game->plane_y = old_plane_x * sin(rot_speed) + game->plane_y
-			* cos(rot_speed);
-	}
-	// Mouvement avant (flèche haut ou W)
-	if (game->keys[65362] || game->keys[119]) // 65362 = flèche haut, 119 = 'w'
-	{
-		new_x = game->player_x + game->player_dir_x * move_speed;
-		new_y = game->player_y + game->player_dir_y * move_speed;
-		if (game->data->map[(int)new_y][(int)new_x] != '1')
-		{
-			game->player_x = new_x;
-			game->player_y = new_y;
-		}
-	}
-	// Mouvement arrière (flèche bas ou S)
-	if (game->keys[65364] || game->keys[115]) // 65364 = flèche bas, 115 = 's'
-	{
-		new_x = game->player_x - game->player_dir_x * move_speed;
-		new_y = game->player_y - game->player_dir_y * move_speed;
-		if (game->data->map[(int)new_y][(int)new_x] != '1')
-		{
-			game->player_x = new_x;
-			game->player_y = new_y;
-		}
-	}
-}
+// 	(void)move_speed;
+// 	(void)new_x;
+// 	(void)new_y;
+// 	move_speed = 0.005;
+// 	rot_speed = 0.003;
+// 	// Rotation gauche (fleche gauche ou A)
+// 	if (game->keys[65361] || game->keys[97])
+// 	{
+// 		old_dir_x = game->player_dir_x;
+// 		game->player_dir_x = game->player_dir_x * cos(-rot_speed)
+// 			- game->player_dir_y * sin(-rot_speed);
+// 		game->player_dir_y = old_dir_x * sin(-rot_speed) + game->player_dir_y
+// 			* cos(-rot_speed);
+// 		old_plane_x = game->plane_x;
+// 		game->plane_x = game->plane_x * cos(-rot_speed) - game->plane_y
+// 			* sin(-rot_speed);
+// 		game->plane_y = old_plane_x * sin(-rot_speed) + game->plane_y
+// 			* cos(-rot_speed);
+// 	}
+// 	// Rotation droite (fleche droite ou D)
+// 	if (game->keys[65363] || game->keys[100])
+// 	{
+// 		old_dir_x = game->player_dir_x;
+// 		game->player_dir_x = game->player_dir_x * cos(rot_speed)
+// 			- game->player_dir_y * sin(rot_speed);
+// 		game->player_dir_y = old_dir_x * sin(rot_speed) + game->player_dir_y
+// 			* cos(rot_speed);
+// 		old_plane_x = game->plane_x;
+// 		game->plane_x = game->plane_x * cos(rot_speed) - game->plane_y
+// 			* sin(rot_speed);
+// 		game->plane_y = old_plane_x * sin(rot_speed) + game->plane_y
+// 			* cos(rot_speed);
+// 	}
+// 	// Mouvement avant (flèche haut ou W)
+// 	if (game->keys[65362] || game->keys[119]) // 65362 = flèche haut, 119 = 'w'
+// 	{
+// 		new_x = game->player_x + game->player_dir_x * move_speed;
+// 		new_y = game->player_y + game->player_dir_y * move_speed;
+// 		if (game->data->map[(int)new_y][(int)new_x] != '1')
+// 		{
+// 			game->player_x = new_x;
+// 			game->player_y = new_y;
+// 		}
+// 	}
+// 	// Mouvement arrière (flèche bas ou S)
+// 	if (game->keys[65364] || game->keys[115]) // 65364 = flèche bas, 115 = 's'
+// 	{
+// 		new_x = game->player_x - game->player_dir_x * move_speed;
+// 		new_y = game->player_y - game->player_dir_y * move_speed;
+// 		if (game->data->map[(int)new_y][(int)new_x] != '1')
+// 		{
+// 			game->player_x = new_x;
+// 			game->player_y = new_y;
+// 		}
+// 	}
+// }
 
 int	render(t_game *game) // MIDIFIED  BY LEO
 {

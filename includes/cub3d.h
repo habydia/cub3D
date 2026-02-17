@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:07:30 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/13 19:33:37 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/17 15:38:02 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,6 @@ int				ft_open_window(t_file_data *data);
 void			draw_minimap(t_game *game);
 void			put_pixel(t_game *game, int x, int y, int color);
 void			draw_floor_and_ceiling(t_game *game);
+
+
 #endif /* CUB3D_H */

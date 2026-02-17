@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 18:35:42 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/16 19:00:17 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/16 19:02:37 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,15 @@ void init_player_direction(t_game *game, t_file_data *data)
 	init_player_direction_north_south(game, data);
 	init_player_direction_north_south(game, data);
 }
+
+void init_key_press_state(t_game *game)
+{
+	memset(game->keys, 0, sizeof(game->keys));
+}
 void	init_game(t_game *game, t_file_data *data)
 {
 	init_data_map(game, data);
 	init_player_position(game, data);
 	init_player_direction(game, data);
-	// Initialiser l'etat des touches
-	memset(game->keys, 0, sizeof(game->keys));
+	init_key_press_state(game);
 }
