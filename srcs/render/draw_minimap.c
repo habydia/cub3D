@@ -6,31 +6,31 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:48:42 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/17 15:49:16 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/17 18:30:33 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	draw_minimap(t_game *game) // ADDED BY LEO
+void	draw_minimap(t_game *game)
 {
-	int x;
-	int y;
+	int x_char_array;
+	int y_line_array;
 	int position_x;
 	int position_y;
 	int map_scale_for_pixel;
 	int color;
 
 	map_scale_for_pixel = 10; // taille d’une case en pixels
-	y = 0;
+	y_line_array = 0;
 
-	while (y < game->data->map_height)
+	while (y_line_array < game->data->map_height)
 	{
-		x = 0;
-		while (x < game->data->map_width)
+		x_char_array = 0;
+		while (x_char_array < game->data->map_width)
 		{
 			// Choix de la couleur
-			if (game->data->map[y][x] == '1')
+			if (game->data->map[y_line_array][x_char_array] == '1')
 				color = 0xFFFFFF; // mur blanc
 			else
 				color = 0x000000; // vide noir
@@ -42,18 +42,24 @@ void	draw_minimap(t_game *game) // ADDED BY LEO
 				position_x = 0;
 				while (position_x < map_scale_for_pixel)
 				{
-					put_pixel(game, x * map_scale_for_pixel + position_x, y * map_scale_for_pixel + position_y,
+					
+					
+					put_pixel(game, x_char_array * map_scale_for_pixel + position_x, y_line_array * map_scale_for_pixel + position_y,
 						color);
 					position_x++;
 				}
 				position_y++;
 			}
-			x++;
+			x_char_array++;
 		}
-		y++;
+		y_line_array++;
 	}
+	draw_player_red_minimap(game, map_scale_for_pixel);
+}
 
-	// Dessiner le joueur (rouge)
+void draw_player_red_minimap(t_game *game, int map_scale_for_pixel)
+{
+	
 	int player_px = (int)(game->player_x * map_scale_for_pixel);
 	int player_py = (int)(game->player_y * map_scale_for_pixel);
 
@@ -68,4 +74,5 @@ void	draw_minimap(t_game *game) // ADDED BY LEO
 		}
 		i++;
 	}
+	
 }
