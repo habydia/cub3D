@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 19:54:29 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/17 15:47:35 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/17 16:00:40 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ int						minimize_window(void *param);
 int						maximize_window(void *param);
 
 void					update_player(t_game *game);
-int	render(t_game *game);
+int						render(t_game *game);
+int						ft_open_window(t_file_data *data);
+
 #endif

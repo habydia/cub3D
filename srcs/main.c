@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:27:06 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/17 15:47:09 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/17 15:59:31 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,105 +202,105 @@
 // 	return (0);
 // }
 
-void	draw_minimap(t_game *game) // ADDED BY LEO
-{
-	int x;
-	int y;
-	int position_x;
-	int position_y;
-	int map_scale_for_pixel;
-	int color;
+// void	draw_minimap(t_game *game) // ADDED BY LEO
+// {
+// 	int x;
+// 	int y;
+// 	int position_x;
+// 	int position_y;
+// 	int map_scale_for_pixel;
+// 	int color;
 
-	map_scale_for_pixel = 10; // taille d’une case en pixels
-	y = 0;
+// 	map_scale_for_pixel = 10; // taille d’une case en pixels
+// 	y = 0;
 
-	while (y < game->data->map_height)
-	{
-		x = 0;
-		while (x < game->data->map_width)
-		{
-			// Choix de la couleur
-			if (game->data->map[y][x] == '1')
-				color = 0xFFFFFF; // mur blanc
-			else
-				color = 0x000000; // vide noir
+// 	while (y < game->data->map_height)
+// 	{
+// 		x = 0;
+// 		while (x < game->data->map_width)
+// 		{
+// 			// Choix de la couleur
+// 			if (game->data->map[y][x] == '1')
+// 				color = 0xFFFFFF; // mur blanc
+// 			else
+// 				color = 0x000000; // vide noir
 
-			// Dessiner la case a la position (x, y) avec scale
-			position_y = 0;
-			while (position_y < map_scale_for_pixel)
-			{
-				position_x = 0;
-				while (position_x < map_scale_for_pixel)
-				{
-					put_pixel(game, x * map_scale_for_pixel + position_x, y * map_scale_for_pixel + position_y,
-						color);
-					position_x++;
-				}
-				position_y++;
-			}
-			x++;
-		}
-		y++;
-	}
+// 			// Dessiner la case a la position (x, y) avec scale
+// 			position_y = 0;
+// 			while (position_y < map_scale_for_pixel)
+// 			{
+// 				position_x = 0;
+// 				while (position_x < map_scale_for_pixel)
+// 				{
+// 					put_pixel(game, x * map_scale_for_pixel + position_x, y * map_scale_for_pixel + position_y,
+// 						color);
+// 					position_x++;
+// 				}
+// 				position_y++;
+// 			}
+// 			x++;
+// 		}
+// 		y++;
+// 	}
 
-	// Dessiner le joueur (rouge)
-	int player_px = (int)(game->player_x * map_scale_for_pixel);
-	int player_py = (int)(game->player_y * map_scale_for_pixel);
+// 	// Dessiner le joueur (rouge)
+// 	int player_px = (int)(game->player_x * map_scale_for_pixel);
+// 	int player_py = (int)(game->player_y * map_scale_for_pixel);
 
-	int i = -2;
-	while (i <= 2)
-	{
-		int j = -2;
-		while (j <= 2)
-		{
-			put_pixel(game, player_px + i, player_py + j, 0xFF0000);
-			j++;
-		}
-		i++;
-	}
-}
+// 	int i = -2;
+// 	while (i <= 2)
+// 	{
+// 		int j = -2;
+// 		while (j <= 2)
+// 		{
+// 			put_pixel(game, player_px + i, player_py + j, 0xFF0000);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
 
-int	ft_open_window(t_file_data *data)
-{
-	t_game	game;
+// int	ft_open_window(t_file_data *data)
+// {
+// 	t_game	game;
 
-	init_game(&game, data);
-	game.mlx = mlx_init();
-	if (!game.mlx)
-	{
-		printf("Failed to initialize MLX\n");
-		return (1);
-	}
-	game.win = mlx_new_window(game.mlx, 800, 600, "Cub3D");
-	if (!game.win)
-	{
-		printf("Failed to create window\n");
-		return (1);
-	}
-	// Creer l'image pour le double buffering
-	game.img = mlx_new_image(game.mlx, 800, 600);
-	if (!game.img)
-	{
-		printf("Failed to create image\n");
-		return (1);
-	}
-	game.img_data = mlx_get_data_addr(game.img, &game.bpp, &game.line_len,
-			&game.endian);
-	// Charger les textures
-	load_textures(&game, data);
-	// Configurer les hooks pour les événements
-	mlx_hook(game.win, 2, 1L << 0, key_press, &game);   // Touche pressée
-	mlx_hook(game.win, 3, 1L << 1, key_release, &game); // Touche relâchée
-	mlx_hook(game.win, 17, 0L, close_window, &game);
-	// Fermeture fenêtre (croix)
-	mlx_hook(game.win, 15, 1L << 16, minimize_window, NULL); // Réduction
-	mlx_hook(game.win, 22, 1L << 18, maximize_window, NULL);
-	// Redimensionnement
-	// Configurer la boucle de rendu
-	mlx_loop_hook(game.mlx, (int (*)(void *))render, &game);
-	mlx_loop(game.mlx);
-	return (0);
-}
+// 	init_game(&game, data);
+// 	game.mlx = mlx_init();
+// 	if (!game.mlx)
+// 	{
+// 		printf("Failed to initialize MLX\n");
+// 		return (1);
+// 	}
+// 	game.win = mlx_new_window(game.mlx, 800, 600, "Cub3D");
+// 	if (!game.win)
+// 	{
+// 		printf("Failed to create window\n");
+// 		return (1);
+// 	}
+// 	// Creer l'image pour le double buffering
+// 	game.img = mlx_new_image(game.mlx, 800, 600);
+// 	if (!game.img)
+// 	{
+// 		printf("Failed to create image\n");
+// 		return (1);
+// 	}
+// 	game.img_data = mlx_get_data_addr(game.img, &game.bpp, &game.line_len,
+// 			&game.endian);
+// 	// Charger les textures
+// 	load_textures(&game, data);
+// 	// Configurer les hooks pour les événements
+// 	mlx_hook(game.win, 2, 1L << 0, key_press, &game);   // Touche pressée
+// 	mlx_hook(game.win, 3, 1L << 1, key_release, &game); // Touche relâchée
+// 	mlx_hook(game.win, 17, 0L, close_window, &game);
+// 	// Fermeture fenêtre (croix)
+// 	mlx_hook(game.win, 15, 1L << 16, minimize_window, NULL); // Réduction
+// 	mlx_hook(game.win, 22, 1L << 18, maximize_window, NULL);
+// 	// Redimensionnement
+// 	// Configurer la boucle de rendu
+// 	mlx_loop_hook(game.mlx, (int (*)(void *))render, &game);
+// 	mlx_loop(game.mlx);
+// 	return (0);
+// }
 
 int	main(int argc, char **argv)
 {

@@ -16,7 +16,9 @@ SRCS = srcs/main.c \
 	srcs/render/draw_floor_and_ceilling.c \
 	srcs/render/update_player.c \
 	srcs/key/handle_key.c \
-	srcs/render/raycasting.c
+	srcs/render/raycasting.c \
+	srcs/render/draw_minimap.c \
+	srcs/render/open_window.c
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
