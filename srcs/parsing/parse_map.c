@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: hadia <hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 12:24:14 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/15 14:48:55 by hadia            ###   ########.fr       */
+/*   Updated: 2026/02/17 18:30:01 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int process_map(char *line, t_file_data *data)
         }
         i++;
     }
-
     // Ajouter la ligne à la liste
     t_list *temp_map = ft_lstnew(ft_strdup(line));
     if (!temp_map || !temp_map->content)
@@ -43,6 +42,12 @@ int process_map(char *line, t_file_data *data)
     return 0;
 }
 
+
+/*
+*
+*
+*
+*/
 // Fonction à appeler après read_file pour finaliser la map
 int lstmap_to_charmap(t_file_data *data)
 {
