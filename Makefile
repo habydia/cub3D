@@ -11,14 +11,15 @@ SRCS = srcs/main.c \
 	srcs/textures.c \
 	srcs/render/render.c \
 	srcs/render/render_utils.c \
-	srcs/render/init_data.c \
+	srcs/render/init_data_game_key.c \
 	srcs/render/window_events.c \
 	srcs/render/draw_floor_and_ceilling.c \
 	srcs/render/update_player.c \
 	srcs/key/handle_key.c \
 	srcs/render/raycasting.c \
 	srcs/render/draw_minimap.c \
-	srcs/render/open_window.c
+	srcs/render/open_window.c \
+	srcs/render/init_player.c
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)

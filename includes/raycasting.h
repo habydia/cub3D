@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 19:54:29 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/17 18:19:06 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/17 21:02:18 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,8 @@ int						ft_open_window(t_file_data *data);
 
 void draw_player_red_minimap(t_game *game, int map_scale_for_pixel);
 
+void	init_player_position(t_game *game, t_file_data *data);
+void	init_player_direction_north_south(t_game *game, t_file_data *data);
+void	init_player_direction_east_west(t_game *game, t_file_data *data);
+void	init_player_direction(t_game *game, t_file_data *data);
 #endif
