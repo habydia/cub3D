@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 18:35:42 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/17 21:06:37 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/19 16:24:36 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ void	init_data_map(t_game *game, t_file_data *data)
 
 void	init_key_press_state(t_game *game)
 {
-	memset(game->keys, 0, sizeof(game->keys));
+	ft_memset(game->keys, 0, sizeof(game->keys));
 }
+
 void	init_game(t_game *game, t_file_data *data)
 {
 	init_data_map(game, data);

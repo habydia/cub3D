@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:27:06 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/17 20:56:26 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/19 15:47:11 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_file_data data;
-	memset(&data, 0, sizeof(t_file_data));
+	ft_memset(&data, 0, sizeof(t_file_data));
 
 	if (argc != 2)
 	{

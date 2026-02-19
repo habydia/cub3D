@@ -6,13 +6,12 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:30:20 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/17 15:32:02 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/19 15:37:16 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-// Convertit des composantes R, G, B en un entier couleur 0xRRGGBB
 int	rgb_to_int(int r, int g, int b)
 {
 	return ((r << 16) | (g << 8) | b);
@@ -45,14 +44,14 @@ void	draw_floor_and_ceiling(t_game *game)
 	floor_color = rgb_to_int(game->data->floor_color[0],
 			game->data->floor_color[1], game->data->floor_color[2]);
 	y = 0;
-	while (y < 600) // hauteur de la fenêtre
+	while (y < 600)
 	{
 		x = 0;
-		while (x < 800) // largeur de la fenêtre
+		while (x < 800)
 		{
-			if (y < 300) // moitié haute = plafond
+			if (y < 300)
 				put_pixel(game, x, y, ceiling_color);
-			else // moitié basse = sol
+			else
 				put_pixel(game, x, y, floor_color);
 			x++;
 		}

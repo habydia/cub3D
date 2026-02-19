@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:58:55 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/17 20:55:14 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/19 16:24:08 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ int	init_mlx_and_window(t_game *game)
 	game->img = mlx_new_image(game->mlx, 800, 600);
 	if (!game->img)
 		return (printf("Failed to create image\n"), 1);
-	game->img_data = mlx_get_data_addr(game->img,
-			&game->bpp, &game->line_len, &game->endian);
+	game->img_data = mlx_get_data_addr(game->img, &game->bpp, &game->line_len,
+			&game->endian);
 	return (0);
 }
+
 void	setup_hooks(t_game *game)
 {
 	mlx_hook(game->win, 2, 1L << 0, key_press, game);
@@ -36,6 +37,7 @@ void	setup_hooks(t_game *game)
 	mlx_hook(game->win, 22, 1L << 18, maximize_window, NULL);
 	mlx_loop_hook(game->mlx, (int (*)(void *))render, game);
 }
+
 int	ft_open_window(t_file_data *data)
 {
 	t_game	game;
@@ -48,6 +50,3 @@ int	ft_open_window(t_file_data *data)
 	mlx_loop(game.mlx);
 	return (0);
 }
-
-
-

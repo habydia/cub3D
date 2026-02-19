@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:48:42 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/17 20:37:34 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/19 16:25:02 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	draw_player_red_minimap(t_game *game, int map_scale_for_pixel)
 		i++;
 	}
 }
+
 void	draw_minimap(t_game *game)
 {
 	int	y;
