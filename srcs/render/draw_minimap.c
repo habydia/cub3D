@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:48:42 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/19 16:25:02 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/19 22:03:11 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ int	get_minimap_color(char tile)
 	return (0x000000);
 }
 
-void	draw_minimap_case(t_game *game, int x, int y, int scale, int color)
+void	draw_minimap_case(t_game *game, t_draw_case d)
 {
 	int	position_x;
 	int	position_y;
 
 	position_y = 0;
-	while (position_y < scale)
+	while (position_y < d.scale)
 	{
 		position_x = 0;
-		while (position_x < scale)
+		while (position_x < d.scale)
 		{
-			put_pixel(game, x * scale + position_x, y * scale + position_y,
-				color);
+			put_pixel(game, d.x * d.scale + position_x, d.y * d.scale
+				+ position_y, d.color);
 			position_x++;
 		}
 		position_y++;
@@ -40,14 +40,17 @@ void	draw_minimap_case(t_game *game, int x, int y, int scale, int color)
 
 void	draw_minimap_line(t_game *game, int y, int scale)
 {
-	int	x;
-	int	color;
+	int			x;
+	t_draw_case	d;
 
 	x = 0;
 	while (x < game->data->map_width)
 	{
-		color = get_minimap_color(game->data->map[y][x]);
-		draw_minimap_case(game, x, y, scale, color);
+		d.x = x;
+		d.y = y;
+		d.scale = scale;
+		d.color = get_minimap_color(game->data->map[y][x]);
+		draw_minimap_case(game, d);
 		x++;
 	}
 }

@@ -6,12 +6,11 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 19:10:37 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/16 19:43:40 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/19 16:53:05 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
 
 int	key_press(int keycode, t_game *game)
 {

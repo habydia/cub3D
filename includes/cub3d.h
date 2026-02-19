@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:07:30 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/17 15:38:02 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/19 22:00:38 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,32 @@ typedef struct s_game
 	int keys[65536]; // État des touches (0 = relâchée, 1 = pressée)
 }				t_game;
 
+typedef struct s_draw_case
+{
+	int	x;
+	int	y;
+	int	scale;
+	int	color;
+}	t_draw_case;
+
+
 # include <stddef.h>
 int				parsing_args(t_file_data *data, char **argv);
 int				ft_open_window(t_file_data *data);
 void			draw_minimap(t_game *game);
 void			put_pixel(t_game *game, int x, int y, int color);
 void			draw_floor_and_ceiling(t_game *game);
+
+
+void	init_ray(t_game *game, t_ray *ray, int x, int w);
+void	calculate_step(t_game *game, t_ray *ray);
+void	perform_dda(t_game *game, t_ray *ray);
+void	calculate_wall_distance(t_game *game, t_ray *ray);
+void	draw_vertical_line(t_game *game, t_ray *ray, int x, int h);
+
+
+
+
 
 
 #endif /* CUB3D_H */

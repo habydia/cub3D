@@ -17,6 +17,7 @@ SRCS = srcs/main.c \
 	srcs/render/update_player.c \
 	srcs/key/handle_key.c \
 	srcs/render/raycasting.c \
+	srcs/render/raycasting_utils.c\
 	srcs/render/draw_minimap.c \
 	srcs/render/open_window.c \
 	srcs/render/init_player.c
