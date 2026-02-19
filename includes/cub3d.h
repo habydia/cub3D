@@ -6,7 +6,7 @@
 /*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:07:30 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/23 09:28:17 by hadia            ###   ########.fr       */
+/*   Updated: 2026/02/23 11:20:45 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include <sys/types.h>
 # include <unistd.h>
 
-typedef struct s_file_data
+typedef struct s_file_textures
 {
 	char		*north_texture;
 	char		*south_texture;
@@ -37,18 +37,38 @@ typedef struct s_file_data
 	int			south_set;
 	int			west_set;
 	int			east_set;
+}				t_file_textures;
+
+typedef struct s_colors
+{
 	int			floor_color[3];
 	int			ceiling_color[3];
 	int			floor_set;
 	int			ceiling_set;
+}				t_colors;
+
+typedef struct s_map
+{
 	char		**map;
 	int			map_height;
 	int			map_width;
+	t_list		*map_lines;
+	int			has_map_started;
+}				t_map;
+
+typedef struct s_player
+{
 	int			player_x;
 	int			player_y;
 	char		player_dir;
-	int			has_map_started;
-	t_list *map_lines; // Liste temporaire pour les lignes de map
+}				t_player;
+
+typedef struct s_file_data
+{
+	t_file_textures	textures;
+	t_colors	colors;
+	t_map		map_data;
+	t_player	player;
 }				t_file_data;
 
 typedef struct s_game
