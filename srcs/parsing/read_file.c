@@ -6,7 +6,7 @@
 /*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:46:24 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/23 10:52:00 by hadia            ###   ########.fr       */
+/*   Updated: 2026/02/23 11:20:45 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	handle_empty_line(char *trimmed, t_file_data *data)
 {
 	if (!trimmed || *trimmed == '\0')
 	{
-		if (data->has_map_started)
+		if (data->map_data.has_map_started)
 		{
 			printf("error\nline must be notempty\nparsing fail\n");
 			return (-1);
@@ -100,7 +100,7 @@ static int	try_process_textures(char *trimmed, t_file_data *data)
 	int ret = process_textures(trimmed, data);
 	if (ret != 1)
 	{
-		if (data->has_map_started)
+		if (data->map_data.has_map_started)
 		{
 			printf("Error\nMap must be at the end of the file\n");
 			return (-1);
@@ -121,7 +121,7 @@ static int	try_process_colors(char *trimmed, t_file_data *data)
 	int ret = process_colors(trimmed, data);
 	if (ret != 1)
 	{
-		if (data->has_map_started)
+		if (data->map_data.has_map_started)
 		{
 			printf("Error\nMap must be at the end of the file\n");
 			return (-1);
@@ -168,6 +168,6 @@ int process_line(char *line, t_file_data *data)
 	ret = process_map(line, data);
 	free(trimmed);
 	if (ret == 0)
-		data->has_map_started = 1;
+		data->map_data.has_map_started = 1;
 	return (ret);
 }

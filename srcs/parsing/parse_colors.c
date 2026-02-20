@@ -6,7 +6,7 @@
 /*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 12:18:02 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/23 10:39:04 by hadia            ###   ########.fr       */
+/*   Updated: 2026/02/23 11:20:45 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ int	process_colors(char *line, t_file_data *data)
 {
 	if (ft_strncmp(line, "F ", 2) == 0)
 	{
-		if (parse_rgb(line + 2, data->floor_color) == 0)
+		if (parse_rgb(line + 2, data->colors.floor_color) == 0)
 		{
-			data->floor_set = 1;
+			data->colors.floor_set = 1;
 			return (0);
 		}
 		return (-1);
 	}
 	else if (ft_strncmp(line, "C ", 2) == 0)
 	{
-		if (parse_rgb(line + 2, data->ceiling_color) == 0)
+		if (parse_rgb(line + 2, data->colors.ceiling_color) == 0)
 		{
-			data->ceiling_set = 1;
+			data->colors.ceiling_set = 1;
 			return (0);
 		}
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:47:42 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/23 10:34:38 by hadia            ###   ########.fr       */
+/*   Updated: 2026/02/23 11:20:45 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@
  */
 static int	handle_floor_ceilling_error(t_file_data *data)
 {
-	if (!data->floor_set)
+	if (!data->colors.floor_set)
 	{
 		printf("Error\nFloor color (F) is missing\n");
 		return (-1);
 	}
-	if (!data->ceiling_set)
+	if (!data->colors.ceiling_set)
 	{
 		printf("Error\nCeiling color (C) is missing\n");
 		return (-1);
 	}
-	if (data->map_height == 0)
+	if (data->map_data.map_height == 0)
 	{
 		printf("Error\nMap is missing\n");
 		return (-1);
@@ -60,8 +60,8 @@ static int	check_file_extension(char *filename)
  */
 static int	check_textures(t_file_data *data)
 {
-	if (!data->north_set || !data->south_set || !data->west_set
-		|| !data->east_set)
+	if (!data->textures.north_set || !data->textures.south_set || !data->textures.west_set
+		|| !data->textures.east_set)
 	{
 		printf("Error\nAll textures (NO, SO, WE, EA) are required\n");
 		return (-1);
@@ -96,23 +96,23 @@ int	parsing_args(t_file_data *data, char **argv)
  */
 void	free_file_data(t_file_data *data)
 {
-	if (data->north_texture)
-		free(data->north_texture);
-	if (data->south_texture)
-		free(data->south_texture);
-	if (data->west_texture)
-		free(data->west_texture);
-	if (data->east_texture)
-		free(data->east_texture);
-	if (data->map)
+	if (data->textures.north_texture)
+		free(data->textures.north_texture);
+	if (data->textures.south_texture)
+		free(data->textures.south_texture);
+	if (data->textures.west_texture)
+		free(data->textures.west_texture);
+	if (data->textures.east_texture)
+		free(data->textures.east_texture);
+	if (data->map_data.map)
 	{
-		for (int i = 0; i < data->map_height; i++)
-			free(data->map[i]);
-		free(data->map);
-		data->map = NULL;
+		for (int i = 0; i < data->map_data.map_height; i++)
+			free(data->map_data.map[i]);
+		free(data->map_data.map);
+		data->map_data.map = NULL;
 	}
 	else
 	{
-		ft_lstclear(&data->map_lines, free);
+		ft_lstclear(&data->map_data.map_lines, free);
 	}
 }
