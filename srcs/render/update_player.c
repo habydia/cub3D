@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:40:07 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/19 18:21:58 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/23 11:20:45 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	move_forward(t_game *game, double move_speed)
 
 	new_x = game->player_x + game->player_dir_x * move_speed;
 	new_y = game->player_y + game->player_dir_y * move_speed;
-	if (game->data->map[(int)new_y][(int)new_x] != '1')
+	if (game->data->map_data.map[(int)new_y][(int)new_x] != '1')
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;
@@ -73,7 +73,7 @@ void	move_backward(t_game *game, double move_speed)
 
 	new_x = game->player_x - game->player_dir_x * move_speed;
 	new_y = game->player_y - game->player_dir_y * move_speed;
-	if (game->data->map[(int)new_y][(int)new_x] != '1')
+	if (game->data->map_data.map[(int)new_y][(int)new_x] != '1')
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;

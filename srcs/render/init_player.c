@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 20:59:18 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/19 16:23:50 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/23 11:20:45 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	init_player_position(t_game *game, t_file_data *data)
 {
-	game->player_x = data->player_x + 0.5;
-	game->player_y = data->player_y + 0.5;
+	game->player_x = data->player.player_x + 0.5;
+	game->player_y = data->player.player_y + 0.5;
 }
 
 void	init_player_direction_north_south(t_game *game, t_file_data *data)
 {
-	if (data->player_dir == 'N')
+	if (data->player.player_dir == 'N')
 	{
 		game->player_dir_x = 0;
 		game->player_dir_y = -1;
 		game->plane_x = 0.66;
 		game->plane_y = 0;
 	}
-	else if (data->player_dir == 'S')
+	else if (data->player.player_dir == 'S')
 	{
 		game->player_dir_x = 0;
 		game->player_dir_y = 1;
@@ -38,14 +38,14 @@ void	init_player_direction_north_south(t_game *game, t_file_data *data)
 
 void	init_player_direction_east_west(t_game *game, t_file_data *data)
 {
-	if (data->player_dir == 'E')
+	if (data->player.player_dir == 'E')
 	{
 		game->player_dir_x = 1;
 		game->player_dir_y = 0;
 		game->plane_x = 0;
 		game->plane_y = 0.66;
 	}
-	else if (data->player_dir == 'W')
+	else if (data->player.player_dir == 'W')
 	{
 		game->player_dir_x = -1;
 		game->player_dir_y = 0;

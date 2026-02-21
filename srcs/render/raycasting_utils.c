@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 21:39:39 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/19 22:06:41 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/23 11:20:45 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	perform_dda(t_game *game, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (game->data->map[ray->map_y][ray->map_x] == '1')
+		if (game->data->map_data.map[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}
 }
