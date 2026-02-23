@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:43:21 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/19 21:44:22 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/23 15:56:01 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	raycasting(t_game *game)
 
 	w = 800;
 	h = 600;
+	// draw_floor_ceiling(game, w, h);
 	x = 0;
 	while (x < w)
 	{

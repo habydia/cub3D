@@ -1,0 +1,14 @@
+NO textures/N.xpm
+SO textures/S.xpm
+WE textures/W.xpm
+EA textures/E.xpm
+
+F 128, 128, 128
+C 32, 32, 32
+
+111111111111
+100000000001
+100000N0001
+100000000001
+100000000001
+111111111111

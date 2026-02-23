@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 20:59:18 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/19 16:23:50 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/21 16:54:05 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ void	init_player_direction_east_west(t_game *game, t_file_data *data)
 void	init_player_direction(t_game *game, t_file_data *data)
 {
 	init_player_direction_north_south(game, data);
-	init_player_direction_north_south(game, data);
+	init_player_direction_east_west(game, data);
 }

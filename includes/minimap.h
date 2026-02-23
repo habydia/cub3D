@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   minimap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/24 17:31:59 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/22 13:45:20 by lebroue          ###   ########.fr       */
+/*   Created: 2026/02/21 13:58:22 by lebroue           #+#    #+#             */
+/*   Updated: 2026/02/21 13:58:23 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#ifndef MINIMAP_H
+# define MINIMAP_H
 
-int	render(t_game *game)
+typedef struct s_game t_game;
+
+typedef struct s_draw_case
 {
-	update_player(game);
-	draw_floor_and_ceiling(game);
-	raycasting(game);
-	draw_minimap(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-	return (0);
-}
+    int x;
+    int y;
+    int scale;
+    int color;
+} t_draw_case;
+
+void draw_minimap(t_game *game);
+
+#endif /* MINIMAP_H */

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/24 17:31:59 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/22 13:45:20 by lebroue          ###   ########.fr       */
+/*   Created: 2026/02/21 13:57:42 by lebroue           #+#    #+#             */
+/*   Updated: 2026/02/21 18:16:10 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#ifndef PLAYER_H
+# define PLAYER_H
 
-int	render(t_game *game)
-{
-	update_player(game);
-	draw_floor_and_ceiling(game);
-	raycasting(game);
-	draw_minimap(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-	return (0);
-}
+typedef struct s_game t_game;
+typedef struct s_file_data t_file_data;
+
+void init_player_position(t_game *game, t_file_data *data);
+void init_player_direction(t_game *game, t_file_data *data);
+void update_player(t_game *game);
+
+#endif /* PLAYER_H */

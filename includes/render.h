@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/24 17:31:59 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/22 13:45:20 by lebroue          ###   ########.fr       */
+/*   Created: 2026/02/21 13:22:03 by lebroue           #+#    #+#             */
+/*   Updated: 2026/02/21 13:58:00 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#ifndef RENDER_H
+# define RENDER_H
 
-int	render(t_game *game)
-{
-	update_player(game);
-	draw_floor_and_ceiling(game);
-	raycasting(game);
-	draw_minimap(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-	return (0);
-}
+typedef struct s_game t_game;
+
+int render(t_game *game);
+void draw_floor_and_ceiling(t_game *game);
+void put_pixel(t_game *game, int x, int y, int color);
+int rgb_to_int(int r, int g, int b);
+
+#endif /* RENDER_H */
+

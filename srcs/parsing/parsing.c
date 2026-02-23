@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hadia <hadia@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:47:42 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/17 18:48:35 by hadia            ###   ########.fr       */
+/*   Updated: 2026/02/21 13:04:21 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 static int	handle_floor_ceilling_error(t_file_data *data)
 {

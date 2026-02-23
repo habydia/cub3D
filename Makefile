@@ -10,7 +10,6 @@ SRCS = srcs/main.c \
 	srcs/parsing/parse_map.c \
 	srcs/textures.c \
 	srcs/render/render.c \
-	srcs/render/render_utils.c \
 	srcs/render/init_data_game_key.c \
 	srcs/render/window_events.c \
 	srcs/render/draw_floor_and_ceilling.c \
