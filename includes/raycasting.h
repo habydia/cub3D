@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 19:54:29 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/23 18:17:00 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/23 18:43:01 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void					init_ray(t_game *game, t_ray *ray, int x, int w);
 void					calculate_step(t_game *game, t_ray *ray);
 void					perform_dda(t_game *game, t_ray *ray);
 void					calculate_wall_distance(t_game *game, t_ray *ray);
-char					get_wall_face(t_ray *ray);
+char					get_wall_face(t_game *game, t_ray *ray);
 void					draw_vertical_line(t_game *game, t_ray *ray, int x,
 							int h);
 

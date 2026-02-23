@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:40:07 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/23 11:20:45 by hadia            ###   ########.fr       */
+/*   Updated: 2026/02/23 19:09:28 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	left_rotation_arrow_or_a_key(t_game *game, double rot_speed)
 
 	old_dir_x = game->player_dir_x;
 	old_plane_x = game->plane_x;
-	if (game->keys[65361] || game->keys[97])
+	if (game->keys[113] || game->keys[97])
 	{
 		game->player_dir_x = game->player_dir_x * cos(-rot_speed)
 			- game->player_dir_y * sin(-rot_speed);
@@ -39,7 +39,7 @@ void	right_rotation_arrow_or_d_key(t_game *game, double rot_speed)
 
 	old_dir_x = game->player_dir_x;
 	old_plane_x = game->plane_x;
-	if (game->keys[65363] || game->keys[100])
+	if (game->keys[114] || game->keys[100])
 	{
 		game->player_dir_x = game->player_dir_x * cos(rot_speed)
 			- game->player_dir_y * sin(rot_speed);
@@ -80,17 +80,45 @@ void	move_backward(t_game *game, double move_speed)
 	}
 }
 
+void	move_left(t_game *game, double move_speed)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = game->player_x - game->plane_x * move_speed;
+	new_y = game->player_y - game->plane_y * move_speed;
+	if (game->data->map[(int)new_y][(int)new_x] != '1')
+	{
+		game->player_x = new_x;
+		game->player_y = new_y;
+	}
+}
+
+void	move_right(t_game *game, double move_speed)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = game->player_x + game->plane_x * move_speed;
+	new_y = game->player_y + game->plane_y * move_speed;
+	if (game->data->map[(int)new_y][(int)new_x] != '1')
+	{
+		game->player_x = new_x;
+		game->player_y = new_y;
+	}
+}
+
 void	update_player(t_game *game)
 {
 	double	move_speed;
 	double	rot_speed;
 
-	move_speed = 0.005;
+	move_speed = 0.007;
 	rot_speed = 0.003;
 	left_rotation_arrow_or_a_key(game, rot_speed);
 	right_rotation_arrow_or_d_key(game, rot_speed);
-	if (game->keys[65362] || game->keys[119])
+	if (game->keys[111] || game->keys[119])
 		move_forward(game, move_speed);
-	if (game->keys[65364] || game->keys[115])
+	if (game->keys[116] || game->keys[115])
 		move_backward(game, move_speed);
 }

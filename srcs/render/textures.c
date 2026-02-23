@@ -6,25 +6,33 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 21:15:00 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/23 18:27:42 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/23 18:42:19 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-char	get_wall_face(t_ray *ray)
+char	get_wall_face(t_game *game, t_ray *ray)
 {
 	if (ray->side == 0)
 	{
+		if (ray->map_x == 0)
+			return ('W');
+		if (ray->map_x == game->data->map_width - 1)
+			return ('E');
 		if (ray->ray_dir_x > 0)
 			return ('W');
 		return ('E');
 	}
 	else
 	{
-		if (ray->ray_dir_y > 0)
+		if (ray->map_y == 0)
+			return ('N');
+		if (ray->map_y == game->data->map_height - 1)
 			return ('S');
-		return ('N');
+		if (ray->ray_dir_y > 0)
+			return ('N');
+		return ('S');
 	}
 }
 
@@ -116,7 +124,7 @@ void	draw_vertical_line(t_game *game, t_ray *ray, int x, int h)
 	char face;
 	int tex_x;
 
-	face = get_wall_face(ray);
+	face = get_wall_face(game, ray);
 	get_texture_data(game, face, &params.tex_data, &params.tex_w,
 		&params.tex_height, &params.line_len);
 	params.line_height = (int)(h / ray->perp_wall_dist);
