@@ -6,7 +6,7 @@
 /*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 11:00:00 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/23 11:20:45 by hadia            ###   ########.fr       */
+/*   Updated: 2026/02/23 12:23:35 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,25 @@ static int	run_validations(t_file_data *data)
 }
 
 /**
+ * Cleans up temporary map data on validation failure.
+ * @param temp_map The allocated map array.
+ * @param height Number of lines.
+ * @param data Pointer to the file data structure.
+ */
+static void	cleanup_on_error(char **temp_map, int height, t_file_data *data)
+{
+	int j = 0;
+	while (j < height)
+	{
+		free(temp_map[j]);
+		j++;
+	}
+	free(temp_map);
+	ft_lstclear(&data->map_data.map_lines, free);
+	data->map_data.map = NULL;
+}
+
+/**
  * Converts the linked list of map lines to a 2D char array.
  * Allocates the map, fills it, sets dimensions, runs validations.
  * @param data Pointer to the file data structure.
@@ -116,8 +135,8 @@ static int	run_validations(t_file_data *data)
  */
 int lstmap_to_charmap(t_file_data *data)
 {
-	int height;
-	char **temp_map;
+	int		height;
+	char	**temp_map;
 
 	height = ft_lstsize(data->map_data.map_lines);
 	if (height == 0)
@@ -130,15 +149,7 @@ int lstmap_to_charmap(t_file_data *data)
 	data->map_data.map = temp_map;
 	if (run_validations(data) == -1)
 	{
-		int j = 0;
-		while (j < height)
-		{
-			free(temp_map[j]);
-			j++;
-		}
-		free(temp_map);
-		ft_lstclear(&data->map_data.map_lines, free);
-		data->map_data.map = NULL;
+		cleanup_on_error(temp_map, height, data);
 		return (-1);
 	}
 	ft_lstclear(&data->map_data.map_lines, free);

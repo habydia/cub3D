@@ -6,7 +6,7 @@
 /*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:46:24 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/23 11:20:45 by hadia            ###   ########.fr       */
+/*   Updated: 2026/02/23 12:36:55 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,29 @@ static int	try_process_colors(char *trimmed, t_file_data *data)
 }
 
 /**
+ * Tries to process the line as textures, colors, or map.
+ * @param trimmed The trimmed line.
+ * @param line The original line.
+ * @param data Pointer to the file data structure.
+ * @return 0 on success, -1 on error.
+ */
+static int	try_process_line_components(char *trimmed, char *line, t_file_data *data)
+{
+	int ret;
+
+	ret = try_process_textures(trimmed, data);
+	if (ret != 1)
+		return (ret);
+	ret = try_process_colors(trimmed, data);
+	if (ret != 1)
+		return (ret);
+	ret = process_map(line, data);
+	if (ret == 0)
+		data->map_data.has_map_started = 1;
+	return (ret);
+}
+
+/**
  * Processes a single line from the file.
  * Trims the line, checks for emptiness, and attempts to parse textures or colors,
  * or processes as map line.
@@ -153,21 +176,7 @@ int process_line(char *line, t_file_data *data)
 		free(trimmed);
 		return (ret);
 	}
-	ret = try_process_textures(trimmed, data);
-	if (ret != 1)
-	{
-		free(trimmed);
-		return (ret);
-	}
-	ret = try_process_colors(trimmed, data);
-	if (ret != 1)
-	{
-		free(trimmed);
-		return (ret);
-	}
-	ret = process_map(line, data);
+	ret = try_process_line_components(trimmed, line, data);
 	free(trimmed);
-	if (ret == 0)
-		data->map_data.has_map_started = 1;
 	return (ret);
 }

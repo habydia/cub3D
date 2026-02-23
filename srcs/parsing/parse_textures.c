@@ -6,15 +6,11 @@
 /*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 12:19:20 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/23 11:20:45 by hadia            ###   ########.fr       */
+/*   Updated: 2026/02/23 12:17:03 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-
-//ok norme
-// refracorer pour éviter les répétitions
 
 /**
  * Processes the north texture definition.
