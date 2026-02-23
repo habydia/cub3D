@@ -130,8 +130,12 @@ int lstmap_to_charmap(t_file_data *data)
 	data->map_data.map = temp_map;
 	if (run_validations(data) == -1)
 	{
-		for (int j = 0; j < height; j++)
+		int j = 0;
+		while (j < height)
+		{
 			free(temp_map[j]);
+			j++;
+		}
 		free(temp_map);
 		ft_lstclear(&data->map_data.map_lines, free);
 		data->map_data.map = NULL;

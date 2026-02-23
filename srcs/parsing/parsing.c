@@ -106,8 +106,12 @@ void	free_file_data(t_file_data *data)
 		free(data->textures.east_texture);
 	if (data->map_data.map)
 	{
-		for (int i = 0; i < data->map_data.map_height; i++)
+		int i = 0;
+		while (i < data->map_data.map_height)
+		{
 			free(data->map_data.map[i]);
+			i++;
+		}
 		free(data->map_data.map);
 		data->map_data.map = NULL;
 	}
