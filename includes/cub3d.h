@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:07:30 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/19 22:00:38 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/23 09:28:17 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	calculate_step(t_game *game, t_ray *ray);
 void	perform_dda(t_game *game, t_ray *ray);
 void	calculate_wall_distance(t_game *game, t_ray *ray);
 void	draw_vertical_line(t_game *game, t_ray *ray, int x, int h);
+void	free_file_data(t_file_data *data);
 
 
 
