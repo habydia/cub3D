@@ -7,7 +7,8 @@ SRCS = srcs/main.c \
 	srcs/parsing/read_file.c \
 	srcs/parsing/parse_textures.c \
 	srcs/parsing/parse_colors.c \
-	srcs/parsing/parse_map.c \
+	srcs/parsing/map_processing.c \
+	srcs/parsing/map_validation.c \
 	srcs/textures.c \
 	srcs/render/render.c \
 	srcs/render/init_data_game_key.c \

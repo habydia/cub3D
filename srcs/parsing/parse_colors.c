@@ -3,38 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hadia <hadia@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 12:18:02 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/17 19:30:53 by hadia            ###   ########.fr       */
+/*   Updated: 2026/02/23 11:20:45 by hadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+/**
+ * Parses a color definition line (F or C).
+ * Dispatches to RGB parsing based on the prefix.
+ * @param line The line to process.
+ * @param data Pointer to the file data structure.
+ * @return 0 if processed, 1 if not a color, -1 on error.
+ */
 int	process_colors(char *line, t_file_data *data)
 {
 	if (ft_strncmp(line, "F ", 2) == 0)
 	{
-		if (parse_rgb(line + 2, data->floor_color) == 0)
+		if (parse_rgb(line + 2, data->colors.floor_color) == 0)
 		{
-			data->floor_set = 1;
+			data->colors.floor_set = 1;
 			return (0);
 		}
 		return (-1);
 	}
 	else if (ft_strncmp(line, "C ", 2) == 0)
 	{
-		if (parse_rgb(line + 2, data->ceiling_color) == 0)
+		if (parse_rgb(line + 2, data->colors.ceiling_color) == 0)
 		{
-			data->ceiling_set = 1;
+			data->colors.ceiling_set = 1;
 			return (0);
 		}
 		return (-1);
 	}
-	return (1); // Pas une couleur
+	return (1);
 }
 
+/**
+ * Validates the comma structure in an RGB string.
+ * Ensures exactly 2 commas with proper spacing.
+ * @param str The string to validate.
+ * @return 0 if valid, -1 otherwise.
+ */
 static int	parse_coma(char *str)
 {
 	int	i;
@@ -49,58 +62,82 @@ static int	parse_coma(char *str)
 			comma_count++;
 			if (i == 0 || str[i + 1] == ',' || str[i + 1] == '\0' || (i > 0
 					&& str[i - 1] == ','))
-				return (-1); // Virgule en début, fin, ou consécutive
+				return (-1);
 		}
 		i++;
 	}
 	if (comma_count != 2)
-		return (-1); // Pas exactement 2 virgules
+		return (-1);
 	return (0);
 }
 
-// Fonction pour parser RGB
-int	parse_rgb(char *str, int color[3])
+/**
+ * Extracts and validates an RGB value from a substring.
+ * @param str The full string.
+ * @param start Start index of the substring.
+ * @param end End index of the substring.
+ * @param color_value Pointer to store the parsed value.
+ * @return 0 on success, -1 on error.
+ */
+static int	extract_rgb_value(char *str, int start, int end, int *color_value)
 {
-	int		start;
-	int		j;
-	int		i;
-	char	*num_str;
+	char *num_str;
+
+	num_str = ft_substr(str, start, end - start);
+	if (!num_str)
+		return (-1);
+	*color_value = ft_atoi(num_str);
+	free(num_str);
+	if (*color_value < 0 || *color_value > 255)
+		return (-1);
+	return (0);
+}
+
+/**
+ * Parses the RGB values from a validated string.
+ * Extracts three comma-separated values.
+ * @param str The string containing RGB values.
+ * @param color Array to store the RGB values.
+ * @return 0 on success, -1 on error.
+ */
+static int	parse_rgb_values(char *str, int color[3])
+{
+	int	start;
+	int	j;
+	int	i;
 
 	start = 0;
 	j = 0;
 	i = 0;
-	if (parse_coma(str) == -1)
-		return (-1);
-	// Maintenant parser les valeurs
-	i = 0;
-	j = 0;
 	while (str[i] && j < 3)
 	{
 		if (str[i] == ',')
 		{
-			// Extraire la valeur de start à i-1
-			num_str = ft_substr(str, start, i - start);
-			if (!num_str)
-				return (-1);
-			color[j] = ft_atoi(num_str);
-			free(num_str);
-			if (color[j] < 0 || color[j] > 255)
+			if (extract_rgb_value(str, start, i, &color[j]) == -1)
 				return (-1);
 			start = i + 1;
 			j++;
 		}
 		i++;
 	}
-	// Dernière valeur
 	if (j < 3)
 	{
-		num_str = ft_substr(str, start, i - start);
-		if (!num_str)
-			return (-1);
-		color[j] = ft_atoi(num_str);
-		free(num_str);
-		if (color[j] < 0 || color[j] > 255)
+		if (extract_rgb_value(str, start, i, &color[j]) == -1)
 			return (-1);
 	}
 	return (0);
+}
+
+/**
+ * Parses an RGB color string.
+ * Validates comma structure and extracts RGB values.
+ * @param str The string to parse.
+ * @param color Array to store the RGB values.
+ * @return 0 on success, -1 on error.
+ */
+int	parse_rgb(char *str, int color[3])
+{
+	if (parse_coma(str) == -1)
+		return (-1);
+	return (parse_rgb_values(str, color));
 }
