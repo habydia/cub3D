@@ -21,14 +21,14 @@
  */
 static int	north_texture(t_file_data *data, char *line)
 {
-	if (data->textures.north_texture)
+	if (data->north_texture)
 	{
 		printf("Error\nDuplicate NO texture\n");
 		return (-1);
 	}
-	if (extract_texture(line + 3, &data->textures.north_texture) == 0)
+	if (extract_texture(line + 3, &data->north_texture) == 0)
 	{
-		data->textures.north_set = 1;
+		data->north_set = 1;
 		return (0);
 	}
 	return (-1);
@@ -43,14 +43,14 @@ static int	north_texture(t_file_data *data, char *line)
  */
 static int south_texture(t_file_data *data, char *line)
 {
-    if (data->textures.south_texture)
+    if (data->south_texture)
     {
         printf("Error\nDuplicate SO texture\n");
         return (-1);
     }
-    if (extract_texture(line + 3, &data->textures.south_texture) == 0)
+    if (extract_texture(line + 3, &data->south_texture) == 0)
     {
-        data->textures.south_set = 1;
+        data->south_set = 1;
         return (0);
     }
     return (-1);
@@ -65,14 +65,14 @@ static int south_texture(t_file_data *data, char *line)
  */
 static  int west_texture(t_file_data *data, char *line)
 {
-    if (data->textures.west_texture)
+    if (data->west_texture)
     {
         printf("Error\nDuplicate WE texture\n");
         return (-1);
     }
-    if (extract_texture(line + 3, &data->textures.west_texture) == 0)
+    if (extract_texture(line + 3, &data->west_texture) == 0)
     {
-        data->textures.west_set = 1;
+        data->west_set = 1;
         return (0);
     }
     return (-1);
@@ -87,14 +87,14 @@ static  int west_texture(t_file_data *data, char *line)
  */
 static int east_texture(t_file_data *data, char *line)
 {
-    if (data->textures.east_texture)
+    if (data->east_texture)
     {
         printf("Error\nDuplicate EA texture\n");
         return (-1);
     }
-    if (extract_texture(line + 3, &data->textures.east_texture) == 0)
+    if (extract_texture(line + 3, &data->east_texture) == 0)
     {
-        data->textures.east_set = 1;
+        data->east_set = 1;
         return (0);
     }
     return (-1);

@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:47:42 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/21 13:04:21 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/23 18:28:48 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,30 @@ int	parsing_args(t_file_data *data, char **argv)
 	if (handle_floor_ceilling_error(data) == -1)
 		return (-1);
 	return (0);
+}
+
+void	free_file_data(t_file_data *data)
+{
+	if (!data)
+		return ;
+	free(data->north_texture);
+	free(data->south_texture);
+	free(data->west_texture);
+	free(data->east_texture);
+	if (data->map)
+	{
+		for (int i = 0; i < data->map_height; i++)
+			free(data->map[i]);
+		free(data->map);
+	}
+}
+
+void	free_game(t_game *game)
+{
+	if (!game)
+		return ;
+	free_textures(game);
+	free_file_data(game->data);
+	if (game->mlx && game->win)
+		mlx_destroy_window(game->mlx, game->win);
 }

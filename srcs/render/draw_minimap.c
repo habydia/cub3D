@@ -44,12 +44,12 @@ void	draw_minimap_line(t_game *game, int y, int scale)
 	t_draw_case	d;
 
 	x = 0;
-	while (x < game->data->map_data.map_width)
+	while (x < game->data->map_width)
 	{
 		d.x = x;
 		d.y = y;
 		d.scale = scale;
-		d.color = get_minimap_color(game->data->map_data.map[y][x]);
+		d.color = get_minimap_color(game->data->map[y][x]);
 		draw_minimap_case(game, d);
 		x++;
 	}
@@ -84,7 +84,7 @@ void	draw_minimap(t_game *game)
 
 	scale = 10;
 	y = 0;
-	while (y < game->data->map_data.map_height)
+	while (y < game->data->map_height)
 	{
 		draw_minimap_line(game, y, scale);
 		y++;

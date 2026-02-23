@@ -59,7 +59,7 @@ void	move_forward(t_game *game, double move_speed)
 
 	new_x = game->player_x + game->player_dir_x * move_speed;
 	new_y = game->player_y + game->player_dir_y * move_speed;
-	if (game->data->map_data.map[(int)new_y][(int)new_x] != '1')
+	if (game->data->map[(int)new_y][(int)new_x] != '1')
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;
@@ -73,7 +73,7 @@ void	move_backward(t_game *game, double move_speed)
 
 	new_x = game->player_x - game->player_dir_x * move_speed;
 	new_y = game->player_y - game->player_dir_y * move_speed;
-	if (game->data->map_data.map[(int)new_y][(int)new_x] != '1')
+	if (game->data->map[(int)new_y][(int)new_x] != '1')
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;

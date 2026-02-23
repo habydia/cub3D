@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:46:24 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/23 12:36:55 by hadia            ###   ########.fr       */
+/*   Updated: 2026/02/23 18:19:45 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@
 static int	process_file_lines(int fd, t_file_data *data)
 {
 	char	*line;
+	size_t	len;
 
 	line = get_next_line(fd);
 	while (line)
 	{
-		size_t len = ft_strlen(line);
+		len = ft_strlen(line);
 		if (len > 0 && line[len - 1] == '\n')
 			line[len - 1] = '\0';
 		if (process_line(line, data) == -1)
@@ -48,7 +49,7 @@ static int	process_file_lines(int fd, t_file_data *data)
  * @param data Pointer to the file data structure to fill.
  * @return 0 on success, -1 on error.
  */
-int read_file(char *file_path, t_file_data *data)
+int	read_file(char *file_path, t_file_data *data)
 {
 	int	fd;
 
@@ -65,7 +66,7 @@ int read_file(char *file_path, t_file_data *data)
 	}
 	close(fd);
 	if (lstmap_to_charmap(data) == -1)
-		return -1;
+		return (-1);
 	return (0);
 }
 /**
@@ -79,7 +80,7 @@ static int	handle_empty_line(char *trimmed, t_file_data *data)
 {
 	if (!trimmed || *trimmed == '\0')
 	{
-		if (data->map_data.has_map_started)
+		if (data->has_map_started)
 		{
 			printf("error\nline must be notempty\nparsing fail\n");
 			return (-1);
@@ -97,10 +98,12 @@ static int	handle_empty_line(char *trimmed, t_file_data *data)
  */
 static int	try_process_textures(char *trimmed, t_file_data *data)
 {
-	int ret = process_textures(trimmed, data);
+	int	ret;
+
+	ret = process_textures(trimmed, data);
 	if (ret != 1)
 	{
-		if (data->map_data.has_map_started)
+		if (data->has_map_started)
 		{
 			printf("Error\nMap must be at the end of the file\n");
 			return (-1);
@@ -118,10 +121,12 @@ static int	try_process_textures(char *trimmed, t_file_data *data)
  */
 static int	try_process_colors(char *trimmed, t_file_data *data)
 {
-	int ret = process_colors(trimmed, data);
+	int	ret;
+
+	ret = process_colors(trimmed, data);
 	if (ret != 1)
 	{
-		if (data->map_data.has_map_started)
+		if (data->has_map_started)
 		{
 			printf("Error\nMap must be at the end of the file\n");
 			return (-1);
@@ -138,9 +143,10 @@ static int	try_process_colors(char *trimmed, t_file_data *data)
  * @param data Pointer to the file data structure.
  * @return 0 on success, -1 on error.
  */
-static int	try_process_line_components(char *trimmed, char *line, t_file_data *data)
+static int	try_process_line_components(char *trimmed, char *line,
+		t_file_data *data)
 {
-	int ret;
+	int	ret;
 
 	ret = try_process_textures(trimmed, data);
 	if (ret != 1)
@@ -150,22 +156,23 @@ static int	try_process_line_components(char *trimmed, char *line, t_file_data *d
 		return (ret);
 	ret = process_map(line, data);
 	if (ret == 0)
-		data->map_data.has_map_started = 1;
+		data->has_map_started = 1;
 	return (ret);
 }
 
 /**
  * Processes a single line from the file.
- * Trims the line, checks for emptiness, and attempts to parse textures or colors,
+ * Trims the line, checks for emptiness,
+	and attempts to parse textures or colors,
  * or processes as map line.
  * @param line The line to process.
  * @param data Pointer to the file data structure.
  * @return 0 on success, -1 on error.
  */
-int process_line(char *line, t_file_data *data)
+int	process_line(char *line, t_file_data *data)
 {
-	char *trimmed;
-	int ret;
+	char	*trimmed;
+	int		ret;
 
 	if (!line)
 		return (0);

@@ -9,7 +9,7 @@ SRCS = srcs/main.c \
 	srcs/parsing/parse_colors.c \
 	srcs/parsing/map_processing.c \
 	srcs/parsing/map_validation.c \
-	srcs/textures.c \
+	srcs/handle_textures/charge_textures.c \
 	srcs/render/render.c \
 	srcs/render/init_data_game_key.c \
 	srcs/render/window_events.c \
@@ -17,10 +17,11 @@ SRCS = srcs/main.c \
 	srcs/render/update_player.c \
 	srcs/key/handle_key.c \
 	srcs/render/raycasting.c \
-	srcs/render/raycasting_utils.c\
+	srcs/render/raycasting_utils.c \
 	srcs/render/draw_minimap.c \
 	srcs/render/open_window.c \
-	srcs/render/init_player.c
+	srcs/render/init_player.c \
+	srcs/render/textures.c
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)

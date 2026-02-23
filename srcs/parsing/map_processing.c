@@ -54,7 +54,7 @@ int process_map(char *line, t_file_data *data)
 		free(temp_map);
 		return (-1);
 	}
-	ft_lstadd_back(&data->map_data.map_lines, temp_map);
+	ft_lstadd_back(&data->map_lines, temp_map);
 	return (0);
 }
 
@@ -74,7 +74,7 @@ static char	**allocate_and_fill_temp_map(t_file_data *data, int height)
 	temp_map = malloc(sizeof(char *) * height);
 	if (!temp_map)
 		return (NULL);
-	tmp = data->map_data.map_lines;
+	tmp = data->map_lines;
 	i = height - 1;
 	while (i >= 0)
 	{
@@ -123,8 +123,8 @@ static void	cleanup_on_error(char **temp_map, int height, t_file_data *data)
 		j++;
 	}
 	free(temp_map);
-	ft_lstclear(&data->map_data.map_lines, free);
-	data->map_data.map = NULL;
+	ft_lstclear(&data->map_lines, free);
+	data->map = NULL;
 }
 
 /**
@@ -138,20 +138,20 @@ int lstmap_to_charmap(t_file_data *data)
 	int		height;
 	char	**temp_map;
 
-	height = ft_lstsize(data->map_data.map_lines);
+	height = ft_lstsize(data->map_lines);
 	if (height == 0)
 		return (0);
 	temp_map = allocate_and_fill_temp_map(data, height);
 	if (!temp_map)
 		return (-1);
-	data->map_data.map_height = height;
-	data->map_data.map_width = ft_strlen(temp_map[0]);
-	data->map_data.map = temp_map;
+	data->map_height = height;
+	data->map_width = ft_strlen(temp_map[0]);
+	data->map = temp_map;
 	if (run_validations(data) == -1)
 	{
 		cleanup_on_error(temp_map, height, data);
 		return (-1);
 	}
-	ft_lstclear(&data->map_data.map_lines, free);
+	ft_lstclear(&data->map_lines, free);
 	return (0);
 }

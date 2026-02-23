@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:07:27 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/21 14:15:19 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/23 18:28:53 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int						process_textures(char *line, t_file_data *data);
 int						process_colors(char *line, t_file_data *data);
 int						process_map(char *line, t_file_data *data);
 int						lstmap_to_charmap(t_file_data *data);
+void					free_file_data(t_file_data *data);
+void					free_game(t_game *game);
 
 // Fonctions utilitaires pour le parsing
 int						parse_rgb(char *str, int color[3]);
@@ -55,7 +57,7 @@ int						extract_texture(char *path, char **texture);
 int						validate_player(t_file_data *data);
 int						validate_characters(t_file_data *data);
 int						validate_borders_only(t_file_data *data);
-int validate_top_bottom(t_file_data *data);
-int validate_left_right(t_file_data *data);
+int						validate_top_bottom(t_file_data *data);
+int						validate_left_right(t_file_data *data);
 
 #endif /* PARSING_H */

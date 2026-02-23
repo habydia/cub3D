@@ -21,13 +21,13 @@
 int validate_characters(t_file_data *data)
 {
     int y = 0;
-    while (y < data->map_data.map_height)
+    while (y < data->map_height)
     {
-        int len = ft_strlen(data->map_data.map[y]);
+        int len = ft_strlen(data->map[y]);
         int x = 0;
         while (x < len)
         {
-            char c = data->map_data.map[y][x];
+            char c = data->map[y][x];
             if (c != '0' && c != '1' && c != 'N' && c != 'S' && c != 'E' && c != 'W')
             {
                 printf("Error\nInvalid character in map: '%c' (ASCII: %d) at y=%d x=%d\n", c, (int)c, y, x);
@@ -60,10 +60,10 @@ static int	process_player_char(char c, int *count, int x, int y, t_file_data *da
 			return (-1);
 		}
 		(*count)++;
-		data->player.player_x = x;
-		data->player.player_y = y;
-		data->player.player_dir = c;
-		data->map_data.map[y][x] = '0';
+		data->player_x = x;
+		data->player_y = y;
+		data->player_dir = c;
+		data->map[y][x] = '0';
 	}
 	return (0);
 }
@@ -79,13 +79,13 @@ int validate_player(t_file_data *data)
 	int count = 0;
 	int y = 0;
 
-	while (y < data->map_data.map_height)
+	while (y < data->map_height)
 	{
-		int len = ft_strlen(data->map_data.map[y]);
+		int len = ft_strlen(data->map[y]);
 		int x = 0;
 		while (x < len)
 		{
-			if (process_player_char(data->map_data.map[y][x], &count, x, y, data) == -1)
+			if (process_player_char(data->map[y][x], &count, x, y, data) == -1)
 				return (-1);
 			x++;
 		}
@@ -121,20 +121,20 @@ int validate_borders_only(t_file_data *data)
  */
 int validate_top_bottom(t_file_data *data)
 {
-    int len_top = ft_strlen(data->map_data.map[0]);
+    int len_top = ft_strlen(data->map[0]);
     int x = 0;
     while (x < len_top) {
-        if (data->map_data.map[0][x] != '1') {
+        if (data->map[0][x] != '1') {
             printf("Error\nMap top border must be walls\n");
             return -1;
         }
         x++;
     }
 
-    int len_bottom = ft_strlen(data->map_data.map[data->map_data.map_height - 1]);
+    int len_bottom = ft_strlen(data->map[data->map_height - 1]);
     x = 0;
     while (x < len_bottom) {
-        if (data->map_data.map[data->map_data.map_height - 1][x] != '1') {
+        if (data->map[data->map_height - 1][x] != '1') {
             printf("Error\nMap bottom border must be walls\n");
             return -1;
         }
@@ -152,13 +152,13 @@ int validate_top_bottom(t_file_data *data)
 int validate_left_right(t_file_data *data)
 {
     int y = 0;
-    while (y < data->map_data.map_height) {
-        int len = ft_strlen(data->map_data.map[y]);
-        if (data->map_data.map[y][0] != '1') {
+    while (y < data->map_height) {
+        int len = ft_strlen(data->map[y]);
+        if (data->map[y][0] != '1') {
             printf("Error\nMap left border must be walls\n");
             return -1;
         }
-        if (data->map_data.map[y][len - 1] != '1') {
+        if (data->map[y][len - 1] != '1') {
             printf("Error\nMap right border must be walls\n");
             return -1;
         }
