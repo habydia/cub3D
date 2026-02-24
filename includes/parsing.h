@@ -30,8 +30,8 @@ typedef struct s_file_data
 	int					ceiling_color[3];
 	int					floor_set;
 	int					ceiling_set;
-	int					player_x;
-	int					player_y;
+	int					player_pos_x;
+	int					player_pos_y;
 	char				player_dir;
 	char				**map;
 	int					map_width;

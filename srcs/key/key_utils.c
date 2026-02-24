@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 00:30:00 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/24 00:16:33 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/24 15:39:27 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	handle_movement_key(int keycode)
 
 void	handle_arrow_key(int keycode)
 {
-	if (keycode == 113)
+	if (keycode == 65361)
 		printf("Left arrow pressed - Rotate left\n");
-	else if (keycode == 114)
+	else if (keycode == 65363)
 		printf("Right arrow pressed - Rotate right\n");
-	else if (keycode == 111)
+	else if (keycode == 65362)
 		printf("Up arrow pressed\n");
-	else if (keycode == 116)
+	else if (keycode == 65364)
 		printf("Down arrow pressed\n");
 }
 
@@ -50,12 +50,12 @@ void	handle_movement_release(int keycode)
 
 void	handle_arrow_release(int keycode)
 {
-	if (keycode == 113)
+	if (keycode == 65361)
 		printf("Left arrow released\n");
-	else if (keycode == 114)
+	else if (keycode == 65363)
 		printf("Right arrow released\n");
-	else if (keycode == 111)
+	else if (keycode == 65362)
 		printf("Up arrow released\n");
-	else if (keycode == 116)
+	else if (keycode == 65364)
 		printf("Down arrow released\n");
 }

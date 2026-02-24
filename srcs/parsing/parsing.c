@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:47:42 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/23 18:28:48 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/24 15:07:49 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ void	free_game(t_game *game)
 		return ;
 	free_textures(game);
 	free_file_data(game->data);
-	if (game->mlx && game->win)
-		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx_ptr && game->mlx_window_ptr)
+		mlx_destroy_window(game->mlx_ptr, game->mlx_window_ptr);
 }

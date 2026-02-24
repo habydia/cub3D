@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 15:48:20 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/24 00:14:02 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/24 15:07:49 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	load_textures(t_game *game, t_file_data *file_data)
 void	free_textures(t_game *game)
 {
 	if (game->textures.north_img)
-		mlx_destroy_image(game->mlx, game->textures.north_img);
+		mlx_destroy_image(game->mlx_ptr, game->textures.north_img);
 	if (game->textures.south_img)
-		mlx_destroy_image(game->mlx, game->textures.south_img);
+		mlx_destroy_image(game->mlx_ptr, game->textures.south_img);
 	if (game->textures.east_img)
-		mlx_destroy_image(game->mlx, game->textures.east_img);
+		mlx_destroy_image(game->mlx_ptr, game->textures.east_img);
 	if (game->textures.west_img)
-		mlx_destroy_image(game->mlx, game->textures.west_img);
+		mlx_destroy_image(game->mlx_ptr, game->textures.west_img);
 }

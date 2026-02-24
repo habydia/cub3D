@@ -42,9 +42,9 @@ int	compute_texture_x(t_game *game, t_ray *ray, int tex_w)
 	int		tex_x;
 
 	if (ray->side == 0)
-		wall_x = game->player_y + ray->perp_wall_dist * ray->ray_dir_y;
+		wall_x = game->player_pos_y + ray->perp_wall_dist * ray->ray_dir_y;
 	else
-		wall_x = game->player_x + ray->perp_wall_dist * ray->ray_dir_x;
+		wall_x = game->player_pos_x + ray->perp_wall_dist * ray->ray_dir_x;
 	wall_x -= floor(wall_x);
 	tex_x = (int)(wall_x * tex_w);
 	if (ray->side == 0 && ray->ray_dir_x < 0)

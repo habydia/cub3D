@@ -14,25 +14,25 @@
 
 void	init_player_position(t_game *game, t_file_data *data)
 {
-	game->player_x = data->player_x + 0.5;
-	game->player_y = data->player_y + 0.5;
+	game->player_pos_x = data->player_pos_x + 0.5;
+	game->player_pos_y = data->player_pos_y + 0.5;
 }
 
 void	init_player_direction_north_south(t_game *game, t_file_data *data)
 {
 	if (data->player_dir == 'N')
 	{
-		game->player_dir_x = 0;
-		game->player_dir_y = -1;
-		game->plane_x = 0.66;
-		game->plane_y = 0;
+		game->player_vector_direction_x = 0;
+		game->player_vector_direction_y = -1;
+		game->camera_plane_x = 0.66;
+		game->camera_plane_y = 0;
 	}
 	else if (data->player_dir == 'S')
 	{
-		game->player_dir_x = 0;
-		game->player_dir_y = 1;
-		game->plane_x = -0.66;
-		game->plane_y = 0;
+		game->player_vector_direction_x = 0;
+		game->player_vector_direction_y = 1;
+		game->camera_plane_x = -0.66;
+		game->camera_plane_y = 0;
 	}
 }
 
@@ -40,17 +40,17 @@ void	init_player_direction_east_west(t_game *game, t_file_data *data)
 {
 	if (data->player_dir == 'E')
 	{
-		game->player_dir_x = 1;
-		game->player_dir_y = 0;
-		game->plane_x = 0;
-		game->plane_y = 0.66;
+		game->player_vector_direction_x = 1;
+		game->player_vector_direction_y = 0;
+		game->camera_plane_x = 0;
+		game->camera_plane_y = 0.66;
 	}
 	else if (data->player_dir == 'W')
 	{
-		game->player_dir_x = -1;
-		game->player_dir_y = 0;
-		game->plane_x = 0;
-		game->plane_y = -0.66;
+		game->player_vector_direction_x = -1;
+		game->player_vector_direction_y = 0;
+		game->camera_plane_x = 0;
+		game->camera_plane_y = -0.66;
 	}
 }
 

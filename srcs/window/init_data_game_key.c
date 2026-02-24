@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 18:35:42 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/19 16:24:36 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/24 15:07:49 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	init_data_map(t_game *game, t_file_data *data)
 {
 	game->data = data;
-	game->mlx = NULL;
-	game->win = NULL;
-	game->img = NULL;
-	game->img_data = NULL;
+	game->mlx_ptr = NULL;
+	game->mlx_window_ptr = NULL;
+	game->mlx_image_ptr = NULL;
+	game->pixel_buffer = NULL;
 }
 
 void	init_key_press_state(t_game *game)

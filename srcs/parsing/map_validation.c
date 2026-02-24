@@ -60,8 +60,8 @@ static int	process_player_char(char c, int *count, int x, int y, t_file_data *da
 			return (-1);
 		}
 		(*count)++;
-		data->player_x = x;
-		data->player_y = y;
+		data->player_pos_x = x;
+		data->player_pos_y = y;
 		data->player_dir = c;
 		data->map[y][x] = '0';
 	}

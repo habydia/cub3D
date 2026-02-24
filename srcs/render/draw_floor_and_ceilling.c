@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:30:20 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/23 22:47:04 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/24 15:12:06 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@ void	put_pixel(t_game *game, int x, int y, int color)
 {
 	char	*dst;
 
-	if (!game || !game->img_data)
+	if (!game || !game->pixel_buffer)
 	{
-		fprintf(stderr, "Error: img_data not initialized!\n");
+		fprintf(stderr, "Error: pixel_buffer not initialized!\n");
 		return ;
 	}
 	if (x < 0 || x >= 800 || y < 0 || y >= 600)
 		return ;
-	dst = game->img_data + (y * game->line_len + x * (game->bpp / 8));
+	dst = game->pixel_buffer + (y * game->bytes_per_scanline + x
+			* (game->bits_for_one_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
