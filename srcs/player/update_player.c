@@ -6,11 +6,39 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:40:07 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/23 19:09:28 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/24 00:47:49 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void	move_forward(t_game *game, double move_speed)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = game->player_x + game->player_dir_x * move_speed;
+	new_y = game->player_y + game->player_dir_y * move_speed;
+	if (game->data->map[(int)new_y][(int)new_x] != '1')
+	{
+		game->player_x = new_x;
+		game->player_y = new_y;
+	}
+}
+
+void	move_backward(t_game *game, double move_speed)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = game->player_x - game->player_dir_x * move_speed;
+	new_y = game->player_y - game->player_dir_y * move_speed;
+	if (game->data->map[(int)new_y][(int)new_x] != '1')
+	{
+		game->player_x = new_x;
+		game->player_y = new_y;
+	}
+}
 
 void	left_rotation_arrow_or_a_key(t_game *game, double rot_speed)
 {
@@ -49,62 +77,6 @@ void	right_rotation_arrow_or_d_key(t_game *game, double rot_speed)
 			* sin(rot_speed);
 		game->plane_y = old_plane_x * sin(rot_speed) + game->plane_y
 			* cos(rot_speed);
-	}
-}
-
-void	move_forward(t_game *game, double move_speed)
-{
-	double	new_x;
-	double	new_y;
-
-	new_x = game->player_x + game->player_dir_x * move_speed;
-	new_y = game->player_y + game->player_dir_y * move_speed;
-	if (game->data->map[(int)new_y][(int)new_x] != '1')
-	{
-		game->player_x = new_x;
-		game->player_y = new_y;
-	}
-}
-
-void	move_backward(t_game *game, double move_speed)
-{
-	double	new_x;
-	double	new_y;
-
-	new_x = game->player_x - game->player_dir_x * move_speed;
-	new_y = game->player_y - game->player_dir_y * move_speed;
-	if (game->data->map[(int)new_y][(int)new_x] != '1')
-	{
-		game->player_x = new_x;
-		game->player_y = new_y;
-	}
-}
-
-void	move_left(t_game *game, double move_speed)
-{
-	double	new_x;
-	double	new_y;
-
-	new_x = game->player_x - game->plane_x * move_speed;
-	new_y = game->player_y - game->plane_y * move_speed;
-	if (game->data->map[(int)new_y][(int)new_x] != '1')
-	{
-		game->player_x = new_x;
-		game->player_y = new_y;
-	}
-}
-
-void	move_right(t_game *game, double move_speed)
-{
-	double	new_x;
-	double	new_y;
-
-	new_x = game->player_x + game->plane_x * move_speed;
-	new_y = game->player_y + game->plane_y * move_speed;
-	if (game->data->map[(int)new_y][(int)new_x] != '1')
-	{
-		game->player_x = new_x;
-		game->player_y = new_y;
 	}
 }
 

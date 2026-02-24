@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 19:54:29 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/23 18:43:01 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/24 00:56:14 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ typedef struct s_ray
 	double				perp_wall_dist;
 	int					wall_dir;
 }						t_ray;
+
+typedef struct s_texture_info
+{
+	char				*data;
+	int					width;
+	int					height;
+	int					line_len;
+}						t_texture_info;
 
 typedef struct s_draw_params
 {

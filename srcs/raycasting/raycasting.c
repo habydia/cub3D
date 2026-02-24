@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_events.c                                    :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/17 15:35:51 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/19 15:37:45 by lebroue          ###   ########.fr       */
+/*   Created: 2026/02/17 15:43:21 by lebroue           #+#    #+#             */
+/*   Updated: 2026/02/24 00:19:33 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	close_window(t_game *game)
+void	raycasting(t_game *game)
 {
-	printf("Fermeture de la fenêtre...\n");
-	free_game(game);
-	exit(0);
-	return (0);
-}
+	int		x;
+	int		w;
+	int		h;
+	t_ray	ray;
 
-int	minimize_window(void *param)
-{
-	(void)param;
-	printf("Fenêtre réduite\n");
-	return (0);
-}
-
-int	maximize_window(void *param)
-{
-	(void)param;
-	printf("Fenêtre agrandie\n");
-	return (0);
+	w = 800;
+	h = 600;
+	x = 0;
+	while (x < w)
+	{
+		init_ray(game, &ray, x, w);
+		calculate_step(game, &ray);
+		perform_dda(game, &ray);
+		calculate_wall_distance(game, &ray);
+		draw_vertical_line(game, &ray, x, h);
+		x++;
+	}
 }

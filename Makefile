@@ -10,18 +10,23 @@ SRCS = srcs/main.c \
 	srcs/parsing/map_processing.c \
 	srcs/parsing/map_validation.c \
 	srcs/handle_textures/charge_textures.c \
-	srcs/render/render.c \
-	srcs/render/init_data_game_key.c \
-	srcs/render/window_events.c \
-	srcs/render/draw_floor_and_ceilling.c \
-	srcs/render/update_player.c \
+	srcs/handle_textures/texture_loader.c \
+	srcs/handle_textures/texture_ptrs.c \
 	srcs/key/handle_key.c \
-	srcs/render/raycasting.c \
-	srcs/render/raycasting_utils.c \
+	srcs/key/key_utils.c \
+	srcs/render/render.c \
+	srcs/render/draw_floor_and_ceilling.c \
 	srcs/render/draw_minimap.c \
-	srcs/render/open_window.c \
-	srcs/render/init_player.c \
-	srcs/render/textures.c
+	srcs/raycasting/raycasting.c \
+	srcs/raycasting/raycasting_utils.c \
+	srcs/raycasting/textures.c \
+	srcs/raycasting/textures_utils.c \
+	srcs/raycasting/texture_rendering.c \
+	srcs/player/init_player.c \
+	srcs/player/update_player.c \
+	srcs/window/open_window.c \
+	srcs/window/window_events.c \
+	srcs/window/init_data_game_key.c
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
@@ -43,6 +48,12 @@ $(NAME): $(OBJ_DIR) $(OBJS) $(LIBFT) $(MLX)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)/srcs/
 	mkdir -p $(OBJ_DIR)/srcs/parsing/
+	mkdir -p $(OBJ_DIR)/srcs/render/
+	mkdir -p $(OBJ_DIR)/srcs/raycasting/
+	mkdir -p $(OBJ_DIR)/srcs/player/
+	mkdir -p $(OBJ_DIR)/srcs/window/
+	mkdir -p $(OBJ_DIR)/srcs/key/
+	mkdir -p $(OBJ_DIR)/srcs/handle_textures/
 
 $(LIBFT): force
 	$(MAKE) -C $(LIBFT_DIR) bonus

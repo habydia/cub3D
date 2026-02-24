@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:30:20 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/23 18:26:28 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/23 22:47:04 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	put_pixel(t_game *game, int x, int y, int color)
 
 	if (!game || !game->img_data)
 	{
-		fprintf(stderr, "Erreur : img_data non initialisé !\n");
+		fprintf(stderr, "Error: img_data not initialized!\n");
 		return ;
 	}
 	if (x < 0 || x >= 800 || y < 0 || y >= 600)

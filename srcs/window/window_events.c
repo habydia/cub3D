@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   window_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/17 15:43:21 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/23 15:56:01 by lebroue          ###   ########.fr       */
+/*   Created: 2026/02/17 15:35:51 by lebroue           #+#    #+#             */
+/*   Updated: 2026/02/23 23:01:11 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	raycasting(t_game *game)
+int	close_window(t_game *game)
 {
-	int		x;
-	int		w;
-	int		h;
-	t_ray	ray;
+	printf("Closing window...\n");
+	free_game(game);
+	exit(0);
+	return (0);
+}
 
-	w = 800;
-	h = 600;
-	// draw_floor_ceiling(game, w, h);
-	x = 0;
-	while (x < w)
-	{
-		init_ray(game, &ray, x, w);
-		calculate_step(game, &ray);
-		perform_dda(game, &ray);
-		calculate_wall_distance(game, &ray);
-		draw_vertical_line(game, &ray, x, h);
-		x++;
-	}
+int	minimize_window(void *param)
+{
+	(void)param;
+	printf("Window minimized\n");
+	return (0);
+}
+
+int	maximize_window(void *param)
+{
+	(void)param;
+	printf("Window maximized\n");
+	return (0);
 }
