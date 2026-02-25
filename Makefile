@@ -13,7 +13,7 @@ SRCS = srcs/main.c \
 	srcs/textures/texture_loader.c \
 	srcs/textures/texture_ptrs.c \
 	srcs/keyboard/handle_key.c \
-	srcs/keyboard/key_utils.c \
+	srcs/keyboard/handle_key_utils.c \
 	srcs/render_3d/render.c \
 	srcs/render_3d/draw_floor_and_ceilling.c \
 	srcs/minimap/draw_minimap.c \
