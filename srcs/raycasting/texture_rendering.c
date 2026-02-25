@@ -6,15 +6,11 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 01:00:00 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 11:02:13 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 12:58:19 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-char	get_wall_face(t_game *game, t_ray *ray);
-void	get_texture_data(t_game *game, char face, t_texture_data *info);
-int		compute_texture_x(t_game *game, t_ray *ray, int tex_w);
 
 void	render_pixel_column(t_game *game, int x, int tex_x,
 		t_wall_column_render_params params)
