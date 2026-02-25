@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:21:14 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/24 15:11:52 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 12:21:10 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "mlx.h"
 # include "parsing.h"
+# include "player.h"
 # include "textures.h"
 
 typedef struct s_game
@@ -40,11 +41,21 @@ typedef struct s_game
 	int			keys[65536];
 }				t_game;
 
-/* Prototypes */
+///////////////////////////////////////////////////////////////////////////////
+////////////////////////////GAME INITIALIZATION///////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+/*INIT GAME: INITIALIZE THE ENTIRE GAME STRUCTURE WITH ALL SUBSYSTEMS*/
 void			init_game(t_game *game, t_file_data *data);
+
+///////////////////////////////////////////////////////////////////////////////
+/////////////////////////////DATA INITIALIZATION//////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+/*INIT DATA MAP: INITIALIZE MAP DATA AND GAME SETTINGS FROM FILE DATA*/
 void			init_data_map(t_game *game, t_file_data *data);
+
+/*INIT KEY PRESS STATE: INITIALIZE THE KEYBOARD STATE ARRAY TO ALL UNPRESSED*/
 void			init_key_press_state(t_game *game);
-void			init_player_position(t_game *game, t_file_data *data);
-void			init_player_direction(t_game *game, t_file_data *data);
 
 #endif

@@ -9,11 +9,11 @@ SRCS = srcs/main.c \
 	srcs/parsing/parse_colors.c \
 	srcs/parsing/map_processing.c \
 	srcs/parsing/map_validation.c \
-	srcs/handle_textures/charge_textures.c \
-	srcs/handle_textures/texture_loader.c \
-	srcs/handle_textures/texture_ptrs.c \
-	srcs/key/handle_key.c \
-	srcs/key/key_utils.c \
+	srcs/textures/charge_textures.c \
+	srcs/textures/texture_loader.c \
+	srcs/textures/texture_ptrs.c \
+	srcs/keyboard/handle_key.c \
+	srcs/keyboard/key_utils.c \
 	srcs/render/render.c \
 	srcs/render/draw_floor_and_ceilling.c \
 	srcs/render/draw_minimap.c \
@@ -26,7 +26,7 @@ SRCS = srcs/main.c \
 	srcs/player/update_player.c \
 	srcs/window/open_window.c \
 	srcs/window/window_events.c \
-	srcs/window/init_data_game_key.c
+	srcs/game/init_data_game_key.c
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
@@ -52,7 +52,9 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)/srcs/raycasting/
 	mkdir -p $(OBJ_DIR)/srcs/player/
 	mkdir -p $(OBJ_DIR)/srcs/window/
-	mkdir -p $(OBJ_DIR)/srcs/key/
+	mkdir -p $(OBJ_DIR)/srcs/game/
+	mkdir -p $(OBJ_DIR)/srcs/keyboard/
+	mkdir -p $(OBJ_DIR)/srcs/textures/
 	mkdir -p $(OBJ_DIR)/srcs/handle_textures/
 
 $(LIBFT): force
