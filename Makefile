@@ -21,7 +21,7 @@ SRCS = srcs/main.c \
 	srcs/raycasting/ray_utils.c \
 	srcs/raycasting/ray_dda.c \
 	srcs/raycasting/ray_wall_distance.c \
-	srcs/raycasting/ray_collision.c \
+	srcs/raycasting/ray_perform_dda.c \
 	srcs/raycasting/ray_texture_mapping.c \
 	srcs/raycasting/wall_texture_fill.c \
 	srcs/raycasting/wall_rendering.c \
