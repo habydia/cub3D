@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update_player_bonus.c                              :+:      :+:    :+:   */
+/*   update_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:40:07 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 19:05:14 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 19:59:11 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/collision_bonus.h"
 #include "../../includes/cub3d.h"
+#include "../../includes/player.h"
 
 void	move_forward_w_or_up_arrow(t_game *game, double move_speed)
 {

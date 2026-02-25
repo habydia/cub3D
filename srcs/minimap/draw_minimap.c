@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wall_collision.c                                   :+:      :+:    :+:   */
+/*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 19:20:00 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 19:30:36 by lebroue          ###   ########.fr       */
+/*   Created: 2026/02/25 19:10:00 by lebroue           #+#    #+#             */
+/*   Updated: 2026/02/25 20:01:12 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	is_wall_collision(t_game *game, double new_x, double new_y)
+void	draw_minimap(t_game *game) __attribute__((weak));
+
+void	draw_minimap(t_game *game)
 {
-	return (game->data->map[(int)new_y][(int)new_x] == '1');
+	(void)game;
 }

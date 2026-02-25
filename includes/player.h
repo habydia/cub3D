@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:57:42 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 19:07:51 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 19:59:20 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,15 @@ void						init_player_direction(t_game *game,
 
 /*UPDATE PLAYER: HANDLE ALL PLAYER INPUT, MOVEMENT AND ROTATION EACH FRAME*/
 void						update_player(t_game *game);
+
+/* ========== WALL COLLISION DETECTION ========== */
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////// WALL COLLISION DETECTION ////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+/*CHECK WALL COLLISION: DETERMINES IF A GIVEN POSITION HAS A WALL*/
+int							is_wall_collision(t_game *game, double new_x,
+								double new_y);
 
 #endif /* PLAYER_H */
