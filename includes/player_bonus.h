@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.h                                           :+:      :+:    :+:   */
+/*   player_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_H
-# define PLAYER_H
+#ifndef PLAYER_BONUS_H
+# define PLAYER_BONUS_H
 
 typedef struct s_game		t_game;
 typedef struct s_file_data	t_file_data;
@@ -26,7 +26,7 @@ typedef struct s_file_data	t_file_data;
 void						init_player_position(t_game *game,
 								t_file_data *data);
 
-/*INIT PLAYER DIRECTION: SET INITIAL PLAYER VIEW DIRECTION FROM SPAWN ORIENTATION*/
+/*INIT PLAYER DIR: SET INITIAL PLAYER VIEW DIRECTION FROM SPAWN ORIENTATION*/
 void						init_player_direction(t_game *game,
 								t_file_data *data);
 
@@ -39,4 +39,4 @@ void						init_player_direction(t_game *game,
 /*UPDATE PLAYER: HANDLE ALL PLAYER INPUT, MOVEMENT AND ROTATION EACH FRAME*/
 void						update_player(t_game *game);
 
-#endif /* PLAYER_H */
+#endif /* PLAYER_BONUS_H */

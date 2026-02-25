@@ -18,7 +18,6 @@ SRCS = srcs/main.c \
 	srcs/keyboard/handle_key_utils.c \
 	srcs/render_3d/render.c \
 	srcs/render_3d/draw_floor_and_ceilling.c \
-	srcs/minimap/draw_minimap.c \
 	srcs/raycasting/raycasting.c \
 	srcs/raycasting/raycasting_utils_calculate_step.c \
 	srcs/raycasting/raycasting_utils_calculate_wall_distance.c \
@@ -29,17 +28,17 @@ SRCS = srcs/main.c \
 	srcs/raycasting/raycasting_utils_init_ray.c \
 	srcs/raycasting/raycasting_utlils_draw_vertical_line_utils_texture_mapping.c \
 	srcs/player/init_player.c \
-	srcs/player/update_player.c \
 	srcs/window/open_window.c \
 	srcs/window/window_events.c \
 	srcs/game/init_data_game_key.c
 
+SRCS_BONUS = srcs/minimap/draw_minimap_bonus.c \
+	srcs/player/update_player_bonus.c
+
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
+OBJS_BONUS = $(SRCS_BONUS:%.c=$(OBJ_DIR)/%.o)
 NAME = cub3D
-
-
-all: $(NAME)
 
 LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)libft.a
@@ -47,6 +46,12 @@ MLX_DIR = minilibx-linux/
 MLX = $(MLX_DIR)libmlx.a
 
 -include $(OBJS:.o=.d)
+-include $(OBJS_BONUS:.o=.d)
+
+all: $(NAME)
+
+bonus: $(OBJ_DIR) $(OBJS) $(OBJS_BONUS) $(LIBFT) $(MLX)
+	$(CC) $(OBJS) $(OBJS_BONUS) $(CFLAGS) $(LDFLAGS) -L$(LIBFT_DIR) -L$(MLX_DIR) -o $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJS) $(LIBFT) $(MLX)
 	$(CC) $(OBJS) $(CFLAGS) $(LDFLAGS) -L$(LIBFT_DIR) -L$(MLX_DIR) -o $(NAME)
@@ -91,4 +96,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

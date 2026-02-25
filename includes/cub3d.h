@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:07:30 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/25 12:31:01 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 18:52:48 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 // Libft
 # include "../includes/game.h"
 # include "../includes/keyboard.h"
-# include "../includes/minimap.h"
+# include "../includes/minimap_bonus.h"
 # include "../includes/parsing.h"
-# include "../includes/player.h"
+# include "../includes/player_bonus.h"
 # include "../includes/raycasting.h"
 # include "../includes/render.h"
 # include "../includes/textures.h"

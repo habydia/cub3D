@@ -6,14 +6,14 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:22:03 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 12:25:26 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 18:52:03 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_H
 # define RENDER_H
 
-# include "minimap.h"
+# include "minimap_bonus.h"
 
 typedef struct s_game	t_game;
 
@@ -27,7 +27,6 @@ int						render(t_game *game);
 /*DRAW FLOOR AND CEILING: FILL BOTTOM AND TOP SCREEN AREAS WITH FLOOR/CEILING COLORS*/
 void					draw_floor_and_ceiling(t_game *game);
 
-
 ///////////////////////////////////////////////////////////////////////////////
 //////////////////////////////PIXEL OPERATIONS///////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -37,7 +36,6 @@ void					put_pixel(t_game *game, int x, int y, int color);
 
 /*RGB TO INT: CONVERT RGB COLOR COMPONENTS TO 32-BIT INTEGER FORMAT*/
 int						rgb_to_int(int r, int g, int b);
-
 
 ///////////////////////////////////////////////////////////////////////////////
 ////////////////////////////MINIMAP RENDERING///////////////////////////////
