@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:10:00 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 15:52:53 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 16:10:37 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,19 @@ void	calculate_wall_distance(t_game *game, t_ray *ray)
 	offset = (1 - ray->ray_dda_grid_increment_direction_x) / 2;
 	if (ray->ray_wall_collision_is_vertical == 0)
 	{
-		ray->ray_perpendicular_distance_to_wall = (ray->in_map_grid_cell_x
-				- game->player_pos_x + offset) / ray->ray_dir_vector_x;
+		if (ray->ray_dir_vector_x != 0)
+			ray->ray_perpendicular_distance_to_wall = (ray->in_map_grid_cell_x
+					- game->player_pos_x + offset) / ray->ray_dir_vector_x;
+		else
+			ray->ray_perpendicular_distance_to_wall = 1e10;
 	}
 	else
 	{
 		offset = (1 - ray->ray_dda_grid_increment_direction_y) / 2;
-		ray->ray_perpendicular_distance_to_wall = (ray->in_map_grid_cell_y
-				- game->player_pos_y + offset) / ray->ray_dir_vector_y;
+		if (ray->ray_dir_vector_y != 0)
+			ray->ray_perpendicular_distance_to_wall = (ray->in_map_grid_cell_y
+					- game->player_pos_y + offset) / ray->ray_dir_vector_y;
+		else
+			ray->ray_perpendicular_distance_to_wall = 1e10;
 	}
 }
