@@ -16,7 +16,7 @@ SRCS = srcs/main.c \
 	srcs/keyboard/key_utils.c \
 	srcs/render/render.c \
 	srcs/render/draw_floor_and_ceilling.c \
-	srcs/render/draw_minimap.c \
+	srcs/minimap/draw_minimap.c \
 	srcs/raycasting/raycasting.c \
 	srcs/raycasting/raycasting_utils_calculate_step.c \
 	srcs/raycasting/raycasting_utils_calculate_wall_distance.c \
@@ -52,6 +52,7 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)/srcs/
 	mkdir -p $(OBJ_DIR)/srcs/parsing/
 	mkdir -p $(OBJ_DIR)/srcs/render/
+	mkdir -p $(OBJ_DIR)/srcs/minimap/
 	mkdir -p $(OBJ_DIR)/srcs/raycasting/
 	mkdir -p $(OBJ_DIR)/srcs/player/
 	mkdir -p $(OBJ_DIR)/srcs/window/

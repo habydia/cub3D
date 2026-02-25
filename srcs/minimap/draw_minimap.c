@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:48:42 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/23 11:20:45 by hadia            ###   ########.fr       */
+/*   Updated: 2026/02/25 16:18:17 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	draw_minimap_case(t_game *game, t_pixel_square d)
 		position_x = 0;
 		while (position_x < d.square_size)
 		{
-			put_pixel(game, d.screen_start_x * d.square_size + position_x, d.screen_start_y * d.square_size
-				+ position_y, d.color);
+			put_pixel(game, d.screen_start_x * d.square_size + position_x,
+				d.screen_start_y * d.square_size + position_y, d.color);
 			position_x++;
 		}
 		position_y++;
@@ -40,7 +40,7 @@ void	draw_minimap_case(t_game *game, t_pixel_square d)
 
 void	draw_minimap_line(t_game *game, int y, int square_size)
 {
-	int			x;
+	int				x;
 	t_pixel_square	d;
 
 	x = 0;
