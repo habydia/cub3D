@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 21:39:39 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 16:10:37 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 16:14:06 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	init_ray(t_game *game, t_ray *ray, int x, int w)
 		ray->ray_dda_distance_between_grid_lines_x = fabs(1
 				/ ray->ray_dir_vector_x);
 	else
-		ray->ray_dda_distance_between_grid_lines_x = 1e10;
+		ray->ray_dda_distance_between_grid_lines_x = 100.0;
 	if (ray->ray_dir_vector_y != 0)
 		ray->ray_dda_distance_between_grid_lines_y = fabs(1
 				/ ray->ray_dir_vector_y);
 	else
-		ray->ray_dda_distance_between_grid_lines_y = 1e10;
+		ray->ray_dda_distance_between_grid_lines_y = 100.0;
 	ray->ray_wall_collision_found = 0;
 }

@@ -23,7 +23,7 @@ void	calculate_wall_distance(t_game *game, t_ray *ray)
 			ray->ray_perpendicular_distance_to_wall = (ray->in_map_grid_cell_x
 					- game->player_pos_x + offset) / ray->ray_dir_vector_x;
 		else
-			ray->ray_perpendicular_distance_to_wall = 1e10;
+			ray->ray_perpendicular_distance_to_wall = 50.0;
 	}
 	else
 	{
@@ -32,6 +32,6 @@ void	calculate_wall_distance(t_game *game, t_ray *ray)
 			ray->ray_perpendicular_distance_to_wall = (ray->in_map_grid_cell_y
 					- game->player_pos_y + offset) / ray->ray_dir_vector_y;
 		else
-			ray->ray_perpendicular_distance_to_wall = 1e10;
+			ray->ray_perpendicular_distance_to_wall = 50.0;
 	}
 }
