@@ -6,37 +6,47 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:40:07 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 13:05:55 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 17:03:04 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	move_forward(t_game *game, double move_speed)
+void	move_forward_w_or_up_arrow(t_game *game, double move_speed)
 {
 	double	new_x;
 	double	new_y;
 
-	new_x = game->player_pos_x + game->player_vector_direction_x * move_speed;
-	new_y = game->player_pos_y + game->player_vector_direction_y * move_speed;
-	if (game->data->map[(int)new_y][(int)new_x] != '1')
+	if (game->keys[65362] || game->keys[119])
 	{
-		game->player_pos_x = new_x;
-		game->player_pos_y = new_y;
+		new_x = game->player_pos_x + game->player_vector_direction_x
+			* move_speed;
+		new_y = game->player_pos_y + game->player_vector_direction_y
+			* move_speed;
+		if (game->data->map[(int)new_y][(int)new_x] != '1')
+		{
+			game->player_pos_x = new_x;
+			game->player_pos_y = new_y;
+		}
 	}
 }
 
-void	move_backward(t_game *game, double move_speed)
+void	move_backward_s_or_down_arrow(t_game *game, double move_speed)
 {
 	double	new_x;
 	double	new_y;
 
-	new_x = game->player_pos_x - game->player_vector_direction_x * move_speed;
-	new_y = game->player_pos_y - game->player_vector_direction_y * move_speed;
-	if (game->data->map[(int)new_y][(int)new_x] != '1')
+	if (game->keys[65364] || game->keys[115])
 	{
-		game->player_pos_x = new_x;
-		game->player_pos_y = new_y;
+		new_x = game->player_pos_x - game->player_vector_direction_x
+			* move_speed;
+		new_y = game->player_pos_y - game->player_vector_direction_y
+			* move_speed;
+		if (game->data->map[(int)new_y][(int)new_x] != '1')
+		{
+			game->player_pos_x = new_x;
+			game->player_pos_y = new_y;
+		}
 	}
 }
 
@@ -90,8 +100,6 @@ void	update_player(t_game *game)
 	rot_speed = 0.003;
 	left_rotation_arrow_or_a_key(game, rot_speed);
 	right_rotation_arrow_or_d_key(game, rot_speed);
-	if (game->keys[65362] || game->keys[119])
-		move_forward(game, move_speed);
-	if (game->keys[65364] || game->keys[115])
-		move_backward(game, move_speed);
+	move_forward_w_or_up_arrow(game, move_speed);
+	move_backward_s_or_down_arrow(game, move_speed);
 }
