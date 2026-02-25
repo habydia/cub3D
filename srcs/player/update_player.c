@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update_player.c                                    :+:      :+:    :+:   */
+/*   update_player_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:40:07 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 17:03:04 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 19:05:14 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/collision_bonus.h"
 #include "../../includes/cub3d.h"
 
 void	move_forward_w_or_up_arrow(t_game *game, double move_speed)
@@ -23,7 +24,7 @@ void	move_forward_w_or_up_arrow(t_game *game, double move_speed)
 			* move_speed;
 		new_y = game->player_pos_y + game->player_vector_direction_y
 			* move_speed;
-		if (game->data->map[(int)new_y][(int)new_x] != '1')
+		if (!is_wall_collision(game, new_x, new_y))
 		{
 			game->player_pos_x = new_x;
 			game->player_pos_y = new_y;
@@ -42,7 +43,7 @@ void	move_backward_s_or_down_arrow(t_game *game, double move_speed)
 			* move_speed;
 		new_y = game->player_pos_y - game->player_vector_direction_y
 			* move_speed;
-		if (game->data->map[(int)new_y][(int)new_x] != '1')
+		if (!is_wall_collision(game, new_x, new_y))
 		{
 			game->player_pos_x = new_x;
 			game->player_pos_y = new_y;

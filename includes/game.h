@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:21:14 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 18:52:03 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 19:07:34 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "mlx.h"
 # include "parsing.h"
-# include "player_bonus.h"
+# include "player.h"
 # include "textures.h"
 
 typedef struct s_game

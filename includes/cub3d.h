@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:07:30 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/25 18:52:48 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 19:07:16 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include "../includes/keyboard.h"
 # include "../includes/minimap_bonus.h"
 # include "../includes/parsing.h"
-# include "../includes/player_bonus.h"
+# include "../includes/player.h"
 # include "../includes/raycasting.h"
 # include "../includes/render.h"
 # include "../includes/textures.h"
