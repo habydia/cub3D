@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures.c                                         :+:      :+:    :+:   */
+/*   ray_texture_mapping.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 21:15:00 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/24 02:01:18 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 13:16:30 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,11 @@ int	compute_texture_x(t_game *game, t_ray *ray, int tex_w)
 	int		tex_x;
 
 	if (ray->ray_wall_collision_is_vertical == 0)
-		wall_x = game->player_pos_y + ray->ray_perpendicular_distance_to_wall * ray->ray_dir_vector_y;
+		wall_x = game->player_pos_y + ray->ray_perpendicular_distance_to_wall
+			* ray->ray_dir_vector_y;
 	else
-		wall_x = game->player_pos_x + ray->ray_perpendicular_distance_to_wall * ray->ray_dir_vector_x;
+		wall_x = game->player_pos_x + ray->ray_perpendicular_distance_to_wall
+			* ray->ray_dir_vector_x;
 	wall_x -= floor(wall_x);
 	tex_x = (int)(wall_x * tex_w);
 	if (ray->ray_wall_collision_is_vertical == 0 && ray->ray_dir_vector_x < 0)

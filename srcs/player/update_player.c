@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:40:07 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/24 15:39:27 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 13:05:55 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,15 @@ void	left_rotation_arrow_or_a_key(t_game *game, double rot_speed)
 	old_camera_plane_x = game->camera_plane_x;
 	if (game->keys[65361] || game->keys[97])
 	{
-		game->player_vector_direction_x = game->player_vector_direction_x * cos(-rot_speed)
-			- game->player_vector_direction_y * sin(-rot_speed);
-		game->player_vector_direction_y = old_dir_x * sin(-rot_speed) + game->player_vector_direction_y
-			* cos(-rot_speed);
-		game->camera_plane_x = game->camera_plane_x * cos(-rot_speed) - game->camera_plane_y
+		game->player_vector_direction_x = game->player_vector_direction_x
+			* cos(-rot_speed) - game->player_vector_direction_y
 			* sin(-rot_speed);
-		game->camera_plane_y = old_camera_plane_x * sin(-rot_speed) + game->camera_plane_y
-			* cos(-rot_speed);
+		game->player_vector_direction_y = old_dir_x * sin(-rot_speed)
+			+ game->player_vector_direction_y * cos(-rot_speed);
+		game->camera_plane_x = game->camera_plane_x * cos(-rot_speed)
+			- game->camera_plane_y * sin(-rot_speed);
+		game->camera_plane_y = old_camera_plane_x * sin(-rot_speed)
+			+ game->camera_plane_y * cos(-rot_speed);
 	}
 }
 
@@ -69,14 +70,14 @@ void	right_rotation_arrow_or_d_key(t_game *game, double rot_speed)
 	old_camera_plane_x = game->camera_plane_x;
 	if (game->keys[65363] || game->keys[100])
 	{
-		game->player_vector_direction_x = game->player_vector_direction_x * cos(rot_speed)
-			- game->player_vector_direction_y * sin(rot_speed);
-		game->player_vector_direction_y = old_dir_x * sin(rot_speed) + game->player_vector_direction_y
-			* cos(rot_speed);
-		game->camera_plane_x = game->camera_plane_x * cos(rot_speed) - game->camera_plane_y
-			* sin(rot_speed);
-		game->camera_plane_y = old_camera_plane_x * sin(rot_speed) + game->camera_plane_y
-			* cos(rot_speed);
+		game->player_vector_direction_x = game->player_vector_direction_x
+			* cos(rot_speed) - game->player_vector_direction_y * sin(rot_speed);
+		game->player_vector_direction_y = old_dir_x * sin(rot_speed)
+			+ game->player_vector_direction_y * cos(rot_speed);
+		game->camera_plane_x = game->camera_plane_x * cos(rot_speed)
+			- game->camera_plane_y * sin(rot_speed);
+		game->camera_plane_y = old_camera_plane_x * sin(rot_speed)
+			+ game->camera_plane_y * cos(rot_speed);
 	}
 }
 
