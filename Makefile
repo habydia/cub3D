@@ -18,10 +18,10 @@ SRCS = srcs/main.c \
 	srcs/render/draw_floor_and_ceilling.c \
 	srcs/render/draw_minimap.c \
 	srcs/raycasting/raycasting.c \
-	srcs/raycasting/raycasting_utils.c \
-	srcs/raycasting/dda_step.c \
-	srcs/raycasting/distance.c \
-	srcs/raycasting/collision.c \
+	srcs/raycasting/ray_utils.c \
+	srcs/raycasting/ray_dda.c \
+	srcs/raycasting/ray_distance.c \
+	srcs/raycasting/ray_collision.c \
 	srcs/raycasting/ray_texture_mapping.c \
 	srcs/raycasting/wall_texture_fill.c \
 	srcs/raycasting/wall_rendering.c \
