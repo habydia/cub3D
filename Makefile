@@ -20,7 +20,7 @@ SRCS = srcs/main.c \
 	srcs/raycasting/raycasting.c \
 	srcs/raycasting/raycasting_utils.c \
 	srcs/raycasting/ray_texture_mapping.c \
-	srcs/raycasting/ray_utils.c \
+	srcs/raycasting/wall_texture_fill.c \
 	srcs/raycasting/texture_rendering.c \
 	srcs/player/init_player.c \
 	srcs/player/update_player.c \
