@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture_rendering.c                                :+:      :+:    :+:   */
+/*   wall_rendering.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 01:00:00 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 12:58:19 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 13:03:24 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	render_pixel_column(t_game *game, int x, int tex_x,
+void	render_wall_pixel_column(t_game *game, int x, int tex_x,
 		t_wall_column_render_params params)
 {
 	int	y;
@@ -41,7 +41,7 @@ void	render_pixel_column(t_game *game, int x, int tex_x,
 	}
 }
 
-void	draw_vertical_line(t_game *game, t_ray *ray, int x, int h)
+void	draw_wall_vertical_line(t_game *game, t_ray *ray, int x, int h)
 {
 	t_wall_column_render_params	params;
 	t_texture_data				info;
@@ -62,5 +62,5 @@ void	draw_vertical_line(t_game *game, t_ray *ray, int x, int h)
 		/ params.wall_column_pixel_height;
 	params.texture_vertical_position = (params.screen_draw_start_y - h / 2
 			+ params.wall_column_pixel_height / 2) * params.texture_sample_step;
-	render_pixel_column(game, x, tex_x, params);
+	render_wall_pixel_column(game, x, tex_x, params);
 }

@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:43:21 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/24 00:19:33 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 13:03:24 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	raycasting(t_game *game)
 		calculate_step(game, &ray);
 		perform_dda(game, &ray);
 		calculate_wall_distance(game, &ray);
-		draw_vertical_line(game, &ray, x, h);
+		draw_wall_vertical_line(game, &ray, x, h);
 		x++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 19:54:29 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 12:23:18 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 13:03:24 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,12 +110,12 @@ void					get_texture_data(t_game *game, char face,
 /*COMPUTE TEXTURE X: CALCULATE HORIZONTAL TEXTURE COORDINATE FOR PIXEL SAMPLING*/
 int						compute_texture_x(t_game *game, t_ray *ray, int tex_w);
 
-/*RENDER PIXEL COLUMN: DRAW A VERTICAL LINE OF PIXELS WITH TEXTURE SAMPLING*/
-void					render_pixel_column(t_game *game, int x, int tex_x,
+/*RENDER WALL PIXEL COLUMN: DRAW A VERTICAL LINE OF PIXELS WITH TEXTURE SAMPLING*/
+void					render_wall_pixel_column(t_game *game, int x, int tex_x,
 							t_wall_column_render_params params);
 
-/*DRAW VERTICAL LINE: MAIN FUNCTION TO RENDER A COMPLETE TEXTURED WALL COLUMN*/
-void					draw_vertical_line(t_game *game, t_ray *ray, int x,
+/*DRAW WALL VERTICAL LINE: MAIN FUNCTION TO RENDER A COMPLETE TEXTURED WALL COLUMN*/
+void					draw_wall_vertical_line(t_game *game, t_ray *ray, int x,
 							int h);
 
 #endif /* RAYCASTING_H */
