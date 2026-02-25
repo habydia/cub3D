@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 21:02:51 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/25 12:18:18 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 17:10:18 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,9 @@ typedef struct s_textures
 
 /*LOAD TEXTURE: Load all textures from file_data and synchronize them with t_wall_texture structures */
 void						load_textures(t_game *game, t_file_data *data);
+
+/*SYNC ALL TEXTURE FIELDS: Synchronize legacy fields with new t_wall_texture structures*/
+void						sync_all_texture_fields(t_game *game);
 
 /*LOAD TEXTURE BY FACE: LOAD A SINGLE TEXTURE FILE (.xpm) FOR A SPECIFIC WALL FACE (N/S/E/W)*/
 void						load_texture_by_face(t_game *game, char *path,
