@@ -19,7 +19,7 @@ SRCS = srcs/main.c \
 	srcs/render/draw_minimap.c \
 	srcs/raycasting/raycasting.c \
 	srcs/raycasting/ray_utils.c \
-	srcs/raycasting/ray_dda.c \
+	srcs/raycasting/dda_ray_step_utils.c \
 	srcs/raycasting/ray_wall_distance.c \
 	srcs/raycasting/ray_perform_dda.c \
 	srcs/raycasting/ray_texture_mapping.c \
