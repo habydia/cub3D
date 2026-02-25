@@ -34,7 +34,8 @@ SRCS = srcs/main.c \
 	srcs/window/window_events.c \
 	srcs/game/init_data_game_key.c
 
-SRCS_BONUS = srcs/minimap/draw_minimap_bonus.c
+SRCS_BONUS = srcs/minimap/draw_minimap_bonus.c \
+	srcs/player/wall_collision_bonus.c
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
