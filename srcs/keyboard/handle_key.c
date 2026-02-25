@@ -6,17 +6,11 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 19:10:37 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/24 00:17:55 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 16:57:00 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-// Déclarations des fonctions de key_utils.c
-void		handle_movement_key(int keycode);
-void		handle_arrow_key(int keycode);
-void		handle_movement_release(int keycode);
-void		handle_arrow_release(int keycode);
 
 static void	handle_special_key(int keycode, t_game *game)
 {
