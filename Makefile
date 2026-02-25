@@ -18,13 +18,13 @@ SRCS = srcs/main.c \
 	srcs/render/draw_floor_and_ceilling.c \
 	srcs/render/draw_minimap.c \
 	srcs/raycasting/raycasting.c \
-	srcs/raycasting/ray_utils.c \
-	srcs/raycasting/dda_ray_step_utils.c \
-	srcs/raycasting/ray_wall_distance.c \
-	srcs/raycasting/ray_perform_dda.c \
-	srcs/raycasting/ray_texture_mapping.c \
-	srcs/raycasting/wall_texture_fill.c \
-	srcs/raycasting/wall_rendering.c \
+	srcs/raycasting/raycasting_utils_calculate_step.c \
+	srcs/raycasting/raycasting_utils_calculate_wall_distance.c \
+	srcs/raycasting/raycasting_utils_dda_algo.c \
+	srcs/raycasting/raycasting_utils_draw_vertical_line.c \
+	srcs/raycasting/raycasting_utils_draw_vertical_line_utils_wall_texture_fill.c \
+	srcs/raycasting/raycasting_utils_init_ray.c \
+	srcs/raycasting/raycasting_utlils_draw_vertical_line_utils_texture_mapping.c \
 	srcs/player/init_player.c \
 	srcs/player/update_player.c \
 	srcs/window/open_window.c \
