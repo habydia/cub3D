@@ -19,8 +19,8 @@ SRCS = srcs/main.c \
 	srcs/render/draw_minimap.c \
 	srcs/raycasting/raycasting.c \
 	srcs/raycasting/raycasting_utils.c \
-	srcs/raycasting/textures.c \
-	srcs/raycasting/textures_utils.c \
+	srcs/raycasting/ray_texture_mapping.c \
+	srcs/raycasting/ray_utils.c \
 	srcs/raycasting/texture_rendering.c \
 	srcs/player/init_player.c \
 	srcs/player/update_player.c \
