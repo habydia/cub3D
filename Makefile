@@ -14,8 +14,8 @@ SRCS = srcs/main.c \
 	srcs/textures/texture_ptrs.c \
 	srcs/keyboard/handle_key.c \
 	srcs/keyboard/key_utils.c \
-	srcs/render/render.c \
-	srcs/render/draw_floor_and_ceilling.c \
+	srcs/render_3d/render.c \
+	srcs/render_3d/draw_floor_and_ceilling.c \
 	srcs/minimap/draw_minimap.c \
 	srcs/raycasting/raycasting.c \
 	srcs/raycasting/raycasting_utils_calculate_step.c \
@@ -51,7 +51,7 @@ $(NAME): $(OBJ_DIR) $(OBJS) $(LIBFT) $(MLX)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)/srcs/
 	mkdir -p $(OBJ_DIR)/srcs/parsing/
-	mkdir -p $(OBJ_DIR)/srcs/render/
+	mkdir -p $(OBJ_DIR)/srcs/render_3d/
 	mkdir -p $(OBJ_DIR)/srcs/minimap/
 	mkdir -p $(OBJ_DIR)/srcs/raycasting/
 	mkdir -p $(OBJ_DIR)/srcs/player/
