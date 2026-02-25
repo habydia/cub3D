@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 01:00:00 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 16:10:37 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 18:28:57 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,13 @@ void	draw_wall_vertical_line(t_game *game, t_ray *ray, int x, int h)
 	t_wall_column_render_params	params;
 	t_texture_data				info;
 	int							tex_x;
+	double						corrected_distance;
 
 	get_texture_data(game, get_wall_face(game, ray), &info);
 	params.texture = &info;
-	if (ray->ray_perpendicular_distance_to_wall != 0)
-		params.wall_column_pixel_height = (int)(h
-				/ ray->ray_perpendicular_distance_to_wall);
+	corrected_distance = correct_fisheye_distance(game, ray);
+	if (corrected_distance != 0)
+		params.wall_column_pixel_height = (int)(h / corrected_distance);
 	else
 		params.wall_column_pixel_height = 0;
 	params.screen_draw_start_y = -params.wall_column_pixel_height / 2 + h / 2;

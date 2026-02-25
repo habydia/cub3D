@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 19:54:29 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 13:03:24 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/25 18:29:27 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,10 @@ void					render_wall_pixel_column(t_game *game, int x, int tex_x,
 void					draw_wall_vertical_line(t_game *game, t_ray *ray, int x,
 							int h);
 
+///////////////////////////////////////////////////////////////////////////////
+/////////////////////////////FISHEYE CORRECTION///////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+/*CORRECT FISHEYE DISTANCE: APPLY PERPENDICULAR DISTANCE CORRECTION FOR FISHEYE EFFECT*/
+double					correct_fisheye_distance(t_game *game, t_ray *ray);
 #endif /* RAYCASTING_H */

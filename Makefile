@@ -22,6 +22,7 @@ SRCS = srcs/main.c \
 	srcs/raycasting/raycasting.c \
 	srcs/raycasting/raycasting_utils_calculate_step.c \
 	srcs/raycasting/raycasting_utils_calculate_wall_distance.c \
+	srcs/raycasting/raycasting_utils_correct_fisheye.c \
 	srcs/raycasting/raycasting_utils_dda_algo.c \
 	srcs/raycasting/raycasting_utils_draw_vertical_line.c \
 	srcs/raycasting/raycasting_utils_draw_vertical_line_utils_wall_texture_fill.c \
