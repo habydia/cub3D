@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 21:15:00 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/26 16:14:08 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 16:22:10 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static double	calculate_wall_hit_position(t_game *game, t_ray *ray)
 			* ray->ray_dir_vector_x);
 }
 
-static int	normalize_to_texture_x(double wall_x, int tex_w)
+static int	get_texture_pixel_from_wall_position(double wall_x, int tex_w)
 {
 	wall_x -= floor(wall_x);
 	return ((int)(wall_x * tex_w));
@@ -63,10 +63,11 @@ static int	apply_direction_inversion(int tex_x, int tex_w, t_ray *ray)
 
 int	get_texture_column_for_display(t_game *game, t_ray *ray, int tex_w)
 {
-	int	tex_x;
+	int		tex_x;
+	double	wall_pos;
 
-	tex_x = normalize_to_texture_x(calculate_wall_hit_position(game, ray),
-			tex_w);
+	wall_pos = calculate_wall_hit_position(game, ray);
+	tex_x = get_texture_pixel_from_wall_position(wall_pos, tex_w);
 	tex_x = apply_direction_inversion(tex_x, tex_w, ray);
 	if (tex_x < 0)
 		tex_x = 0;
