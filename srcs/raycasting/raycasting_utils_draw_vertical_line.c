@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 01:00:00 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/26 16:35:08 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 16:36:37 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,37 @@ static unsigned int	get_texture_pixel_color(t_texture_data *texture, int tex_x,
 		return (*(unsigned int *)(texture->texture_pixel_buffer + (tex_y
 					* texture->texture_bytes_per_scanline) + (tex_x * 4)));
 	return (0xFFFFFF);
+}
+
+static int	calculate_wall_column_height(t_game *game, t_ray *ray, int h)
+{
+	if (ray->ray_perpendicular_distance_to_wall != 0)
+		return ((int)(h / ray->ray_perpendicular_distance_to_wall));
+	return (0);
+}
+
+static void	calculate_screen_draw_bounds(t_wall_column_render_params *params,
+		int h)
+{
+	params->screen_draw_start_y = -params->wall_column_pixel_height / 2 + h / 2;
+	params->screen_draw_end_y = params->wall_column_pixel_height / 2 + h / 2;
+	if (params->screen_draw_start_y < 0)
+		params->screen_draw_start_y = 0;
+	if (params->screen_draw_end_y >= h)
+		params->screen_draw_end_y = h - 1;
+}
+
+static void	calculate_texture_sampling_params(t_wall_column_render_params *params,
+		int h)
+{
+	if (params->wall_column_pixel_height != 0)
+		params->texture_sample_step = (double)params->texture->texture_height
+			/ params->wall_column_pixel_height;
+	else
+		params->texture_sample_step = 0;
+	params->texture_vertical_position = (params->screen_draw_start_y - h / 2
+			+ params->wall_column_pixel_height / 2)
+		* params->texture_sample_step;
 }
 
 void	render_wall_pixel_column(t_game *game, int x, int tex_x,
@@ -58,22 +89,11 @@ void	draw_wall_vertical_line(t_game *game, t_ray *ray, int x, int h)
 
 	get_texture_data(game, get_wall_face(game, ray), &info);
 	params.texture = &info;
-	if (ray->ray_perpendicular_distance_to_wall != 0)
-		params.wall_column_pixel_height = (int)(h
-				/ ray->ray_perpendicular_distance_to_wall);
-	else
-		params.wall_column_pixel_height = 0;
-	params.screen_draw_start_y = -params.wall_column_pixel_height / 2 + h / 2;
-	params.screen_draw_end_y = params.wall_column_pixel_height / 2 + h / 2;
-	if (params.screen_draw_start_y < 0)
-		params.screen_draw_start_y = 0;
-	if (params.screen_draw_end_y >= h)
-		params.screen_draw_end_y = h - 1;
+	params.wall_column_pixel_height = calculate_wall_column_height(game, ray,
+			h);
+	calculate_screen_draw_bounds(&params, h);
 	tex_x = get_texture_column_for_display(game, ray,
 			params.texture->texture_width);
-	params.texture_sample_step = (double)params.texture->texture_height
-		/ params.wall_column_pixel_height;
-	params.texture_vertical_position = (params.screen_draw_start_y - h / 2
-			+ params.wall_column_pixel_height / 2) * params.texture_sample_step;
+	calculate_texture_sampling_params(&params, h);
 	render_wall_pixel_column(game, x, tex_x, params);
 }
