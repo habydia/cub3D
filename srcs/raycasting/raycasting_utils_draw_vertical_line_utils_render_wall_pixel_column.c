@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 16:40:00 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/26 16:47:37 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 16:49:32 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ void	render_wall_pixel_column(t_game *game, int x, int tex_x,
 {
 	int	y;
 	int	tex_y;
+	int	tex_pos;
 
 	y = params.screen_draw_start_y;
 	while (y <= params.screen_draw_end_y)
 	{
-		tex_y = calculate_texture_y_coordinate((int)params.texture_vertical_position,
+		tex_pos = (int)params.texture_vertical_position;
+		tex_y = calculate_texture_y_coordinate(tex_pos,
 				params.texture->texture_height);
 		put_pixel(game, x, y, get_texture_pixel_color(params.texture, tex_x,
 				tex_y));
