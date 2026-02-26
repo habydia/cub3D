@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 19:54:29 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/26 15:46:52 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 16:14:09 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,9 @@ char					get_wall_face(t_game *game, t_ray *ray);
 void					get_texture_data(t_game *game, char face,
 							t_texture_data *info);
 
-/*COMPUTE TEXTURE X: CALCULATE HORIZONTAL TEXTURE COORDINATE*/
-int						compute_texture_x(t_game *game, t_ray *ray, int tex_w);
+/*GET TEXTURE COLUMN FOR DISPLAY: CALCULATE WHICH TEXTURE COLUMN TO SAMPLE*/
+int						get_texture_column_for_display(t_game *game, t_ray *ray,
+							int tex_w);
 
 /*RENDER WALL PIXEL COLUMN: DRAW A VERTICAL LINE OF PIXELS*/
 void					render_wall_pixel_column(t_game *game, int x, int tex_x,

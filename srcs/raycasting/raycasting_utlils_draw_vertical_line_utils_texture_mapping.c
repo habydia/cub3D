@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 21:15:00 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/26 16:03:33 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 16:14:08 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	apply_direction_inversion(int tex_x, int tex_w, t_ray *ray)
 	return (tex_x);
 }
 
-int	compute_texture_x(t_game *game, t_ray *ray, int tex_w)
+int	get_texture_column_for_display(t_game *game, t_ray *ray, int tex_w)
 {
 	int	tex_x;
 
