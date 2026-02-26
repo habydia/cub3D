@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 01:00:00 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/26 16:45:12 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 18:24:29 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	calculate_wall_column_height(t_ray *ray, int h)
 	return (0);
 }
 
-static void	calculate_screen_draw_bounds(t_wall_column_render_params *params,
+static void	set_wall_column_display_window(t_wall_column_render_params *params,
 		int h)
 {
 	params->screen_draw_start_y = -params->wall_column_pixel_height / 2 + h / 2;
@@ -54,7 +54,7 @@ void	draw_wall_vertical_line(t_game *game, t_ray *ray, int x, int h)
 	get_texture_data(game, get_wall_face(game, ray), &info);
 	params.texture = &info;
 	params.wall_column_pixel_height = calculate_wall_column_height(ray, h);
-	calculate_screen_draw_bounds(&params, h);
+	set_wall_column_display_window(&params, h);
 	tex_x = get_texture_column_for_display(game, ray,
 			params.texture->texture_width);
 	calculate_texture_sampling_params(&params, h);
