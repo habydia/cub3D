@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 16:40:00 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/26 16:49:32 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 16:50:29 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,16 @@ static int	calculate_texture_y_coordinate(int tex_y, int tex_height)
 static unsigned int	get_texture_pixel_color(t_texture_data *texture, int tex_x,
 		int tex_y)
 {
-	if (texture->texture_pixel_buffer && tex_x >= 0
-		&& tex_x < texture->texture_width && tex_y >= 0
-		&& tex_y < texture->texture_height)
-		return (*(unsigned int *)(texture->texture_pixel_buffer + (tex_y
-					* texture->texture_bytes_per_scanline) + (tex_x * 4)));
-	return (0xFFFFFF);
+	unsigned int	color;
+	int				offset;
+
+	if (!texture->texture_pixel_buffer || tex_x < 0
+		|| tex_x >= texture->texture_width || tex_y < 0
+		|| tex_y >= texture->texture_height)
+		return (0xFFFFFF);
+	offset = (tex_y * texture->texture_bytes_per_scanline) + (tex_x * 4);
+	color = *(unsigned int *)(texture->texture_pixel_buffer + offset);
+	return (color);
 }
 
 void	render_wall_pixel_column(t_game *game, int x, int tex_x,
