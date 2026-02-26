@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:22:03 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 18:52:03 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 15:34:38 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ typedef struct s_game	t_game;
 /*RENDER: MAIN RENDERING LOOP - UPDATE AND DRAW ENTIRE FRAME TO SCREEN*/
 int						render(t_game *game);
 
-/*DRAW FLOOR AND CEILING: FILL BOTTOM AND TOP SCREEN AREAS WITH FLOOR/CEILING COLORS*/
+/*DRAW FLOOR AND CEILING: 
+FILL BOTTOM AND TOP SCREEN AREAS WITH FLOOR/CEILING COLORS*/
 void					draw_floor_and_ceiling(t_game *game);
 
 ///////////////////////////////////////////////////////////////////////////////
