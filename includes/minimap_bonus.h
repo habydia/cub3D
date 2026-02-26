@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:58:22 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 18:54:48 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 15:43:14 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@ typedef struct s_game	t_game;
 
 typedef struct s_pixel_square
 {
+	// Screen X coordinate where square starts
 	int					screen_start_x;
+	// Screen Y coordinate where square starts
 	int					screen_start_y;
+	// Size of the square in pixels (width and height)
 	int					square_size;
+	// Color to fill the square with (ARGB format)
 	int					color;
 }						t_pixel_square;
 

@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 19:54:29 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 20:18:55 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 15:46:52 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,29 @@ typedef struct s_ray
 
 typedef struct s_texture_data
 {
+	// Pixel buffer containing the texture image data
 	char				*texture_pixel_buffer;
+	// Texture width in pixels
 	int					texture_width;
+	// Texture height in pixels
 	int					texture_height;
+	// Number of bytes per scanline (pitch for memory layout)
 	int					texture_bytes_per_scanline;
 }						t_texture_data;
 
 typedef struct s_wall_column_render_params
 {
+	// Texture data to sample from
 	t_texture_data		*texture;
+	// Height of the wall column to draw in pixels
 	int					wall_column_pixel_height;
+	// Screen Y coordinate where wall column drawing starts
 	int					screen_draw_start_y;
+	// Screen Y coordinate where wall column drawing ends
 	int					screen_draw_end_y;
+	// Scale factor for stepping through texture vertically
 	double				texture_sample_step;
+	// Current vertical position in texture (for sampling)
 	double				texture_vertical_position;
 }						t_wall_column_render_params;
 
@@ -93,7 +103,7 @@ void					calculate_step(t_game *game, t_ray *ray);
 /*PERFORM DDA: EXECUTE DIGITAL DIFFERENTIAL ANALYZER TO FIND WALL COLLISION*/
 void					perform_dda(t_game *game, t_ray *ray);
 
-/*CALCULATE WALL DISTANCE: COMPUTE PERPENDICULAR DISTANCE TO WALL (FISHEYE CORRECTION)*/
+/*CALCULATE WALL DISTANCE: COMPUTE PERPENDICULAR DISTANCE TO WALL*/
 void					calculate_wall_distance(t_game *game, t_ray *ray);
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -103,19 +113,19 @@ void					calculate_wall_distance(t_game *game, t_ray *ray);
 /*GET WALL FACE: DETERMINE WHICH WALL WAS HIT (N/S/E/W) BY RAY*/
 char					get_wall_face(t_game *game, t_ray *ray);
 
-/*GET TEXTURE DATA: RETRIEVE AND FILL TEXTURE DATA FOR A SPECIFIC WALL FACE*/
+/*GET TEXTURE DATA: RETRIEVE AND FILL TEXTURE DATA FOR A WALL FACE*/
 void					get_texture_data(t_game *game, char face,
 							t_texture_data *info);
 
-/*COMPUTE TEXTURE X: CALCULATE HORIZONTAL TEXTURE COORDINATE FOR PIXEL SAMPLING*/
+/*COMPUTE TEXTURE X: CALCULATE HORIZONTAL TEXTURE COORDINATE*/
 int						compute_texture_x(t_game *game, t_ray *ray, int tex_w);
 
-/*RENDER WALL PIXEL COLUMN: DRAW A VERTICAL LINE OF PIXELS WITH TEXTURE SAMPLING*/
+/*RENDER WALL PIXEL COLUMN: DRAW A VERTICAL LINE OF PIXELS*/
 void					render_wall_pixel_column(t_game *game, int x, int tex_x,
 							t_wall_column_render_params params);
 
-/*DRAW WALL VERTICAL LINE: MAIN FUNCTION TO RENDER A COMPLETE TEXTURED WALL COLUMN*/
+/*DRAW WALL VERTICAL LINE: RENDER A COMPLETE TEXTURED WALL COLUMN*/
 void					draw_wall_vertical_line(t_game *game, t_ray *ray, int x,
 							int h);
 
-#endif /* RAYCASTING_H */
+#endif

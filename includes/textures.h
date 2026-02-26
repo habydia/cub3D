@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 21:02:51 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/26 15:34:18 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 15:46:36 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,34 @@
 typedef struct s_file_data	t_file_data;
 typedef struct s_game		t_game;
 
-typedef struct s_wall_texture
-{
-	void					*image_ptr;
-	char					*pixel_buffer;
-	int						width;
-	int						height;
-	int						bits_per_pixel;
-	int						bytes_per_scanline;
-	int						byte_order;
-}							t_wall_texture;
-
 typedef struct s_texture_load_buffers
 {
-	// Pointers to individual texture fields in s_textures (for temp loading)
-	void	**image_ptr;// Pointer to MLX image (void*)
-	char	**buffer_ptr;// Pointer to pixel buffer (char*)
-	int		*width_ptr;// Pointer to texture width
-	int		*height_ptr;// Pointer to texture height
-	int		*line_len_ptr;// Pointer to bytes per scanline
-	int		*bpp_ptr;// Pointer to bits per pixel
-	int		*endian_ptr;// Pointer to byte order
+	void					**image_ptr;
+	char					**buffer_ptr;
+	int						*width_ptr;
+	int						*height_ptr;
+	int						*line_len_ptr;
+	int						*bpp_ptr;
+	int						*endian_ptr;
 }							t_texture_load_buffers;
+
+typedef struct s_wall_texture
+{
+	// MLX image pointer for the texture
+	void					*image_ptr;
+	// Pixel buffer containing texture data (ARGB format)
+	char					*pixel_buffer;
+	// Texture width in pixels
+	int						width;
+	// Texture height in pixels
+	int						height;
+	// Bits per pixel (typically 32)
+	int						bits_per_pixel;
+	// Bytes per scanline (pitch for memory layout)
+	int						bytes_per_scanline;
+	// Byte order (0=little endian, 1=big endian)
+	int						byte_order;
+}							t_wall_texture;
 
 typedef struct s_textures
 {
@@ -93,11 +99,11 @@ typedef struct s_textures
 Load all textures from file_data and sync them with t_wall_texture structures*/
 void						load_textures(t_game *game, t_file_data *data);
 
-/*SYNC ALL TEXTURE FIELDS: 
+/*SYNC ALL TEXTURE FIELDS:
 Synchronize legacy fields with new t_wall_texture structures*/
 void						sync_all_texture_fields(t_game *game);
 
-/*LOAD TEXTURE BY FACE: 
+/*LOAD TEXTURE BY FACE:
 LOAD A SINGLE TEXTURE FILE (.xpm) FOR A SPECIFIC WALL FACE (N/S/E/W)*/
 void						load_texture_by_face(t_game *game, char *path,
 								char face);

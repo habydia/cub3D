@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:22:03 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/26 15:34:38 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 15:36:05 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 typedef struct s_game	t_game;
 
 ///////////////////////////////////////////////////////////////////////////////
-///////////////////////////////MAIN RENDERING/////////////////////////////////
+///////////////////////////////MAIN RENDERING//////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
 /*RENDER: MAIN RENDERING LOOP - UPDATE AND DRAW ENTIRE FRAME TO SCREEN*/
@@ -29,7 +29,7 @@ FILL BOTTOM AND TOP SCREEN AREAS WITH FLOOR/CEILING COLORS*/
 void					draw_floor_and_ceiling(t_game *game);
 
 ///////////////////////////////////////////////////////////////////////////////
-//////////////////////////////PIXEL OPERATIONS///////////////////////////////
+//////////////////////////////PIXEL OPERATIONS/////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
 /*PUT PIXEL: WRITE A SINGLE PIXEL COLOR TO FRAMEBUFFER AT (X, Y) COORDINATES*/
@@ -39,7 +39,7 @@ void					put_pixel(t_game *game, int x, int y, int color);
 int						rgb_to_int(int r, int g, int b);
 
 ///////////////////////////////////////////////////////////////////////////////
-////////////////////////////MINIMAP RENDERING///////////////////////////////
+////////////////////////////MINIMAP RENDERING//////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
 /*GET MINIMAP COLOR: DETERMINE COLOR FOR A MAP TILE BASED ON ITS CHARACTER*/
@@ -55,4 +55,4 @@ void					draw_minimap_line(t_game *game, int y, int square_size);
 void					draw_player_red_minimap(t_game *game,
 							int map_scale_for_pixel);
 
-#endif /* RENDER_H */
+#endif

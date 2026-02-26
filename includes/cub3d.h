@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:07:30 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/25 19:07:16 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 15:36:58 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # include "../minilibx-linux/mlx.h"
 
 // Libft
+# include "../libft/libft.h"
+
+//All the new.h libs
 # include "../includes/game.h"
 # include "../includes/keyboard.h"
 # include "../includes/minimap_bonus.h"
@@ -33,6 +36,5 @@
 # include "../includes/render.h"
 # include "../includes/textures.h"
 # include "../includes/window.h"
-# include "../libft/libft.h"
 
-#endif /* CUB3D_H */
+#endif

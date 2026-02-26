@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:07:27 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/26 15:29:26 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 15:43:14 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,45 @@ typedef struct s_game	t_game;
 
 typedef struct s_file_data
 {
+	// Path to north wall texture
 	char				*north_texture;
+	// Path to south wall texture
 	char				*south_texture;
+	// Path to west wall texture
 	char				*west_texture;
+	// Path to east wall texture
 	char				*east_texture;
+	// Flag: north texture parsed
 	int					north_set;
+	// Flag: south texture parsed
 	int					south_set;
+	// Flag: west texture parsed
 	int					west_set;
+	// Flag: east texture parsed
 	int					east_set;
+	// Floor color RGB components [R, G, B]
 	int					floor_color[3];
+	// Ceiling color RGB components [R, G, B]
 	int					ceiling_color[3];
+	// Flag: floor color parsed
 	int					floor_set;
+	// Flag: ceiling color parsed
 	int					ceiling_set;
+	// Player starting X position on map (in cells)
 	int					player_pos_x;
+	// Player starting Y position on map (in cells)
 	int					player_pos_y;
+	// Player starting direction (N/S/E/W)
 	char				player_dir;
+	// 2D array of map (rows of cells)
 	char				**map;
+	// Map width in cells
 	int					map_width;
+	// Map height in cells
 	int					map_height;
+	// Flag: map parsing has started
 	int					has_map_started;
+	// Linked list of map lines (for parsing phase)
 	t_list				*map_lines;
 }						t_file_data;
 
