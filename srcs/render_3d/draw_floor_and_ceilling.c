@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:30:20 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/24 15:12:06 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 15:56:54 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	put_pixel(t_game *game, int x, int y, int color)
 
 	if (!game || !game->pixel_buffer)
 	{
-		fprintf(stderr, "Error: pixel_buffer not initialized!\n");
+		printf("Error: pixel_buffer not initialized!\n");
 		return ;
 	}
 	if (x < 0 || x >= 800 || y < 0 || y >= 600)
