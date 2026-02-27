@@ -5,19 +5,43 @@ cub3D est un projet de l'école 42 implémentant un moteur de jeu 3D simple en C
 
 Le projet est divisé en plusieurs parties : parsing (analyse des fichiers), rendu graphique, gestion des événements (clavier/souris), et optimisation. Vous êtes chargé de la partie parsing, qui est cruciale car elle permet de charger et valider les données d'entrée avant le rendu.
 
+## Clone
+Clonez le dépôt en incluant le sous-module MiniLibX :
+
+```bash
+git clone --recursive https://github.com/votre-repo/cub3d.git
+```
+Ou :
+```bash
+git clone https://github.com/votre-repo/cub3d.git
+git submodule update --init --recursive
+```
+
+## Compile and Run
+Il y a deux versions du programme, la partie obligatoire et la partie bonus. La partie bonus ajoute la collision avec les murs, une minimap, et la possibilité de tourner la vue en déplaçant la souris.
+
+Le programme prend un fichier de map en argument. Les maps sont disponibles dans le répertoire maps. Il y a des bonnes maps avec lesquelles le programme devrait fonctionner correctement, et des mauvaises maps que le programme devrait rejeter. Par exemple :
+
+```bash
+./cub3d maps/good/library.cub
+```
+## Controls
+Les contrôles pour le mouvement et la rotation sont :
+
+- W : avancer
+- S : reculer
+- A : se déplacer à gauche
+- D : se déplacer à droite
+- Flèche gauche : tourner à gauche
+- Flèche droite : tourner à droite
+- Souris : tourner en déplaçant la souris (bonus uniquement)
+
 ## Parsing Overview
 Le parsing transforme un fichier `.cub` en structures de données utilisables :
 - **Extraire** : Identifier et isoler les parties utiles de la ligne (e.g., chemin pour textures, valeurs RGB pour couleurs).
 - **Parser** : Analyser et convertir les données (e.g., découper RGB en entiers, valider le format).
 - **Stocker** : Sauvegarder dans `t_file_data` pour utilisation ultérieure (rendu, validation).
 Cela permet de traiter textures (NO/SO/WE/EA) et couleurs (F/C) avant la map, avec gestion d'erreurs.
-
-## Parsing de la Map - Explication Détaillée
-
-### Vue d'ensemble
-La map est la section du fichier `.cub` décrivant le labyrinthe 2D. Elle est parsée en deux phases :
-1. **Collecte** : Pendant la lecture, chaque ligne de map est ajoutée à une liste temporaire.
-2. **Finalisation** : Après lecture, la liste est convertie en tableau 2D et validée.
 
 ### Schéma du Flux de Parsing de la Map
 
@@ -47,54 +71,18 @@ Fin de lecture --> to_2d_map (finalisation)
      v
 Map validée ou erreur
 ```
-
-### Étapes Détaillées
-
-#### 1. Collecte des Lignes (`process_map`)
-- **Entrée** : Ligne du fichier (e.g., "111", "1N1").
-- **Action** : Ajouter à `data->map_lines` (liste chaînée) si non vide.
-- **Sortie** : Liste de lignes brutes.
-
-#### 2. Conversion en Tableau 2D (`to_2d_map`)
-- **Entrée** : Liste `map_lines`.
-- **Action** : Allouer `data->map` (tableau de chaînes), copier les lignes.
-- **Sortie** : `data->map` (char **), `data->map_height`.
-
-#### 3. Validation de la Largeur (`validate_width`)
-- **Règle** : Toutes les lignes doivent avoir la même longueur.
-- **Action** : Mesurer `ft_strlen` de chaque ligne, comparer.
-- **Erreur** : "Map lines have different widths".
-
-#### 4. Validation du Joueur (`validate_player`)
-- **Règle** : Exactement un `N/S/E/W`.
-- **Action** : Parcourir la map, compter, enregistrer position/direction.
-- **Erreur** : "Multiple players" ou "No player".
-
-#### 5. Validation de la Fermeture (`validate_closure`)
-- **Règle** : Map entourée de murs (`1`), pas de trous.
-- **Action** : Flood fill depuis le joueur, vérifier que tous `0` sont accessibles.
-- **Erreur** : "Map is not closed".
-
-### Exemple
-Fichier `.cub` :
-```
-NO wall.xpm
-F 100,100,100
-111
-1N1
-111
-```
-
-- **Collecte** : Lignes "111", "1N1", "111" dans liste.
-- **Conversion** : `map[0] = "111"`, `map[1] = "1N1"`, `map[2] = "111"`, `height=3`, `width=3`.
-- **Validations** : Largeur OK, joueur N à (1,1), fermée.
-
 ### Intégration
 Après parsing réussi, `t_file_data` est utilisé pour le rendu 3D. En cas d'erreur, le programme s'arrête.
 
-## Installation et Utilisation
-- `make` : Compiler le projet.
-- `./cub3D maps/map.cub` : Lancer le jeu avec une map valide.
+## Useful Resources
+Ressources utiles pour ce projet :
 
-## Auteurs
-- [Votre nom] - Parsing et validation.
+- MiniLibX : Documentation de hsmits
+- MiniLibX : Tutoriel de gontjarow
+- Xlib (pour les événements MLX) : Le manuel Xlib
+- Raycasting : Tutoriel de Lode's Computer Graphics - Raycasting
+- Raycasting : Tutoriel de Permadi
+- Mouvement : Calcul de la direction dans les jeux 2D : Utilisation des fonctions trigonométriques partie 1
+
+## Made by
+-Lebrou Hadia
