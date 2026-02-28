@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:58:22 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/26 15:43:14 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 21:16:00 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,4 @@ typedef struct s_pixel_square
 /*DRAW MINIMAP: RENDER A REAL-TIME MINIMAP DISPLAY OF THE GAME MAP AND PLAYER*/
 void					draw_minimap(t_game *game);
 
-#endif /* MINIMAP_BONUS_H */
+#endif

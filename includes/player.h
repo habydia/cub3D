@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:57:42 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 19:59:20 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 21:22:39 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,4 @@ void						update_player(t_game *game);
 int							is_wall_collision(t_game *game, double new_x,
 								double new_y);
 
-#endif /* PLAYER_H */
+#endif

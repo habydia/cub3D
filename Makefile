@@ -19,7 +19,7 @@ SRCS = srcs/main.c \
 	srcs/render_3d/render.c \
 	srcs/render_3d/draw_floor_and_ceilling.c \
 	srcs/raycasting/raycasting.c \
-	srcs/raycasting/raycasting_utils_calculate_step.c \
+	srcs/raycasting/raycasting_utils_dda_algo_utils_calculate_step.c \
 	srcs/raycasting/raycasting_utils_calculate_wall_distance.c \
 	srcs/raycasting/raycasting_utils_dda_algo.c \
 	srcs/raycasting/raycasting_utils_draw_vertical_line.c \
