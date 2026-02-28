@@ -12,7 +12,6 @@ Prerequis:
 Compilation:
 ```bash
 make        # Compilation standard
-make bonus  # Avec minimap
 make clean  # Nettoyage
 ```
 
@@ -55,6 +54,98 @@ Controles:
    https://www.geeksforgeeks.org/computer-graphics/dda-line-generation-algorithm-computer-graphics/
 
 ## Concepts Techniques
+
+### Parsing du Fichier .cub
+
+Le parsing transforme un fichier `.cub` en structures de donnees completes et validees. Le processus se deroule en trois phases principales:
+
+**Phase 1: Extraction et Validation des Metadonnees**
+
+Textures (NO/SO/WE/EA):
+- Chaque ligne commence par l'identifiant (NO, SO, WE, EA) suivi du chemin du fichier
+- Le parser extrait le chemin, le valide, et stocke l'adresse memoire de l'image chargee
+- Validation: chaque texture doit etre definie exactement une fois
+
+Couleurs (F/C):
+- Format: `F 255,100,50` ou `C 0,0,0` (RGB separe par des virgules)
+- Le parser decoupe la ligne, convertit chaque valeur en entier (0-255)
+- Validation: chaque couleur doit etre definie exactement une fois avec 3 composantes RGB valides
+
+**Phase 2: Accumulation de la Carte**
+
+- Les lignes qui ne correspondent pas aux definitions de textures/couleurs sont considerees comme part de la carte
+- Chaque ligne de carte est ajoutee a une liste chainee temporaire
+- Les lignes vides avant la premiere ligne de carte sont ignorees
+- Une ligne peut contenir des caracteres valides (`0`, `1`, `N`, `S`, `E`, `W`, ` `) ou etre rejetee
+
+**Phase 3: Conversion et Validation de la Carte**
+
+Conversion en grille 2D:
+- La liste chainee est convertie en tableau 2D `char **map`
+- Hauteur: nombre de lignes de carte accumulees
+- Largeur: taille de la ligne la plus longue
+
+Validations imperatives:
+
+1. **Uniformite de largeur**: Toutes les lignes doivent avoir la meme largeur (padding avec espaces si necessaire)
+
+2. **Joueur unique**: Il doit y avoir exactement une position de joueur (N, S, E, ou W)
+
+3. **Fermeture spatiale** (Flood-fill):
+   - A partir de la position du joueur, on parcourt tous les espaces (`0` et position joueur)
+   - On verifie que la zone accessible reste completement entouree de murs (`1`)
+   - Cela detecte les breches dans les murs et les positions inaccessibles
+
+4. **Limite personnage**: Le joueur ne peut pas etre positionne sur une arete (bord de grille)
+
+Schema du flux de parsing:
+
+```
+Fichier .cub
+     |
+     v
+Ouverture et lecture ligne par ligne
+     |
+     v
+Validation d'extension (.cub)
+     |
+     +--> Ligne vide ? --> Ignorer (avant la map)
+     |
+     +--> Format texture (NO/SO/WE/EA) ? --> Extraire et charger l'image
+     |
+     +--> Format couleur (F/C RGB) ? --> Extraire et valider RGB (0-255)
+     |
+     +--> Ligne de map ? --> Ajouter a liste chainee
+     |
+     v
+Conversion liste --> char **map (allocation memoire)
+     |
+     v
+Validation etape 1: Uniformite de largeur (padding)
+     |
+     v
+Validation etape 2: Position joueur unique (detection N/S/E/W)
+     |
+     v
+Validation etape 3: Fermeture spatiale (flood-fill depuis joueur)
+     |
+     v
+Validation etape 4: Pas de joueur sur les bords
+     |
+     v
+Succes: Retour structure t_file_data remplie OU Erreur: Liberation et exit
+```
+
+Gestion des erreurs:
+
+Chaque etape de parsing peut generer une erreur:
+- Fichier introuvable ou non-lisible
+- Ligne mal formatee (texture ou couleur invalides)
+- Metadonnees manquantes ou dupliquees
+- Carte mal formee (pas assez de lignes, largeur variable, joueur manquant)
+- Espace non-ferme (murs manquants, breche detectee)
+
+A la premiere erreur, le programme affiche un message expliquant le probleme et s'arrete proprement.
 
 ### Algorithme DDA (Digital Differential Analyzer)
 
@@ -109,20 +200,6 @@ Fonctionnement:
 5. Texture mapping: trouver pixels texture
 6. Render column: afficher colonne
 
-Correction fisheye:
-Sans correction, l'image se deforme aux bords.
-Solution: utiliser distance perpendiculaire au plan camera
-au lieu de distance euclidienne.
-
-Code principal:
-```c
-        init_ray(game, &ray, x, 800);
-        calculate_step(game, &ray);
-        perform_dda(game, &ray);
-        calculate_wall_distance(game, &ray);
-        draw_wall_vertical_line(game, &ray, x, 600);
-```
-
 ## Architecture
 
 Modules principaux:
@@ -142,16 +219,6 @@ keyboard/ - Entrees utilisateur
 window/ - Fenetre et affichage
 game/ - Contexte general
 minimap/ - Minimap (bonus)
-
-## Norminette Compliance
-
-Le projet respecte la 42 Norminette:
-- Max 5 fonctions par fichier .c
-- Max 25 lignes par fonction
-- Max 80 caracteres par ligne
-- Max 4 parametres par fonction
-
-Status: 34/42 fichiers conformes (modules raycasting 100% OK)
 
 ## Resume
 
