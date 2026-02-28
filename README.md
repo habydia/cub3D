@@ -208,4 +208,3 @@ Cub3D demonstrates a working 3D raycasting engine that implements:
 - **Texture mapping** for realistic wall rendering
 - **Modular architecture** compliant with strict coding standards
 
-The project serves as a foundation for understanding how classic 3D games achieve real-time rendering without modern GPU acceleration.
