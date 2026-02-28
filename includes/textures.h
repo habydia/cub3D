@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 21:02:51 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/26 15:46:36 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 21:04:10 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,4 +140,4 @@ void						get_texture_ptrs(t_game *game, char face,
 /*FREE TEXTURES: FREE ALL LOADED TEXTURES AND DESTROY MLX IMAGE POINTERS*/
 void						free_textures(t_game *game);
 
-#endif /* TEXTURES_H */
+#endif 

@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:07:27 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/26 15:43:14 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 21:16:07 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,4 +125,4 @@ void					free_file_data(t_file_data *data);
 /*FREE GAME: DEALLOCATE ALL GAME RESOURCES AND CLEANUP BEFORE EXIT*/
 void					free_game(t_game *game);
 
-#endif /* PARSING_H */
+#endif

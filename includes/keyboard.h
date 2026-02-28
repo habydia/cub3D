@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:22:32 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 16:56:53 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/02/26 21:22:29 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,4 @@ void					handle_arrow_key(int keycode);
 void					handle_movement_release(int keycode);
 void					handle_arrow_release(int keycode);
 
-#endif /* KEYBOARD_H */
+#endif

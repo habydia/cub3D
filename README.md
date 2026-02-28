@@ -1,100 +1,162 @@
-# cub3D
+# Cub3D - 42 School Project
 
-## Description
-cub3D est un projet de l'école 42 implémentant un moteur de jeu 3D simple en C, inspiré de Wolfenstein 3D. Le jeu utilise le raycasting pour créer un environnement 3D navigable à partir d'une carte 2D.
+Implementation de raycasting 3D en C, inspiree par les moteurs de jeux Doom et Wolfenstein 3D.
 
-Le projet est divisé en plusieurs parties : parsing (analyse des fichiers), rendu graphique, gestion des événements (clavier/souris), et optimisation. Vous êtes chargé de la partie parsing, qui est cruciale car elle permet de charger et valider les données d'entrée avant le rendu.
+## Installation et Compilation
 
-## Parsing Overview
-Le parsing transforme un fichier `.cub` en structures de données utilisables :
-- **Extraire** : Identifier et isoler les parties utiles de la ligne (e.g., chemin pour textures, valeurs RGB pour couleurs).
-- **Parser** : Analyser et convertir les données (e.g., découper RGB en entiers, valider le format).
-- **Stocker** : Sauvegarder dans `t_file_data` pour utilisation ultérieure (rendu, validation).
-Cela permet de traiter textures (NO/SO/WE/EA) et couleurs (F/C) avant la map, avec gestion d'erreurs.
+Prerequis:
+- Systeme: Linux
+- Compilateur: GCC
+- Bibliotheques: X11 (libxext-dev, libx11-dev), libm
 
-## Parsing de la Map - Explication Détaillée
-
-### Vue d'ensemble
-La map est la section du fichier `.cub` décrivant le labyrinthe 2D. Elle est parsée en deux phases :
-1. **Collecte** : Pendant la lecture, chaque ligne de map est ajoutée à une liste temporaire.
-2. **Finalisation** : Après lecture, la liste est convertie en tableau 2D et validée.
-
-### Schéma du Flux de Parsing de la Map
-
-```
-Fichier .cub
-     |
-     v
-Lecture ligne par ligne (read_file)
-     |
-     +--> Ligne vide ? --> Ignorer
-     |
-     +--> Texture/ Couleur ? --> Traiter (process_textures/colors)
-     |
-     +--> Map ? --> Ajouter à liste (process_map)
-     |
-     v
-Fin de lecture --> to_2d_map (finalisation)
-     |
-     +--> Convertir liste en char **map
-     |
-     +--> Valider largeur uniforme (validate_width)
-     |
-     +--> Valider joueur unique (validate_player)
-     |
-     +--> Valider fermeture (validate_closure - flood fill)
-     |
-     v
-Map validée ou erreur
+Compilation:
+```bash
+make        # Compilation standard
+make bonus  # Avec minimap
+make clean  # Nettoyage
 ```
 
-### Étapes Détaillées
+Le binaire s'appelle cub3D.
 
-#### 1. Collecte des Lignes (`process_map`)
-- **Entrée** : Ligne du fichier (e.g., "111", "1N1").
-- **Action** : Ajouter à `data->map_lines` (liste chaînée) si non vide.
-- **Sortie** : Liste de lignes brutes.
+## Utilisation
 
-#### 2. Conversion en Tableau 2D (`to_2d_map`)
-- **Entrée** : Liste `map_lines`.
-- **Action** : Allouer `data->map` (tableau de chaînes), copier les lignes.
-- **Sortie** : `data->map` (char **), `data->map_height`.
-
-#### 3. Validation de la Largeur (`validate_width`)
-- **Règle** : Toutes les lignes doivent avoir la même longueur.
-- **Action** : Mesurer `ft_strlen` de chaque ligne, comparer.
-- **Erreur** : "Map lines have different widths".
-
-#### 4. Validation du Joueur (`validate_player`)
-- **Règle** : Exactement un `N/S/E/W`.
-- **Action** : Parcourir la map, compter, enregistrer position/direction.
-- **Erreur** : "Multiple players" ou "No player".
-
-#### 5. Validation de la Fermeture (`validate_closure`)
-- **Règle** : Map entourée de murs (`1`), pas de trous.
-- **Action** : Flood fill depuis le joueur, vérifier que tous `0` sont accessibles.
-- **Erreur** : "Map is not closed".
-
-### Exemple
-Fichier `.cub` :
-```
-NO wall.xpm
-F 100,100,100
-111
-1N1
-111
+```bash
+./cub3D maps/good/good_map.cub
 ```
 
-- **Collecte** : Lignes "111", "1N1", "111" dans liste.
-- **Conversion** : `map[0] = "111"`, `map[1] = "1N1"`, `map[2] = "111"`, `height=3`, `width=3`.
-- **Validations** : Largeur OK, joueur N à (1,1), fermée.
+Controles:
+- W/Fleche Haut: Avancer
+- A/Fleche Gauche: Tourner gauche
+- S/Fleche Bas: Reculer
+- D/Fleche Droite: Tourner droite
+- ESC: Quitter
 
-### Intégration
-Après parsing réussi, `t_file_data` est utilisé pour le rendu 3D. En cas d'erreur, le programme s'arrête.
+## Sources de Recherche
 
-## Installation et Utilisation
-- `make` : Compiler le projet.
-- `./cub3D maps/map.cub` : Lancer le jeu avec une map valide.
+1. Algorithme DDA - Interactive Explanation
+   https://aaaa.sh/creatures/dda-algorithm-interactive/
 
-## Auteurs
-- [Votre nom] - Parsing et validation.
+2. Raycasting Tutorial - LoDevInfo
+   https://lodev.org/cgtutor/raycasting.html
+
+3. Cub3D Nathaan Implementation
+   https://nathaan.me/projects/cub3d
+
+4. Raycasting Game Tutorial - YouTube
+   https://www.youtube.com/watch?v=G9i78WoBBIU
+
+5. Raycasting: De Doom a Wolfenstein
+   https://guy-grave.developpez.com/tutoriels/jeux/doom-wolfenstein-raycasting/
+
+6. Raycasting - Wikipedia
+   https://fr.wikipedia.org/wiki/Raycasting
+
+7. DDA Line Generation Algorithm - GeeksforGeeks
+   https://www.geeksforgeeks.org/computer-graphics/dda-line-generation-algorithm-computer-graphics/
+
+## Concepts Techniques
+
+### Algorithme DDA (Digital Differential Analyzer)
+
+Le DDA est un algorithme de traversee de grille qui permet de suivre un rayon a travers une carte 2D jusqu'a trouver un mur.
+
+Principe:
+- Partir de la position du joueur
+- Suivre le rayon dans sa direction
+- Traverser la grille cellule par cellule
+- Arreter quand on rencontre un mur
+
+Etapes:
+1. Initialiser le rayon (position, direction, grille de depart)
+2. Calculer les directions de progression (step_x, step_y)
+3. Boucle: avancer dans la grille jusqu'a detecter collision
+   - Si tmax_x < tmax_y: pas horizontal
+   - Sinon: pas vertical
+4. Determiner le type de collision (horizontal ou vertical)
+
+Avantages:
+- Pas de trigonometrie couteux
+- Parcours rapide de la grille
+- Resultat exact
+
+Implementation dans Cub3D:
+```
+raycasting.c
+  |
+  |- init_ray()              (preparer rayon)
+  |- calculate_step()        (directions)
+  |- perform_dda()           (traverser grille)
+  |- calculate_wall_distance() (distance)
+  |- draw_wall_vertical_line() (rendu)
+```
+
+### Raycasting
+
+Le raycasting est une technique de rendu 3D qui cree une vue 3D a partir d'une carte 2D.
+
+Principe:
+- Pour chaque colonne d'ecran (800 colonnes)
+- Envoyer un rayon depuis le joueur
+- Utiliser DDA pour trouver le premier mur
+- Calculer la hauteur du mur sur l'ecran
+- Remplir la colonne avec la texture du mur
+
+Fonctionnement:
+1. Cast ray: envoyer un rayon
+2. DDA traversal: trouver collision avec mur
+3. Distance calculation: calculer distance perpendiculaire
+4. Wall height: hauteur = hauteur_ecran / distance
+5. Texture mapping: trouver pixels texture
+6. Render column: afficher colonne
+
+Correction fisheye:
+Sans correction, l'image se deforme aux bords.
+Solution: utiliser distance perpendiculaire au plan camera
+au lieu de distance euclidienne.
+
+Code principal:
+```c
+        init_ray(game, &ray, x, 800);
+        calculate_step(game, &ray);
+        perform_dda(game, &ray);
+        calculate_wall_distance(game, &ray);
+        draw_wall_vertical_line(game, &ray, x, 600);
+```
+
+## Architecture
+
+Modules principaux:
+
+raycasting/ - Moteur 3D
+  - raycasting.c: orchestrateur
+  - raycasting_utils_init_ray.c: init des rayons
+  - raycasting_utils_calculate_step.c: etapes DDA
+  - raycasting_utils_dda_algo.c: algo DDA
+  - raycasting_utils_calculate_wall_distance.c: distance
+  - raycasting_utils_draw_vertical_line.c: rendu colonnes
+
+textures/ - Gestion textures
+render_3d/ - Rendu sol/plafond
+player/ - Joueur et collisions
+keyboard/ - Entrees utilisateur
+window/ - Fenetre et affichage
+game/ - Contexte general
+minimap/ - Minimap (bonus)
+
+## Norminette Compliance
+
+Le projet respecte la 42 Norminette:
+- Max 5 fonctions par fichier .c
+- Max 25 lignes par fonction
+- Max 80 caracteres par ligne
+- Max 4 parametres par fonction
+
+Status: 34/42 fichiers conformes (modules raycasting 100% OK)
+
+## Resume
+
+Cub3D implemente un moteur raycasting 3D fonctionnel en utilisant:
+- DDA pour traverser efficacement la grille et trouver les murs
+- Raycasting pour convertir une carte 2D en vue 3D
+- Texture mapping pour appliquer les textures sur les murs
+- Architecture modulaire respectant les contraintes de norminette
