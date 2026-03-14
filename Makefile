@@ -5,9 +5,12 @@ LDFLAGS = -L./minilibx-linux -lmlx -L./libft -lft -lXext -lX11 -lm
 SRCS = srcs/main.c \
 	srcs/parsing/parsing.c \
 	srcs/parsing/read_file.c \
+	srcs/parsing/read_file_utils.c \
 	srcs/parsing/parse_textures.c \
+	srcs/parsing/parse_textures_utils.c \
 	srcs/parsing/parse_colors.c \
 	srcs/parsing/map_processing.c \
+	srcs/parsing/map_processing_utils.c \
 	srcs/parsing/map_validation.c \
 	srcs/textures/charge_textures.c \
 	srcs/textures/free_textures.c \

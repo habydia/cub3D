@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:07:27 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/26 21:16:07 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/03/14 01:33:29 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,48 @@ int						parse_rgb(char *str, int color[3]);
 
 /*EXTRACT TEXTURE: PARSE AND VALIDATE TEXTURE FILE PATH FROM CONFIGURATION*/
 int						extract_texture(char *path, char **texture);
+
+/*NORTH TEXTURE: PROCESS NO TEXTURE DEFINITION*/
+int						north_texture(t_file_data *data, char *line);
+
+/*SOUTH TEXTURE: PROCESS SO TEXTURE DEFINITION*/
+int						south_texture(t_file_data *data, char *line);
+
+/*WEST TEXTURE: PROCESS WE TEXTURE DEFINITION*/
+int						west_texture(t_file_data *data, char *line);
+
+/*EAST TEXTURE: PROCESS EA TEXTURE DEFINITION*/
+int						east_texture(t_file_data *data, char *line);
+
+/*PROCESS FILE LINES: READ AND PROCESS CONFIGURATION FILE LINE BY LINE*/
+int						process_file_lines(int fd, t_file_data *data);
+
+/*HANDLE EMPTY LINE: PROCESS EMPTY OR WHITESPACE-ONLY LINES*/
+int						handle_empty_line(char *trimmed, t_file_data *data);
+
+/*TRY PROCESS TEXTURES: ATTEMPT TO PARSE TEXTURE CONFIGURATION*/
+int						try_process_textures(char *trimmed, t_file_data *data);
+
+/*TRY PROCESS COLORS: ATTEMPT TO PARSE COLOR CONFIGURATION*/
+int						try_process_colors(char *trimmed, t_file_data *data);
+
+/*TRY PROCESS LINE COMPONENTS: ROUTE LINE TO TEXTURE, COLOR, OR MAP HANDLER*/
+int						try_process_line_components(char *trimmed, char *line,
+							t_file_data *data);
+
+/*CHECK MAP LINE VALID: VALIDATE THAT MAP LINE CONTAINS ONLY VALID CHARACTERS*/
+int						check_map_line_valid(char *line);
+
+/*ALLOCATE AND FILL TEMP MAP: CREATE 2D ARRAY FROM LINKED LIST MAP*/
+char					**allocate_and_fill_temp_map(t_file_data *data,
+							int height);
+
+/*RUN VALIDATIONS: EXECUTE ALL MAP VALIDATION FUNCTIONS*/
+int						run_validations(t_file_data *data);
+
+/*CLEANUP ON ERROR: DEALLOCATE TEMPORARY MAP DATA ON FAILURE*/
+void					cleanup_on_error(char **temp_map, int height,
+							t_file_data *data);
 
 ///////////////////////////////////////////////////////////////////////////////
 //////////////////////////////MEMORY CLEANUP///////////////////////////////////
