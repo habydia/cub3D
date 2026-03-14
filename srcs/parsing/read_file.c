@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:46:24 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/23 18:19:45 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/03/14 01:14:45 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,11 @@ int	read_file(char *file_path, t_file_data *data)
 	if (process_file_lines(fd, data) == -1)
 	{
 		close(fd);
+		get_next_line(-1);
 		return (-1);
 	}
 	close(fd);
+	get_next_line(-1);
 	if (lstmap_to_charmap(data) == -1)
 		return (-1);
 	return (0);

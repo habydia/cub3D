@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_processing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 11:00:00 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/23 12:23:35 by hadia            ###   ########.fr       */
+/*   Updated: 2026/03/14 01:14:19 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
  */
 static int	check_map_line_valid(char *line)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (line[i])
 	{
 		if (line[i] == ' ' || line[i] == '\t')
@@ -40,18 +42,22 @@ static int	check_map_line_valid(char *line)
  * @param data Pointer to the file data structure.
  * @return 0 on success, -1 on error.
  */
-int process_map(char *line, t_file_data *data)
+int	process_map(char *line, t_file_data *data)
 {
-	t_list *temp_map;
+	t_list	*temp_map;
+	char	*line_copy;
 
 	if (!line || *line == '\0' || *line == '\n')
 		return (0);
 	if (check_map_line_valid(line) == -1)
 		return (-1);
-	temp_map = ft_lstnew(ft_strdup(line));
-	if (!temp_map || !temp_map->content)
+	line_copy = ft_strdup(line);
+	if (!line_copy)
+		return (-1);
+	temp_map = ft_lstnew(line_copy);
+	if (!temp_map)
 	{
-		free(temp_map);
+		free(line_copy);
 		return (-1);
 	}
 	ft_lstadd_back(&data->map_lines, temp_map);
@@ -67,9 +73,9 @@ int process_map(char *line, t_file_data *data)
  */
 static char	**allocate_and_fill_temp_map(t_file_data *data, int height)
 {
-	char **temp_map;
-	t_list *tmp;
-	int i;
+	char	**temp_map;
+	t_list	*tmp;
+	int		i;
 
 	temp_map = malloc(sizeof(char *) * height);
 	if (!temp_map)
@@ -116,7 +122,9 @@ static int	run_validations(t_file_data *data)
  */
 static void	cleanup_on_error(char **temp_map, int height, t_file_data *data)
 {
-	int j = 0;
+	int	j;
+
+	j = 0;
 	while (j < height)
 	{
 		free(temp_map[j]);
@@ -133,7 +141,7 @@ static void	cleanup_on_error(char **temp_map, int height, t_file_data *data)
  * @param data Pointer to the file data structure.
  * @return 0 on success, -1 on error.
  */
-int lstmap_to_charmap(t_file_data *data)
+int	lstmap_to_charmap(t_file_data *data)
 {
 	int		height;
 	char	**temp_map;

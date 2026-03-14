@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 12:18:02 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/23 11:20:45 by hadia            ###   ########.fr       */
+/*   Updated: 2026/03/14 01:13:52 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static int	parse_coma(char *str)
 					&& str[i - 1] == ','))
 				return (-1);
 		}
+		else if (!ft_isdigit(str[i]) && str[i] != ' ' && str[i] != '\t')
+			return (-1);
 		i++;
 	}
 	if (comma_count != 2)
@@ -73,6 +75,7 @@ static int	parse_coma(char *str)
 
 /**
  * Extracts and validates an RGB value from a substring.
+ * Checks for valid range [0-255] and max 3 digits.
  * @param str The full string.
  * @param start Start index of the substring.
  * @param end End index of the substring.
@@ -81,9 +84,13 @@ static int	parse_coma(char *str)
  */
 static int	extract_rgb_value(char *str, int start, int end, int *color_value)
 {
-	char *num_str;
+	char	*num_str;
+	int		length;
 
-	num_str = ft_substr(str, start, end - start);
+	length = end - start;
+	if (length > 3 || length == 0)
+		return (-1);
+	num_str = ft_substr(str, start, length);
 	if (!num_str)
 		return (-1);
 	*color_value = ft_atoi(num_str);
