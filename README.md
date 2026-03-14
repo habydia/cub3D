@@ -10,7 +10,7 @@
 - **Raycasting Engine**: Converts a 2D map into a 3D first-person view
 - **Texture Mapping**: Applies textures to walls based on direction (North, South, East, West)
 - **DDA Algorithm**: Efficient grid traversal to detect wall collisions
-- **Player Movement**: 8-directional movement and rotation
+- **Player Movement**: 4-directional movement (forward, backward, strafe left/right)
 - **Collision Detection**: Prevents walking through walls
 - **Bonus Features**: Minimap (when compiled with `make bonus`)
 
@@ -56,8 +56,8 @@ Example:
 |-----|--------|
 | **W** / **Up Arrow** | Move forward |
 | **S** / **Down Arrow** | Move backward |
-| **A** / **Left Arrow** | Strafe left / Turn left |
-| **D** / **Right Arrow** | Strafe right / Turn right |
+| **A** | Strafe left |
+| **D** | Strafe right |
 | **Mouse** | Look around (bonus only) |
 | **ESC** | Exit game |
 

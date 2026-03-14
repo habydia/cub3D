@@ -29,6 +29,7 @@ SRCS = srcs/main.c \
 	srcs/raycasting/raycasting_utlils_draw_vertical_line_utils_texture_mapping.c \
 	srcs/player/init_player.c \
 	srcs/player/update_player.c \
+	srcs/player/update_player_utils.c \
 	srcs/player/wall_collision_bonus.c \
 	srcs/minimap/draw_minimap_bonus.c \
 	srcs/window/open_window.c \

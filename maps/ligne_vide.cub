@@ -1,13 +1,9 @@
-   WE                            textures/wolfenstein/matrix.xpm 
-NO      textures/wolfenstein/matrix.xpm
-
-
-
-SO textures/wolfenstein/matrix.xpm
+NO textures/N.xpm
+SO textures/S.xpm
+WE textures/W.xpm
+EA textures/E.xpm
 
 F   69, 222, 199
-
-EA textures/wolfenstein/matrix.xpm
 
 
 

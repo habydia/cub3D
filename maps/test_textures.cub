@@ -1,7 +1,7 @@
-NO textures/wolfenstein/matrix.xpm
-SO textures/wolfenstein/matrix.xpm
-WE textures/wolfenstein/matrix.xpm
-EA textures/wolfenstein/matrix.xpm
+NO textures/N.xpm
+SO textures/S.xpm
+WE textures/W.xpm
+EA textures/E.xpm
 
 F 255, 200, 100
 C 100, 100, 255

@@ -1,7 +1,7 @@
-NO textures/E_64x64.xpm
-SO textures/E_64x64.xpm
-WE textures/E_64x64.xpm
-EA textures/E_64x64.xpm
+NO textures/N.xpm
+SO textures/S.xpm
+WE textures/W.xpm
+EA textures/E.xpm
 
 F 50, 50, 50
 C 100, 100, 100
