@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 19:30:00 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 19:39:42 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/03/14 14:55:58 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,13 @@
 
 int	is_wall_collision(t_game *game, double new_x, double new_y)
 {
-	return (game->data->map[(int)new_y][(int)new_x] == '1');
+	int	x;
+	int	y;
+
+	x = (int)new_x;
+	y = (int)new_y;
+	if (x < 0 || x >= game->data->map_width || y < 0
+		|| y >= game->data->map_height)
+		return (1);
+	return (game->data->map[y][x] == '1');
 }

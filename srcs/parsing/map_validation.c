@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hadia <Hadia@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 11:00:00 by hadia             #+#    #+#             */
-/*   Updated: 2026/02/23 12:17:03 by hadia            ###   ########.fr       */
+/*   Updated: 2026/03/14 14:55:58 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,37 @@
  * @param data Pointer to the file data structure.
  * @return 0 if valid, -1 otherwise.
  */
-int validate_characters(t_file_data *data)
+int	validate_characters(t_file_data *data)
 {
-    int y = 0;
-    while (y < data->map_height)
-    {
-        int len = ft_strlen(data->map[y]);
-        int x = 0;
-        while (x < len)
-        {
-            char c = data->map[y][x];
-            if (c != '0' && c != '1' && c != 'N' && c != 'S' && c != 'E' && c != 'W')
-            {
-                printf("Error\nInvalid character in map: '%c' (ASCII: %d) at y=%d x=%d\n", c, (int)c, y, x);
-                return -1;
-            }
-            x++;
-        }
-        y++;
-    }
-    return 0;
+	int		y;
+	int		len;
+	int		x;
+	char	c;
+
+	y = 0;
+	while (y < data->map_height)
+	{
+		len = ft_strlen(data->map[y]);
+		x = 0;
+		while (x < len)
+		{
+			c = data->map[y][x];
+			if (c != '0' && c != '1' && c != 'N' && c != 'S' && c != 'E'
+				&& c != 'W')
+			{
+				printf("Error\nInvalid character in map: '%c' "
+						"(ASCII: %d) at y=%d x=%d\n",
+						c,
+						(int)c,
+						y,
+						x);
+				return (-1);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (0);
 }
 
 /**
@@ -50,7 +61,8 @@ int validate_characters(t_file_data *data)
  * @param data Pointer to the file data structure.
  * @return 0 on success, -1 on error.
  */
-static int	process_player_char(char c, int *count, int x, int y, t_file_data *data)
+static int	process_player_char(char c, int *count, int x, int y,
+		t_file_data *data)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
@@ -74,15 +86,19 @@ static int	process_player_char(char c, int *count, int x, int y, t_file_data *da
  * @param data Pointer to the file data structure.
  * @return 0 if valid, -1 otherwise.
  */
-int validate_player(t_file_data *data)
+int	validate_player(t_file_data *data)
 {
-	int count = 0;
-	int y = 0;
+	int	count;
+	int	y;
+	int	len;
+	int	x;
 
+	count = 0;
+	y = 0;
 	while (y < data->map_height)
 	{
-		int len = ft_strlen(data->map[y]);
-		int x = 0;
+		len = ft_strlen(data->map[y]);
+		x = 0;
 		while (x < len)
 		{
 			if (process_player_char(data->map[y][x], &count, x, y, data) == -1)
@@ -105,13 +121,13 @@ int validate_player(t_file_data *data)
  * @param data Pointer to the file data structure.
  * @return 0 if valid, -1 otherwise.
  */
-int validate_borders_only(t_file_data *data)
+int	validate_borders_only(t_file_data *data)
 {
-    if (validate_top_bottom(data) == -1)
-        return -1;
-    if (validate_left_right(data) == -1)
-        return -1;
-    return 0;
+	if (validate_top_bottom(data) == -1)
+		return (-1);
+	if (validate_left_right(data) == -1)
+		return (-1);
+	return (0);
 }
 
 /**
@@ -119,29 +135,35 @@ int validate_borders_only(t_file_data *data)
  * @param data Pointer to the file data structure.
  * @return 0 if valid, -1 otherwise.
  */
-int validate_top_bottom(t_file_data *data)
+int	validate_top_bottom(t_file_data *data)
 {
-    int len_top = ft_strlen(data->map[0]);
-    int x = 0;
-    while (x < len_top) {
-        if (data->map[0][x] != '1') {
-            printf("Error\nMap top border must be walls\n");
-            return -1;
-        }
-        x++;
-    }
+	int	len_top;
+	int	x;
+	int	len_bottom;
 
-    int len_bottom = ft_strlen(data->map[data->map_height - 1]);
-    x = 0;
-    while (x < len_bottom) {
-        if (data->map[data->map_height - 1][x] != '1') {
-            printf("Error\nMap bottom border must be walls\n");
-            return -1;
-        }
-        x++;
-    }
-
-    return 0;
+	len_top = ft_strlen(data->map[0]);
+	x = 0;
+	while (x < len_top)
+	{
+		if (data->map[0][x] != '1')
+		{
+			printf("Error\nMap top border must be walls\n");
+			return (-1);
+		}
+		x++;
+	}
+	len_bottom = ft_strlen(data->map[data->map_height - 1]);
+	x = 0;
+	while (x < len_bottom)
+	{
+		if (data->map[data->map_height - 1][x] != '1')
+		{
+			printf("Error\nMap bottom border must be walls\n");
+			return (-1);
+		}
+		x++;
+	}
+	return (0);
 }
 
 /**
@@ -149,21 +171,31 @@ int validate_top_bottom(t_file_data *data)
  * @param data Pointer to the file data structure.
  * @return 0 if valid, -1 otherwise.
  */
-int validate_left_right(t_file_data *data)
+int	validate_left_right(t_file_data *data)
 {
-    int y = 0;
-    while (y < data->map_height) {
-        int len = ft_strlen(data->map[y]);
-        if (data->map[y][0] != '1') {
-            printf("Error\nMap left border must be walls\n");
-            return -1;
-        }
-        if (data->map[y][len - 1] != '1') {
-            printf("Error\nMap right border must be walls\n");
-            return -1;
-        }
-        y++;
-    }
+	int	y;
+	int	len;
 
-    return 0;
+	y = 0;
+	while (y < data->map_height)
+	{
+		len = ft_strlen(data->map[y]);
+		if (len == 0)
+		{
+			printf("Error\nMap line %d is empty\n", y);
+			return (-1);
+		}
+		if (data->map[y][0] != '1')
+		{
+			printf("Error\nMap left border must be walls\n");
+			return (-1);
+		}
+		if (data->map[y][len - 1] != '1')
+		{
+			printf("Error\nMap right border must be walls\n");
+			return (-1);
+		}
+		y++;
+	}
+	return (0);
 }

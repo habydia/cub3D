@@ -6,24 +6,25 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 23:15:00 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 12:05:33 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/03/14 14:46:26 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static void	load_texture_data(t_game *game, char *path,
+static int	load_texture_data(t_game *game, char *path,
 		t_texture_load_buffers *tex)
 {
 	*tex->image_ptr = mlx_xpm_file_to_image(game->mlx_ptr, path, tex->width_ptr,
 			tex->height_ptr);
 	if (!*tex->image_ptr)
 	{
-		printf("Error loading texture: %s\n", path);
-		return ;
+		fprintf(stderr, "Error loading texture: %s\n", path);
+		return (-1);
 	}
 	*tex->buffer_ptr = mlx_get_data_addr(*tex->image_ptr, tex->bpp_ptr,
 			tex->line_len_ptr, tex->endian_ptr);
+	return (0);
 }
 
 void	load_texture_by_face(t_game *game, char *path, char face)
@@ -34,6 +35,7 @@ void	load_texture_by_face(t_game *game, char *path, char face)
 	get_texture_ptrs(game, face, &tex);
 	if (!tex.image_ptr)
 		return ;
-	load_texture_data(game, path, &tex);
+	if (load_texture_data(game, path, &tex) == -1)
+		return ;
 	printf("  Loaded %s: %dx%d\n", path, *tex.width_ptr, *tex.height_ptr);
 }

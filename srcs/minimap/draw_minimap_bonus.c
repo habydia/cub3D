@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_minimap.c                                     :+:      :+:    :+:   */
+/*   draw_minimap_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:48:42 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/25 16:18:17 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/03/14 14:46:26 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,24 @@ void	draw_minimap_case(t_game *game, t_pixel_square d)
 void	draw_minimap_line(t_game *game, int y, int square_size)
 {
 	int				x;
+	int				line_len;
 	t_pixel_square	d;
 
+	line_len = ft_strlen(game->data->map[y]);
 	x = 0;
 	while (x < game->data->map_width)
 	{
-		d.screen_start_x = x;
-		d.screen_start_y = y;
-		d.square_size = square_size;
-		d.color = get_minimap_color(game->data->map[y][x]);
-		draw_minimap_case(game, d);
-		x++;
+		if (x >= line_len)
+			x++;
+		else
+		{
+			d.screen_start_x = x;
+			d.screen_start_y = y;
+			d.square_size = square_size;
+			d.color = get_minimap_color(game->data->map[y][x]);
+			draw_minimap_case(game, d);
+			x++;
+		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: lebroue <lebroue@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:30:00 by lebroue           #+#    #+#             */
-/*   Updated: 2026/02/26 16:18:48 by lebroue          ###   ########.fr       */
+/*   Updated: 2026/03/14 14:46:26 by lebroue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ static int	is_wall(t_game *game, t_ray *ray)
 {
 	char	tile;
 
+	if (ray->in_map_grid_cell_x < 0
+		|| ray->in_map_grid_cell_x >= game->data->map_width
+		|| ray->in_map_grid_cell_y < 0
+		|| ray->in_map_grid_cell_y >= game->data->map_height)
+		return (1);
 	tile = game->data->map[ray->in_map_grid_cell_y][ray->in_map_grid_cell_x];
 	return (tile == '1');
 }
